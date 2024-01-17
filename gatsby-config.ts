@@ -3,7 +3,8 @@ require("dotenv").config();
 
 const config: GatsbyConfig = {
   siteMetadata: {
-    title: `haewolcs-website`,
+    title: `해월씨에스의원`,
+    description: "암 요양 전문 해월CS의원",
     siteUrl: `https://www.yourdomain.tld`,
   },
   // More easily incorporate content into your pages through automatic TypeScript type generation and better GraphQL IntelliSense.
