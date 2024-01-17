@@ -1,5 +1,5 @@
 import { Link } from "gatsby";
-import React, { ReactNode } from "react";
+import React, { ReactNode, useState } from "react";
 import { Tab } from "@headlessui/react";
 
 interface ILayoutProps {
@@ -18,29 +18,25 @@ const categories: ICategores[] = [
 ];
 
 function Layout({ children }: ILayoutProps) {
+  const [selected, setSelected] = useState<boolean>(false);
   return (
     <div className="w-full h-screen px-16 mx-auto bg-gray-300">
-      <Tab.Group>
-        <Tab.List className="flex w-4/5 p-4 bg-blue-900 justify-evenly">
-          {categories.map((category) => (
-            <Tab
-              key={category.title}
-              className={({ selected }) =>
+      <ul className="sticky top-0 left-0 right-0 flex bg-stone-700 h-1/10">
+        {categories.map((category) => (
+          <Link
+            to={category.url}
+            key={category.title}
+            className={`nav-menu-tap
+              ${
                 selected
-                  ? "bg-white text-blue-700 shadow w-full"
-                  : "text-blue-100 hover:bg-white/[0.12] hover:text-white w-full"
-              }
-            >
-              {category.title}
-            </Tab>
-          ))}
-        </Tab.List>
-        <Tab.Panels>
-          <Tab.Panel>Content 1</Tab.Panel>
-          <Tab.Panel>Content 2</Tab.Panel>
-          <Tab.Panel>Content 3</Tab.Panel>
-        </Tab.Panels>
-      </Tab.Group>
+                  ? "text-sky-200 w-full"
+                  : "text-white hover:text-sky-200 w-full"
+              }`}
+          >
+            {category.title}
+          </Link>
+        ))}
+      </ul>
       {/* <ul className="flex w-full text-4xl font-bold bg-black justify-evenly text-violet-600">
         <li>
           <Link to={"/"}>홈으로</Link>
