@@ -1,11 +1,12 @@
-import * as React from "react";
-import { type HeadFC, type PageProps } from "gatsby";
+import React from "react";
+import { HeadFC, type PageProps } from "gatsby";
+import Layout from "../components/layout";
 
 const IndexPage: React.FC<PageProps> = () => {
   return (
-    <div>
+    <Layout>
       <div>메인페이지</div>
-    </div>
+    </Layout>
   );
 };
 
