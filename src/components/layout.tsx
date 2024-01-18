@@ -8,10 +8,10 @@ interface ILayoutProps {
 
 function Layout({ children }: ILayoutProps) {
   return (
-    <div className="w-full h-screen mx-auto bg-gray-300">
+    <div className="w-full h-screen min-h-screen">
       <Navbar />
       <MainCarousel />
-      <div className="px-16">{children}</div>
+      <div className="px-16 lg:px-44">{children}</div>
     </div>
   );
 }
