@@ -21,19 +21,19 @@ function MainCarousel() {
     >
       <StaticImage
         layout="fullWidth"
-        src="../images/hospital.jpg"
+        src="../../images/hospital.jpg"
         alt="hospital"
         aspectRatio={16 / 9}
       />
       <StaticImage
         layout="fullWidth"
-        src="../images/terrace.jpg"
+        src="../../images/terrace.jpg"
         alt="terrace"
         aspectRatio={16 / 9}
       />
       <StaticImage
         layout="fullWidth"
-        src="../images/walking.jpg"
+        src="../../images/walking.jpg"
         alt="walking"
         aspectRatio={16 / 9}
       />

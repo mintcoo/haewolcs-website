@@ -1,6 +1,6 @@
 import React, { ReactNode } from "react";
 import Navbar from "./navbar";
-import MainCarousel from "./maincarousel";
+import MainCarousel from "./main/maincarousel";
 
 interface ILayoutProps {
   children: ReactNode;
@@ -11,7 +11,7 @@ function Layout({ children }: ILayoutProps) {
     <div className="w-full h-screen min-h-screen">
       <Navbar />
       <MainCarousel />
-      <div className="px-16 lg:px-44">{children}</div>
+      <div className="h-screen px-16 lg:px-44">{children}</div>
     </div>
   );
 }

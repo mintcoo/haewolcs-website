@@ -6,6 +6,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ["NanumGothic", "Arial", "sans-serif"],
+      },
       height: {
         "1/10": "10%",
       },
