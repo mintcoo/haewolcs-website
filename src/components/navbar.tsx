@@ -16,7 +16,7 @@ function Navbar() {
   const [selected, setSelected] = useState<boolean>(false);
 
   return (
-    <ul className="sticky top-0 left-0 right-0 z-10 flex bg-stone-700 h-1/10">
+    <ul className="sticky top-0 left-0 right-0 z-50 flex bg-stone-700 h-1/10">
       {categories.map((category) => (
         <Link
           to={category.url}

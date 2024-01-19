@@ -4,7 +4,7 @@
 @import "~slick-carousel/slick/slick.css";
 @import "~slick-carousel/slick/slick-theme.css";
 
-@import url("https://fonts.googleapis.com/css2?family=Nanum+Gothic&family=Noto+Sans+KR:wght@100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Dokdo&family=Nanum+Gothic&family=Noto+Sans+KR:wght@100..900&display=swap");
 
 @layer components {
   .f-c-c {
@@ -15,5 +15,8 @@
   }
   .nav-menu-tap {
     @apply flex items-center justify-center text-4xl font-bold;
+  }
+  .text-stroke {
+    -webkit-text-stroke: 0.5px black; /* 텍스트 외곽선 두께 및 색상 설정 */
   }
 }
