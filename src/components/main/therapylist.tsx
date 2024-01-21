@@ -4,13 +4,14 @@ interface ITherapies {
   name: string;
 }
 
+const therapies: ITherapies[] = [
+  { name: "암 통합치료" },
+  { name: "고주파 온열치료" },
+  { name: "면역증강 치료" },
+  { name: "항산화 치료" },
+];
+
 function Therapylist() {
-  const therapies: ITherapies[] = [
-    { name: "암 통합치료" },
-    { name: "고주파 온열치료" },
-    { name: "면역증강 치료" },
-    { name: "항산화 치료" },
-  ];
   return (
     <div className="flex h-full bg-slate-400">
       <div className="bg-yellow-100 f-c-c-c w-30vw">
