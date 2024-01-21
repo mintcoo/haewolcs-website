@@ -6,6 +6,10 @@
 
 @import url("https://fonts.googleapis.com/css2?family=Dokdo&family=Nanum+Gothic&family=Noto+Sans+KR:wght@100..900&display=swap");
 
+.slick-dots li {
+  width: 200px;
+}
+
 @layer components {
   .f-c-c {
     @apply flex items-center justify-center;

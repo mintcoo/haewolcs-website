@@ -8,16 +8,6 @@ function FacilityCarousel() {
     query {
       myImage: file(relativePath: { eq: "test01.png" }) {
         publicURL
-        childImageSharp {
-          resize(width: 40) {
-            src
-            tracedSVG
-            width
-            height
-            aspectRatio
-            originalName
-          }
-        }
       }
     }
   `);
@@ -27,7 +17,6 @@ function FacilityCarousel() {
     customPaging: function (i: number) {
       return (
         <a>
-          {/* <img src={`../../images/test0${i + 1}.jpg`} alt={`${i}`} /> */}
           <img src={data.myImage.publicURL} alt={`${i}`} />
         </a>
       );
@@ -40,29 +29,39 @@ function FacilityCarousel() {
     slidesToScroll: 1,
   };
   return (
-    <Slider {...carouselSetting} className=" mx-auto w-full xl:w-[90%]">
-      <StaticImage src="../../images/test01.png" alt="cinna" />
+    <>
+      <div className="bg-pink-100 f-c-c-c w-30vw">
+        <div className="font-semibold text-gray-700 text-3vw ">
+          해월씨에스 <span className="text-orange-300">시설소개</span>
+        </div>
+        <div className="mt-4 text-gray-500 text-1.2vw">
+          암치료에 관한 맞춤형 통합 치료를 진행합니다
+        </div>
+      </div>
+      <Slider {...carouselSetting} className=" mx-auto w-full xl:w-[90%]">
+        <StaticImage src="../../images/test01.png" alt="cinna" />
 
-      <StaticImage
-        layout="fullWidth"
-        src="../../images/hospital.jpg"
-        alt="hospital"
-        aspectRatio={16 / 9}
-      />
+        <StaticImage
+          layout="fullWidth"
+          src="../../images/hospital.jpg"
+          alt="hospital"
+          aspectRatio={16 / 9}
+        />
 
-      <StaticImage
-        layout="fullWidth"
-        src="../../images/terrace.jpg"
-        alt="terrace"
-        aspectRatio={16 / 9}
-      />
-      <StaticImage
-        layout="fullWidth"
-        src="../../images/walking.jpg"
-        alt="walking"
-        aspectRatio={16 / 9}
-      />
-    </Slider>
+        <StaticImage
+          layout="fullWidth"
+          src="../../images/terrace.jpg"
+          alt="terrace"
+          aspectRatio={16 / 9}
+        />
+        <StaticImage
+          layout="fullWidth"
+          src="../../images/walking.jpg"
+          alt="walking"
+          aspectRatio={16 / 9}
+        />
+      </Slider>
+    </>
   );
 }
 

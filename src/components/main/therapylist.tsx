@@ -14,9 +14,10 @@ const therapies: ITherapies[] = [
 function Therapylist() {
   return (
     <div className="flex h-full bg-slate-400">
-      <div className="bg-yellow-100 f-c-c-c w-30vw">
+      <div className="flex flex-col items-start justify-center bg-yellow-100 w-30vw">
+        <div className="w-1/5 h-1 mb-2 xl:mb-8 bg-sky-300"></div>
         <div className="font-semibold text-gray-700 text-3vw ">
-          해월씨에스의 <span className="text-sky-300">치료</span>
+          해월씨에스의 <span className="text-orange-300">치료</span>
         </div>
         <div className="mt-4 text-gray-500 text-1.2vw">
           암치료에 관한 맞춤형 통합 치료를 진행합니다
