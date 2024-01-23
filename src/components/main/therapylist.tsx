@@ -1,17 +1,10 @@
 import React from "react";
-
-interface ITherapies {
-  name: string;
-}
-
-const therapies: ITherapies[] = [
-  { name: "암 통합치료" },
-  { name: "고주파 온열치료" },
-  { name: "면역증강 치료" },
-  { name: "항산화 치료" },
-];
+import { useRecoilValue } from "recoil";
+import { therapyListState } from "../../store/atom";
 
 function Therapylist() {
+  const therapies = useRecoilValue(therapyListState);
+
   return (
     <div className="flex h-full bg-slate-400">
       <div className="flex flex-col items-start justify-center bg-yellow-100 w-30vw">
@@ -28,7 +21,7 @@ function Therapylist() {
           return (
             <div
               key={index}
-              className="w-[20vw] h-[20vw] bg-purple-100 rounded-full f-c-c "
+              className="w-20vw h-[20vw] bg-purple-100 rounded-full f-c-c"
             >
               <div className="font-semibold text-2vw ">{therapy.name}</div>
             </div>

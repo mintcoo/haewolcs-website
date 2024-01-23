@@ -30,7 +30,7 @@ function FacilityCarousel() {
   };
   return (
     <>
-      <div className="bg-pink-100 f-c-c-c w-30vw ">
+      <div className="w-full bg-pink-100 f-c-c-c">
         <div className="font-semibold text-gray-700 text-3vw ">
           해월씨에스 <span className="text-orange-300">둘러보기</span>
         </div>
