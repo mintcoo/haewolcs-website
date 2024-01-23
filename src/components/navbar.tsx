@@ -9,14 +9,16 @@ interface ICategores {
 function Navbar() {
   const categories: ICategores[] = [
     { url: "/", title: "홈" },
-    { url: "/introduction", title: "해월씨에스소개" },
+    { url: "/introduction", title: "해월씨에스" },
     { url: "/infoguide", title: "진료안내" },
+    { url: "/therapies", title: "암통합치료" },
+    { url: "/navigate", title: "오시는길" },
   ];
 
   const [selected, setSelected] = useState<boolean>(false);
 
   return (
-    <ul className="sticky top-0 left-0 right-0 z-50 flex bg-stone-700 h-1/10">
+    <ul className="sticky top-0 left-0 right-0 z-50 flex bg-stone-700 h-10vh">
       {categories.map((category) => (
         <Link
           to={category.url}

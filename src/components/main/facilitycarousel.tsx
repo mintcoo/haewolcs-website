@@ -30,9 +30,9 @@ function FacilityCarousel() {
   };
   return (
     <>
-      <div className="bg-pink-100 f-c-c-c w-30vw">
+      <div className="bg-pink-100 f-c-c-c w-30vw ">
         <div className="font-semibold text-gray-700 text-3vw ">
-          해월씨에스 <span className="text-orange-300">시설소개</span>
+          해월씨에스 <span className="text-orange-300">둘러보기</span>
         </div>
         <div className="mt-4 text-gray-500 text-1.2vw">
           암치료에 관한 맞춤형 통합 치료를 진행합니다

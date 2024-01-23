@@ -7,11 +7,12 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["NanumGothic", "Arial", "sans-serif"],
+        sans: ["Noto Sans KR", "Arial", "sans-serif"],
         dokdo: ["dokdo"],
       },
       height: {
         "1/10": "10%",
+        "10vh": "10vh",
       },
       fontSize: {
         "1vw": "1vw",
