@@ -50,6 +50,7 @@ export const navbarMenuListState = atom<INavbarMenus[][]>({
       { url: "/", title: "암 통합치료" },
       { url: "/introduction", title: "고주파 온열치료" },
       { url: "/introduction", title: "면역증강 치료" },
+      { url: "/introduction", title: "항산화 치료" },
     ],
     [],
   ],

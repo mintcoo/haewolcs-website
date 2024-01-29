@@ -26,7 +26,7 @@ function Navbar() {
           </Link>
         ))}
       </ul>
-      <ul
+      {/* <ul
         className={`${
           selected ? "fixed" : "hidden"
         } fixed left-0 right-0 z-40 flex font-bold text-white bg-black text-1vw animate-moving opacity-70`}
@@ -43,7 +43,29 @@ function Navbar() {
             ))}
           </li>
         ))}
-      </ul>
+      </ul> */}
+      {selected ? (
+        <ul
+          className={`fixed left-0 right-0 z-40 flex font-bold text-white bg-black text-1vw animate-moving opacity-70 h-20vh`}
+        >
+          {menusData.map((menus, index) => (
+            <li
+              key={index}
+              className="w-1/5 h-full border-r-2 border-red-500 f-c-c-c first:border-l-2"
+            >
+              {menus.map((menu) => (
+                <Link
+                  className="w-full text-center bg-sky-800"
+                  to={menu.url}
+                  key={menu.title}
+                >
+                  {menu.title}
+                </Link>
+              ))}
+            </li>
+          ))}
+        </ul>
+      ) : null}
     </div>
   );
 }
