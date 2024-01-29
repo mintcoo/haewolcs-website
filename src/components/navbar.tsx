@@ -17,23 +17,28 @@ function Navbar() {
 
   const [selected, setSelected] = useState<boolean>(false);
 
+  const onMouseOver = () => setSelected(true);
+  const onMouseOut = () => setSelected(false);
+
   return (
-    <ul className="sticky top-0 left-0 right-0 z-50 flex bg-stone-700 h-10vh">
-      {categories.map((category) => (
-        <Link
-          to={category.url}
-          key={category.title}
-          className={`nav-menu-tap
-        ${
-          selected
-            ? "text-sky-200 w-full"
-            : "text-white hover:text-sky-200 w-full"
-        }`}
-        >
-          {category.title}
-        </Link>
-      ))}
-    </ul>
+    <>
+      <ul className="sticky top-0 left-0 right-0 z-50 flex bg-stone-700 h-10vh">
+        {categories.map((category) => (
+          <Link
+            onMouseOver={onMouseOver}
+            onMouseOut={onMouseOut}
+            to={category.url}
+            key={category.title}
+            className={`nav-menu-tap text-white hover:text-sky-200 w-full`}
+          >
+            {category.title}
+          </Link>
+        ))}
+      </ul>
+      {selected ? (
+        <div className="fixed left-0 right-0 z-50 flex bg-black opacity-70 h-10vh"></div>
+      ) : null}
+    </>
   );
 }
 
