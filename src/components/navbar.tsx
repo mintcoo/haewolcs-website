@@ -1,27 +1,19 @@
 import { Link } from "gatsby";
 import React, { useState } from "react";
-
-interface ICategores {
-  url: string;
-  title: string;
-}
+import { useRecoilValue } from "recoil";
+import { categoryListState, navbarMenuListState } from "../store/atom";
 
 function Navbar() {
-  const categories: ICategores[] = [
-    { url: "/", title: "홈" },
-    { url: "/introduction", title: "해월씨에스" },
-    { url: "/infoguide", title: "진료안내" },
-    { url: "/therapies", title: "암통합치료" },
-    { url: "/navigate", title: "오시는길" },
-  ];
+  const categories = useRecoilValue(categoryListState);
+  const menusData = useRecoilValue(navbarMenuListState);
 
   const [selected, setSelected] = useState<boolean>(false);
 
   const onMouseOver = () => setSelected(true);
-  const onMouseOut = () => setSelected(false);
+  const onMouseLeave = () => setSelected(false);
 
   return (
-    <div onMouseOut={onMouseOut}>
+    <div onMouseLeave={onMouseLeave}>
       <ul className="sticky top-0 left-0 right-0 z-50 flex bg-stone-700 h-10vh">
         {categories.map((category) => (
           <Link
@@ -34,9 +26,24 @@ function Navbar() {
           </Link>
         ))}
       </ul>
-      {selected ? (
-        <div className="fixed left-0 right-0 z-40 flex bg-black animate-moving opacity-70 h-10vh"></div>
-      ) : null}
+      <ul
+        className={`${
+          selected ? "fixed" : "hidden"
+        } fixed left-0 right-0 z-40 flex font-bold text-white bg-black text-1vw animate-moving opacity-70`}
+      >
+        {menusData.map((menus, index) => (
+          <li
+            key={index}
+            className="w-1/5 h-full border-r-2 border-red-500 f-c-c-c bg-sky-800 first:border-l-2"
+          >
+            {menus.map((menu) => (
+              <Link to={menu.url} key={menu.title}>
+                {menu.title}
+              </Link>
+            ))}
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }
