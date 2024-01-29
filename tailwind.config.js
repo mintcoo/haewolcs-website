@@ -30,6 +30,15 @@ module.exports = {
         "3vw": "3vw",
         "30vw": "30vw",
       },
+      animation: {
+        moving: "moving 0.2s ease-in-out",
+      },
+      keyframes: {
+        moving: {
+          "0%": { transform: "translateY(-10vh)" },
+          "100%": { transform: "translateY(0)" },
+        },
+      },
     },
   },
   plugins: [],

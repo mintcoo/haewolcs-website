@@ -21,12 +21,11 @@ function Navbar() {
   const onMouseOut = () => setSelected(false);
 
   return (
-    <>
+    <div onMouseOut={onMouseOut}>
       <ul className="sticky top-0 left-0 right-0 z-50 flex bg-stone-700 h-10vh">
         {categories.map((category) => (
           <Link
             onMouseOver={onMouseOver}
-            onMouseOut={onMouseOut}
             to={category.url}
             key={category.title}
             className={`nav-menu-tap text-white hover:text-sky-200 w-full`}
@@ -36,9 +35,9 @@ function Navbar() {
         ))}
       </ul>
       {selected ? (
-        <div className="fixed left-0 right-0 z-50 flex bg-black opacity-70 h-10vh"></div>
+        <div className="fixed left-0 right-0 z-40 flex bg-black animate-moving opacity-70 h-10vh"></div>
       ) : null}
-    </>
+    </div>
   );
 }
 
