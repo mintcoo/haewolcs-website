@@ -1,9 +1,11 @@
+"use client";
+
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 export default function Navbar() {
   // 현재 나의 페이지 url정보 가져오자
-//   const path = usePathname();
+  const path = usePathname();
 
   return (
     <nav>
