@@ -8,10 +8,38 @@ const config: Config = {
   ],
   theme: {
     extend: {
-      backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+      fontFamily: {
+        sans: ["Noto Sans KR", "Arial", "sans-serif"],
+        dokdo: ["dokdo"],
+      },
+      width: {
+        "10vw": "10vw",
+        "20vw": "20vw",
+        "30vw": "30vw",
+      },
+      height: {
+        "1/10": "10%",
+        "10vh": "10vh",
+        "20vh": "20vh",
+        "30vh": "30vh",
+      },
+      fontSize: {
+        "1vw": "1vw",
+        "1.2vw": "1.2vw",
+        "1.5vw": "1.5vw",
+        "2vw": "2vw",
+        "2.5vw": "2.5vw",
+        "3vw": "3vw",
+        "30vw": "30vw",
+      },
+      animation: {
+        moving: "moving 0.2s ease-in-out",
+      },
+      keyframes: {
+        moving: {
+          "0%": { transform: "translateY(-10vh)" },
+          "100%": { transform: "translateY(0)" },
+        },
       },
     },
   },
