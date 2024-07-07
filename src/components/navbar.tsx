@@ -1,8 +1,8 @@
 "use client";
 
-import { ICategories } from "@/types/navbar";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useState } from "react";
 
 // ------ 카테고리 리스트 ------
 const CATEGORY_LIST = [
@@ -13,16 +13,38 @@ const CATEGORY_LIST = [
   { url: "/navigate", title: "오시는길" },
 ];
 
+// ------ 내브바 메뉴 리스트 ------
+const NAVBAR_MENU_LIST = [
+  [],
+  [
+    { url: "/", title: "의원안내" },
+    { url: "/introduction", title: "원장인사말" },
+  ],
+  [{ url: "/", title: "진료안내" }],
+  [
+    { url: "/", title: "암 통합치료" },
+    { url: "/introduction", title: "고주파 온열치료" },
+    { url: "/introduction", title: "면역증강 치료" },
+    { url: "/introduction", title: "항산화 치료" },
+  ],
+  [],
+];
+
 export default function Navbar() {
   // 현재 나의 페이지 url정보 가져오자
   const path = usePathname();
 
+  const [selected, setSelected] = useState<boolean>(false);
+
+  const onMouseOver = () => setSelected(true);
+  const onMouseLeave = () => setSelected(false);
+
   return (
-    <>
+    <div onMouseLeave={onMouseLeave}>
       <ul className="sticky top-0 left-0 right-0 z-50 flex bg-stone-700 h-10vh">
-        {CATEGORY_LIST.map((category: ICategories) => (
+        {CATEGORY_LIST.map(category => (
           <Link
-            // onMouseOver={onMouseOver}
+            onMouseOver={onMouseOver}
             href={category.url}
             key={category.title}
             className={`nav-menu-tap text-white hover:text-sky-200 w-full`}
@@ -31,6 +53,28 @@ export default function Navbar() {
           </Link>
         ))}
       </ul>
-    </>
+      {selected ? (
+        <ul
+          className={`fixed left-0 right-0 z-40 flex font-bold text-white bg-black text-1vw animate-moving opacity-70 h-20vh`}
+        >
+          {NAVBAR_MENU_LIST.map((menus, index) => (
+            <li
+              key={index}
+              className="w-1/5 h-full border-r-2 border-red-500 f-c-c-c first:border-l-2"
+            >
+              {menus.map(menu => (
+                <Link
+                  className="w-full text-center bg-sky-800"
+                  href={menu.url}
+                  key={menu.title}
+                >
+                  {menu.title}
+                </Link>
+              ))}
+            </li>
+          ))}
+        </ul>
+      ) : null}
+    </div>
   );
 }

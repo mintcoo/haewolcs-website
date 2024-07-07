@@ -3,3 +3,8 @@ export interface ICategories {
   url: string;
   title: string;
 }
+
+export interface INavbarMenu {
+  url: string;
+  title: string;
+}
