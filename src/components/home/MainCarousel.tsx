@@ -15,7 +15,7 @@ const carouselSetting = {
   arrows: false,
 };
 
-function MainCarousel() {
+export default function MainCarousel() {
   return (
     <Slider
       {...carouselSetting}
@@ -46,5 +46,3 @@ function MainCarousel() {
     </Slider>
   );
 }
-
-export default MainCarousel;
