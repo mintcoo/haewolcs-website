@@ -8,10 +8,7 @@ const config: Config = {
   ],
   theme: {
     extend: {
-      fontFamily: {
-        sans: ["Noto Sans KR", "Arial", "sans-serif"],
-        dokdo: ["dokdo"],
-      },
+      fontFamily: {},
       width: {
         "10vw": "10vw",
         "20vw": "20vw",
