@@ -4,6 +4,11 @@
 @import "~slick-carousel/slick/slick.css";
 @import "~slick-carousel/slick/slick-theme.css";
 
+.slick-dots li {
+  width: 10vw;
+  height: 10vh;
+}
+
 @layer components {
   .f-c-c {
     @apply flex items-center justify-center;

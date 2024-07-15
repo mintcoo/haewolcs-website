@@ -1,4 +1,6 @@
+import FacilityCarousel from "@/components/home/FacilityCarousel";
 import MainCarousel from "@/components/home/MainCarousel";
+import NaverMap from "@/components/home/NaverMap";
 import TherapyList from "@/components/home/TherapyList";
 import type { Metadata } from "next";
 
@@ -12,6 +14,8 @@ export default function Home() {
       <MainCarousel />
       <div>메인페이지</div>
       <TherapyList />
+      <FacilityCarousel />
+      <NaverMap />
     </>
   );
 }

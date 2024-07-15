@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import React from "react";
 import Slider from "react-slick";
 
 // ------ 캐러셀 세팅 ------
@@ -22,7 +21,7 @@ export default function MainCarousel() {
       className="overflow-hidden mx-auto w-full xl:max-h-[85vh] xl:w-[85%]"
     >
       <Image
-        layout="responsive"
+        // layout="responsive"
         src="/images/hospital.jpg"
         alt="hospital"
         width={700}
@@ -30,14 +29,14 @@ export default function MainCarousel() {
       />
 
       <Image
-        layout="responsive"
+        // layout="responsive"
         src="/images/terrace.jpg"
         alt="terrace"
         width={700}
         height={475}
       />
       <Image
-        layout="responsive"
+        // layout="responsive"
         src="/images/walking.jpg"
         alt="walking"
         width={700}
