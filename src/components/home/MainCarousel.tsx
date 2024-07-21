@@ -18,30 +18,32 @@ export default function MainCarousel() {
   return (
     <Slider
       {...carouselSetting}
-      className="overflow-hidden mx-auto w-full xl:max-h-[85vh] xl:w-[85%]"
+      className="overflow-hidden mx-auto w-full xl:max-h-[80vh] xl:w-[90%]"
     >
-      <Image
-        // layout="responsive"
-        src="/images/hospital.jpg"
-        alt="hospital"
-        width={700}
-        height={475}
-      />
-
-      <Image
-        // layout="responsive"
-        src="/images/terrace.jpg"
-        alt="terrace"
-        width={700}
-        height={475}
-      />
-      <Image
-        // layout="responsive"
-        src="/images/walking.jpg"
-        alt="walking"
-        width={700}
-        height={475}
-      />
+      <div className="relative h-[80vh]">
+        <Image
+          src="/images/hospital.jpg"
+          alt="hospital"
+          fill
+          style={{ objectFit: "cover" }}
+        />
+      </div>
+      <div className="relative h-[80vh]">
+        <Image
+          src="/images/terrace.jpg"
+          alt="terrace"
+          fill
+          style={{ objectFit: "cover" }}
+        />
+      </div>
+      <div className="relative h-[80vh]">
+        <Image
+          src="/images/walking.jpg"
+          alt="walking"
+          fill
+          style={{ objectFit: "cover" }}
+        />
+      </div>
     </Slider>
   );
 }
