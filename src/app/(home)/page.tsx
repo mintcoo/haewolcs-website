@@ -1,6 +1,6 @@
-import FacilityCarousel from "@/components/home/FacilityCarousel";
-import MainCarousel from "@/components/home/MainCarousel";
-import NaverMap from "@/components/home/NaverMap";
+import FacilityCarousel from "@/components/Home/FacilityCarousel";
+import MainCarousel from "@/components/Home/MainCarousel";
+import NaverMap from "@/components/Home/NaverMap";
 import TherapyList from "@/components/home/TherapyList";
 
 export default function Home() {
