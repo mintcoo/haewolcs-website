@@ -3,50 +3,40 @@
 import { useEffect } from "react";
 import NaverMapScript from "../Scripts/NaverMapScript";
 
+const LAT = 35.160865; // 위도
+const LNG = 129.1840298; // 경도
+
 export default function NaverMap() {
+  // 네이저 지도 생성
   useEffect(() => {
-    if (typeof naver !== "undefined" || naver.maps) {
+    if (naver.maps) {
       const mapOptions = {
-        center: new naver.maps.LatLng(37.3595704, 127.105399),
-        zoom: 16,
+        center: new naver.maps.LatLng(LAT, LNG),
+        zoom: 17,
       };
 
       const map = new naver.maps.Map("map", mapOptions);
+      new naver.maps.Marker({
+        position: new naver.maps.LatLng(LAT, LNG),
+        map: map,
+      });
+      new naver.maps.Marker({
+        position: new naver.maps.LatLng(LAT, LNG),
+        map: map,
+        icon: {
+          url: "/images/test01.png",
+          size: new naver.maps.Size(200, 52),
+          origin: new naver.maps.Point(0, 0),
+          anchor: new naver.maps.Point(-50, 50),
+        },
+      });
     }
   }, []);
-  // useEffect(() => {
-  //   const initializeMap = () => {
-  //     if (typeof naver === "undefined" || !naver.maps) {
-  //       console.log("Naver Maps is not loaded");
-  //       return;
-  //     }
 
-  //     const mapOptions = {
-  //       center: new naver.maps.LatLng(37.3595704, 127.105399),
-  //       zoom: 16,
-  //     };
-
-  //     const map = new naver.maps.Map("map", mapOptions);
-  //   };
-
-  //   const scriptCheckInterval = setInterval(() => {
-  //     if (typeof naver !== "undefined" && naver.maps) {
-  //       clearInterval(scriptCheckInterval);
-  //       initializeMap();
-  //     }
-  //   }, 100);
-
-  //   return () => {
-  //     clearInterval(scriptCheckInterval);
-  //   };
-  // }, []);
   return (
-    // <div className="w-full h-[80vh] bg-green-200 shadow-lg">
-    <>
-      <div id="map" className="w-full h-96"></div>
+    <div className="flex justify-center w-full h-[80vh] ">
+      <div id="map" className="w-[90%] h-full shadow-lg "></div>
       <NaverMapScript />
-    </>
-
-    // </div>
+    </div>
   );
 }

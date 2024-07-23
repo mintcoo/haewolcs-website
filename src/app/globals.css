@@ -22,7 +22,7 @@
     @apply flex flex-col items-center justify-center;
   }
   .nav-menu-tap {
-    @apply flex items-center justify-center text-4xl font-bold;
+    @apply flex items-center justify-center text-xl lg:text-2xl xl:text-3xl font-bold;
   }
   .text-stroke {
     -webkit-text-stroke: 0.5px black; /*텍스트 외곽선 두께 및 색상 설정*/
