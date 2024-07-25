@@ -5,5 +5,5 @@ export const metadata: Metadata = {
 };
 
 export default function Introduction() {
-  return <div className="bg-pink">인트로덕션?</div>;
+  return <div className="bg-pink-100 w-full h-10vh">인트로덕션?</div>;
 }

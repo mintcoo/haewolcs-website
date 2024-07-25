@@ -1,4 +1,4 @@
-function Footer() {
+export default function Footer() {
   return (
     <div className="h-64 text-base text-gray-700 border-t lg:text-lg f-c-c-c">
       <span>상호: 해월씨에스의원 Ι 원장: 한창순 I 번호: 051)710-7090</span>
@@ -9,5 +9,3 @@ function Footer() {
     </div>
   );
 }
-
-export default Footer;

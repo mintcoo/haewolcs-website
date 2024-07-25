@@ -7,9 +7,9 @@ const LAT = 35.160865; // 위도
 const LNG = 129.1840298; // 경도
 
 export default function NaverMap() {
-  // 네이저 지도 생성
+  // 네이버 지도 생성
   useEffect(() => {
-    if (naver.maps) {
+    if (window.naver) {
       const mapOptions = {
         center: new naver.maps.LatLng(LAT, LNG),
         zoom: 17,

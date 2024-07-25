@@ -18,7 +18,7 @@ const NAVBAR_MENU_LIST = [
   [],
   [
     { url: "/", title: "의원안내" },
-    { url: "/introduction", title: "원장인사말" },
+    { url: "/introduction", title: "인사말" },
   ],
   [{ url: "/", title: "진료안내" }],
   [

@@ -27,4 +27,10 @@
   .text-stroke {
     -webkit-text-stroke: 0.5px black; /*텍스트 외곽선 두께 및 색상 설정*/
   }
+  .haewol-orange {
+    color: rgb(253 186 116);
+  }
+  .haewol-blue {
+    background-color: rgb(149, 220, 253);
+  }
 }
