@@ -29,15 +29,6 @@ const config: Config = {
         "3vw": "3vw",
         "30vw": "30vw",
       },
-      animation: {
-        expand: "expand 0.2s ease-in-out forwards",
-      },
-      keyframes: {
-        expand: {
-          "0%": { height: "0" },
-          "100%": { height: "20vh" },
-        },
-      },
     },
   },
   plugins: [],

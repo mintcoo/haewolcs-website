@@ -24,6 +24,9 @@
   .nav-menu-tap {
     @apply flex items-center justify-center text-xl lg:text-2xl xl:text-3xl font-bold;
   }
+  .trans-expand {
+    @apply transition duration-200 ease-in-out data-[closed]:-translate-y-full;
+  }
   .text-stroke {
     -webkit-text-stroke: 0.5px black; /*텍스트 외곽선 두께 및 색상 설정*/
   }
