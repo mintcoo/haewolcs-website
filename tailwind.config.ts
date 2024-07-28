@@ -30,12 +30,12 @@ const config: Config = {
         "30vw": "30vw",
       },
       animation: {
-        moving: "moving 0.2s ease-in-out",
+        expand: "expand 0.2s ease-in-out forwards",
       },
       keyframes: {
-        moving: {
-          "0%": { transform: "translateY(-10vh)" },
-          "100%": { transform: "translateY(0)" },
+        expand: {
+          "0%": { height: "0" },
+          "100%": { height: "20vh" },
         },
       },
     },

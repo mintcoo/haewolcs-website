@@ -55,7 +55,7 @@ export default function Navbar() {
       </ul>
       {selected ? (
         <ul
-          className={`fixed left-0 right-0 z-40 flex text-white bg-black text-2vw lg:text-1vw animate-moving opacity-70 h-20vh font-bold`}
+          className={`fixed left-0 right-0 z-40 flex text-white bg-black text-2vw lg:text-1vw opacity-70 h-20vh font-bold animate-expand `}
         >
           {NAVBAR_MENU_LIST.map((menus, index) => (
             <li

@@ -1,3 +1,15 @@
+"use client";
+
+import { usePathname } from "next/navigation";
+
 export default function Header() {
-  return <div className="h-64 bg-red-100 lg:text-lg f-c-c-c"></div>;
+  const path = usePathname();
+
+  return (
+    <>
+      {path !== "/" && (
+        <div className="h-64 bg-red-100 lg:text-lg f-c-c-c"></div>
+      )}
+    </>
+  );
 }

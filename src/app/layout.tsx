@@ -1,10 +1,9 @@
-import localFont from "next/font/local";
-import Navbar from "@/components/Navbar";
-import "./globals.css";
 import Footer from "@/components/Footer";
-import type { Metadata } from "next";
 import Header from "@/components/Header";
-import { headers } from "next/headers";
+import Navbar from "@/components/Navbar";
+import type { Metadata } from "next";
+import localFont from "next/font/local";
+import "./globals.css";
 
 const pretendard = localFont({
   src: "../../public/fonts/PretendardVariable.woff2",
@@ -26,15 +25,12 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const headersList = headers();
-  const headerPathname = headersList.get("x-pathname") || "";
-  console.log(headerPathname, "먼데패스네음@@@");
   return (
     <html lang="ko" className={`${pretendard.variable}`}>
       <body className={pretendard.className}>
         <div className="w-full min-h-screen">
           <Navbar />
-          {headerPathname !== "/" && <Header />}
+          <Header />
 
           <div className="lg:px-16 xl:px-44">{children}</div>
           <Footer />
