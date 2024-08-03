@@ -43,11 +43,11 @@ export default function Navbar() {
           {Object.entries(NAVBAR_MENU_LIST).map(([categori, subMenus]) => (
             <li
               key={categori}
-              className="w-1/5 h-full border-r-2 border-red-500 f-c-c-c first:border-l-2"
+              className="w-1/5 h-full border-r-2 border-red-500 flex flex-col first:border-l-2"
             >
               {subMenus.map(menu => (
                 <Link
-                  className="w-full text-center bg-sky-800"
+                  className="w-full h-1/5 f-c-c text-center bg-sky-800"
                   href={menu.url}
                   key={menu.title}
                 >

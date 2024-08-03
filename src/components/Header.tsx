@@ -10,7 +10,8 @@ export default function Header() {
   const path = usePathname();
   const [subNavMenus, setSubNavMenus] = useState<ICategories[]>([]);
 
-  const switchSubNavbar = (path: string) => {
+  // 서브 메뉴바 안의 내용 바꾸기
+  const changeSubNavbar = (path: string) => {
     CATEGORY_LIST.forEach(category => {
       if (category.url === path) {
         setSubNavMenus(NAVBAR_MENU_LIST[category.title]);
@@ -19,7 +20,7 @@ export default function Header() {
   };
 
   useEffect(() => {
-    switchSubNavbar(path);
+    changeSubNavbar(path);
   }, [path]);
 
   return (

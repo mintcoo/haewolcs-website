@@ -17,15 +17,15 @@ export const CATEGORY_LIST: ICategories[] = [
 export const NAVBAR_MENU_LIST: INavbarMenu = {
   홈: [],
   해월씨에스: [
-    { url: "/", title: "의원안내" },
     { url: "/introduction", title: "인사말" },
+    { url: "/introduction/haewol", title: "해월 미리보기" },
   ],
-  진료안내: [{ url: "/", title: "진료안내" }],
+  진료안내: [{ url: "/infoguide", title: "진료안내" }],
   암통합치료: [
-    { url: "/", title: "암 통합치료" },
-    { url: "/introduction", title: "고주파 온열치료" },
-    { url: "/introduction", title: "면역증강 치료" },
-    { url: "/introduction", title: "항산화 치료" },
+    { url: "/therapies", title: "암 통합치료" },
+    { url: "/therapies", title: "고주파 온열치료" },
+    { url: "/therapies", title: "면역증강 치료" },
+    { url: "/therapies", title: "항산화 치료" },
   ],
   오시는길: [],
 };
