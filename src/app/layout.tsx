@@ -1,5 +1,6 @@
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
+
 import Navbar from "@/components/Navbar";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
@@ -32,7 +33,7 @@ export default function RootLayout({
           <Navbar />
           <Header />
 
-          <div className="lg:px-16 xl:px-44">{children}</div>
+          <div className="lg:px-16 xl:px-60">{children}</div>
           <Footer />
         </div>
       </body>
