@@ -1,35 +1,10 @@
 "use client";
 
+import { CATEGORY_LIST, NAVBAR_MENU_LIST } from "@/common/constants";
 import { Transition } from "@headlessui/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-
-// ------ 카테고리 리스트 ------
-const CATEGORY_LIST = [
-  { url: "/", title: "홈" },
-  { url: "/introduction", title: "해월씨에스" },
-  { url: "/infoguide", title: "진료안내" },
-  { url: "/therapies", title: "암통합치료" },
-  { url: "/navigate", title: "오시는길" },
-];
-
-// ------ 내브바 메뉴 리스트 ------
-const NAVBAR_MENU_LIST = [
-  [],
-  [
-    { url: "/", title: "의원안내" },
-    { url: "/introduction", title: "인사말" },
-  ],
-  [{ url: "/", title: "진료안내" }],
-  [
-    { url: "/", title: "암 통합치료" },
-    { url: "/introduction", title: "고주파 온열치료" },
-    { url: "/introduction", title: "면역증강 치료" },
-    { url: "/introduction", title: "항산화 치료" },
-  ],
-  [],
-];
 
 export default function Navbar() {
   // 현재 나의 페이지 url정보 가져오자
@@ -65,12 +40,12 @@ export default function Navbar() {
         <ul
           className={`fixed left-0 right-0 z-40 flex text-white bg-black text-2vw lg:text-1vw opacity-70 h-20vh font-bold trans-expand`}
         >
-          {NAVBAR_MENU_LIST.map((menus, index) => (
+          {Object.entries(NAVBAR_MENU_LIST).map(([categori, subMenus]) => (
             <li
-              key={index}
+              key={categori}
               className="w-1/5 h-full border-r-2 border-red-500 f-c-c-c first:border-l-2"
             >
-              {menus.map(menu => (
+              {subMenus.map(menu => (
                 <Link
                   className="w-full text-center bg-sky-800"
                   href={menu.url}

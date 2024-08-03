@@ -3,8 +3,7 @@ export interface ICategories {
   url: string;
   title: string;
 }
-
+// ------ 네브바 메뉴 --------
 export interface INavbarMenu {
-  url: string;
-  title: string;
+  [key: string]: ICategories[];
 }

@@ -1,4 +1,4 @@
-import { THERAPY_LIST } from "@/components/home/TherapyList";
+import { THERAPY_LIST } from "@/common/constants";
 
 export default function Therapies() {
   return (
