@@ -29,10 +29,10 @@ export default function FacilityCarousel() {
   return (
     <>
       <div className="w-full bg-pink-100 f-c-c-c">
-        <div className="font-semibold text-gray-700 text-3vw ">
+        <div className="font-semibold text-gray-700 text-2.5vw ">
           해월씨에스 <span className="haewol-orange-color">둘러보기</span>
         </div>
-        <div className="mt-4 text-gray-500 text-1.2vw">
+        <div className="mt-4 text-gray-500 text-1.1vw">
           암치료에 관한 맞춤형 통합 치료를 진행합니다
         </div>
       </div>

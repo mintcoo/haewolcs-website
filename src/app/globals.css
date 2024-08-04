@@ -27,14 +27,33 @@
   .trans-expand {
     @apply transition duration-200 ease-in-out data-[closed]:-translate-y-full;
   }
+  .contents-layout {
+    @apply w-full f-c-c-c pt-10 pb-20 px-10;
+  }
+  .sub-title {
+    @apply f-c-c font-semibold text-5xl my-8;
+  }
+  .sub-title-bar {
+    @apply w-1/20 min-w-10 h-1 mb-10 xl:mb-20 haewol-blue-bg;
+  }
+
   .text-stroke {
     -webkit-text-stroke: 0.5px black; /*텍스트 외곽선 두께 및 색상 설정*/
+  }
+  .text-contents-color {
+    color: #555555;
   }
   .haewol-orange-color {
     color: rgb(253 186 116);
   }
   .haewol-orange-bg {
     background-color: rgb(253 186 116);
+  }
+  .haewol-blue-color {
+    color: rgb(149, 220, 253);
+  }
+  .haewol-blue-title {
+    color: rgb(0, 66, 97);
   }
   .haewol-blue-bg {
     background-color: rgb(149, 220, 253);

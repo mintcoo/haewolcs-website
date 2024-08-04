@@ -10,6 +10,7 @@ const config: Config = {
     extend: {
       fontFamily: {},
       width: {
+        "1/20": "5%",
         "5vw": "5vw",
         "10vw": "10vw",
         "20vw": "20vw",
@@ -25,6 +26,7 @@ const config: Config = {
       },
       fontSize: {
         "1vw": "1vw",
+        "1.1vw": "1.1vw",
         "1.2vw": "1.2vw",
         "1.5vw": "1.5vw",
         "2vw": "2vw",
