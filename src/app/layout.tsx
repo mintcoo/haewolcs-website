@@ -1,6 +1,7 @@
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 
+import MainCarousel from "@/components/Home/MainCarousel";
 import Navbar from "@/components/Navbar";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
@@ -31,6 +32,7 @@ export default function RootLayout({
       <body className={pretendard.className}>
         <div className="w-full min-h-screen">
           <Navbar />
+          <MainCarousel />
           <Header />
 
           <div className="lg:px-16 xl:px-80">{children}</div>
