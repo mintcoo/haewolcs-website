@@ -1,6 +1,6 @@
 "use client";
 
-import { LAT, LNG } from "@/common/constants";
+import { LAT, LNG } from "@/lib/constants";
 import { useEffect } from "react";
 import NaverMapScript from "../scripts/NaverMapScript";
 

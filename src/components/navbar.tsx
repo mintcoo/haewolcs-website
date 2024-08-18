@@ -1,7 +1,8 @@
 "use client";
 
-import { CATEGORY_LIST, NAVBAR_MENU_LIST } from "@/common/constants";
-import { authService } from "@/common/firebase";
+import { openModal } from "@/lib/commonFnc";
+import { CATEGORY_LIST, NAVBAR_MENU_LIST } from "@/lib/constants";
+import { authService } from "@/lib/firebase";
 import { Button, Transition } from "@headlessui/react";
 import Image from "next/image";
 import Link from "next/link";
@@ -20,11 +21,13 @@ export default function Navbar() {
 
   // 로그아웃
   const onClickLogout = () => {
-    try {
-      return authService.signOut();
-    } catch (error) {
-      console.error("Error signing out with Google", error);
-    }
+    openModal(true, "모달 내용입니다");
+
+    // try {
+    //   return authService.signOut();
+    // } catch (error) {
+    //   console.error("Error signing out with Google", error);
+    // }
   };
 
   useEffect(() => {
@@ -48,9 +51,9 @@ export default function Navbar() {
       {path !== "/admin" && (
         <div
           onMouseLeave={onMouseLeave}
-          className="sticky top-0 left-0 right-0 z-50 h-10vh"
+          className="sticky top-0 left-0 right-0 z-40 h-10vh"
         >
-          <ul className="flex justify-center sticky top-0 left-0 right-0 z-50 bg-stone-700 h-full">
+          <ul className="flex justify-center sticky top-0 left-0 right-0 z-40 bg-stone-700 h-full">
             {CATEGORY_LIST.map(category => (
               <Link
                 onMouseOver={onMouseOver}
@@ -88,7 +91,7 @@ export default function Navbar() {
           </ul>
           <Transition show={open}>
             <ul
-              className={`fixed left-0 right-0 z-40 flex justify-center text-white bg-black text-2vw lg:text-1vw opacity-70 h-20vh font-bold trans-expand`}
+              className={`fixed left-0 right-0 z-30 flex justify-center text-white bg-black text-2vw lg:text-1vw opacity-70 h-20vh font-bold trans-expand`}
             >
               {Object.entries(NAVBAR_MENU_LIST).map(([categori, subMenus]) => (
                 <li

@@ -1,6 +1,6 @@
 "use client";
 
-import { CATEGORY_LIST, NAVBAR_MENU_LIST } from "@/common/constants";
+import { CATEGORY_LIST, NAVBAR_MENU_LIST } from "@/lib/constants";
 import { ICategories } from "@/types/navbar";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
