@@ -25,7 +25,7 @@ export default function Header() {
 
   return (
     <>
-      {path !== "/" && (
+      {path !== "/" && path !== "/admin" && (
         <>
           <div className="min-h-40 h-25vh bg-red-100 lg:text-lg f-c-c-c">
             {" "}

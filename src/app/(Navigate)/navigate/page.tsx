@@ -1,4 +1,4 @@
-import NaverMap from "@/components/Home/NaverMap";
+import NaverMap from "@/components/home/NaverMap";
 import {
   CallOutlined,
   EventNote,

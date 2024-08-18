@@ -2,7 +2,7 @@
 
 import { LAT, LNG } from "@/common/constants";
 import { useEffect } from "react";
-import NaverMapScript from "../Scripts/NaverMapScript";
+import NaverMapScript from "../scripts/NaverMapScript";
 
 export default function NaverMap() {
   // 네이버 지도 생성

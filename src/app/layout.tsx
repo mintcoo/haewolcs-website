@@ -1,7 +1,7 @@
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 
-import MainCarousel from "@/components/Home/MainCarousel";
+import MainCarousel from "@/components/home/MainCarousel";
 import Navbar from "@/components/Navbar";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
