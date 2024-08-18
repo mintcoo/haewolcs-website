@@ -1,6 +1,5 @@
 "use client";
 
-import { openModal } from "@/lib/commonFnc";
 import { CATEGORY_LIST, NAVBAR_MENU_LIST } from "@/lib/constants";
 import { authService } from "@/lib/firebase";
 import { Button, Transition } from "@headlessui/react";
@@ -21,8 +20,6 @@ export default function Navbar() {
 
   // 로그아웃
   const onClickLogout = () => {
-    openModal(true, "모달 내용입니다");
-
     // try {
     //   return authService.signOut();
     // } catch (error) {
