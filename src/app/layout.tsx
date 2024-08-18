@@ -1,6 +1,7 @@
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 
+import Modal from "@/components/common/Modal";
 import MainCarousel from "@/components/home/MainCarousel";
 import Navbar from "@/components/Navbar";
 import type { Metadata } from "next";
@@ -31,6 +32,7 @@ export default function RootLayout({
     <html lang="ko" className={`${pretendard.variable}`}>
       <body className={pretendard.className}>
         <div className="w-full min-h-screen">
+          <Modal />
           <Navbar />
           <MainCarousel />
           <Header />

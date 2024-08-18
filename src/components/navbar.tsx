@@ -2,6 +2,7 @@
 
 import { CATEGORY_LIST, NAVBAR_MENU_LIST } from "@/lib/constants";
 import { authService } from "@/lib/firebase";
+import { useModalStore } from "@/store/useModalStroe";
 import { Button, Transition } from "@headlessui/react";
 import Image from "next/image";
 import Link from "next/link";
@@ -11,7 +12,7 @@ import { useEffect, useState } from "react";
 export default function Navbar() {
   // 현재 나의 페이지 url정보 가져오자
   const path = usePathname();
-
+  const { setIsModalOpen } = useModalStore();
   const [open, setOpen] = useState<boolean>(false);
   const [isAdmin, setIsAdmin] = useState<boolean>(false);
 
@@ -20,6 +21,7 @@ export default function Navbar() {
 
   // 로그아웃
   const onClickLogout = () => {
+    setIsModalOpen(true);
     // try {
     //   return authService.signOut();
     // } catch (error) {
