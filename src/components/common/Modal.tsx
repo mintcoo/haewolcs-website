@@ -15,7 +15,7 @@ import {
 
 export default function Modal() {
   // const [isOpen, setIsOpen] = useState<boolean>(false);
-  const { isModalOpen, setIsModalOpen } = useModalStore();
+  const { modalState, setModalClose, modalParams } = useModalStore();
 
   // useEffect(() => {
   //   if (open) {
@@ -29,23 +29,21 @@ export default function Modal() {
   return (
     <>
       <Dialog
-        open={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
+        open={modalState}
+        onClose={() => setModalClose()}
         className="relative z-50"
       >
         <div className="fixed inset-0 flex w-screen items-center justify-center p-4">
           <DialogPanel className="max-w-lg space-y-4 border bg-white p-12">
-            <DialogTitle className="font-bold">테스트합니다 타이틀</DialogTitle>
-            <Description>
-              This will permanently deactivate your account
-            </Description>
+            <DialogTitle className="font-bold">{modalParams.title}</DialogTitle>
+            <Description>{modalParams.contents}</Description>
             <p>
               Are you sure you want to deactivate your account? All of your data
               will be permanently removed.
             </p>
             <div className="flex gap-4">
-              <button onClick={() => setIsModalOpen(false)}>Cancel</button>
-              <button onClick={() => setIsModalOpen(false)}>Deactivate</button>
+              <button onClick={() => setModalClose()}>Cancel</button>
+              <button onClick={() => setModalClose()}>Deactivate</button>
             </div>
           </DialogPanel>
         </div>

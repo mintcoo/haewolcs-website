@@ -12,7 +12,7 @@ import { useEffect, useState } from "react";
 export default function Navbar() {
   // 현재 나의 페이지 url정보 가져오자
   const path = usePathname();
-  const { setIsModalOpen } = useModalStore();
+  const { setModalOpen } = useModalStore();
   const [open, setOpen] = useState<boolean>(false);
   const [isAdmin, setIsAdmin] = useState<boolean>(false);
 
@@ -21,7 +21,7 @@ export default function Navbar() {
 
   // 로그아웃
   const onClickLogout = () => {
-    setIsModalOpen(true);
+    setModalOpen("이게 타이틀이다", "안녕 나는 내용물이야");
     // try {
     //   return authService.signOut();
     // } catch (error) {
@@ -35,7 +35,7 @@ export default function Navbar() {
 
   useEffect(() => {
     // 유저가 로그인했는지 여부 체크
-    authService.onAuthStateChanged(user => {
+    authService.onAuthStateChanged((user) => {
       if (user) {
         console.log(user, "로그인 되어있음 ㅋ");
         setIsAdmin(true);
@@ -53,7 +53,7 @@ export default function Navbar() {
           className="sticky top-0 left-0 right-0 z-40 h-10vh"
         >
           <ul className="flex justify-center sticky top-0 left-0 right-0 z-40 bg-stone-700 h-full">
-            {CATEGORY_LIST.map(category => (
+            {CATEGORY_LIST.map((category) => (
               <Link
                 onMouseOver={onMouseOver}
                 href={category.url}
@@ -97,7 +97,7 @@ export default function Navbar() {
                   key={categori}
                   className="w-1/6 h-full border-r-2 border-red-500 flex flex-col first:border-l-2"
                 >
-                  {subMenus.map(menu => (
+                  {subMenus.map((menu) => (
                     <Link
                       className="w-full h-1/5 f-c-c text-center bg-sky-800"
                       href={menu.url}
