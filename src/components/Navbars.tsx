@@ -2,7 +2,7 @@
 
 import { CATEGORY_LIST, NAVBAR_MENU_LIST } from "@/lib/constants";
 import { authService } from "@/lib/firebase";
-import { useModalStore } from "@/store/useModalStroe";
+import { useModalStore } from "@/store/useModalStore";
 import { Button, Transition } from "@headlessui/react";
 import Image from "next/image";
 import Link from "next/link";
