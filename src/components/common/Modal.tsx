@@ -1,30 +1,16 @@
 "use client";
 
-import { useModalStore } from "@/store/useModalStroe";
+import { useModalStore } from "@/store/useModalStore";
 import {
+  Button,
   Description,
   Dialog,
   DialogPanel,
   DialogTitle,
 } from "@headlessui/react";
 
-// interface IModalProps {
-//   open: boolean;
-//   title: string;
-// }
-
 export default function Modal() {
-  // const [isOpen, setIsOpen] = useState<boolean>(false);
   const { modalState, setModalClose, modalParams } = useModalStore();
-
-  // useEffect(() => {
-  //   if (open) {
-  //     setIsOpen(open);
-  //   }
-  //   return () => {
-  //     setIsOpen(false);
-  //   };
-  // }, [open]);
 
   return (
     <>
@@ -33,17 +19,30 @@ export default function Modal() {
         onClose={() => setModalClose()}
         className="relative z-50"
       >
-        <div className="fixed inset-0 flex w-screen items-center justify-center p-4">
-          <DialogPanel className="max-w-lg space-y-4 border bg-white p-12">
-            <DialogTitle className="font-bold">{modalParams.title}</DialogTitle>
-            <Description>{modalParams.contents}</Description>
-            <p>
-              Are you sure you want to deactivate your account? All of your data
-              will be permanently removed.
-            </p>
-            <div className="flex gap-4">
-              <button onClick={() => setModalClose()}>Cancel</button>
-              <button onClick={() => setModalClose()}>Deactivate</button>
+        <div className="fixed inset-0 flex w-screen items-center justify-center py-4 bg-black bg-opacity-50 ">
+          <DialogPanel className="max-w-lg rounded space-y-4 border bg-white py-8 px-20">
+            <DialogTitle className="font-bold text-lg flex justify-center">
+              {modalParams.title}
+            </DialogTitle>
+            <Description className="flex justify-center ">
+              {modalParams.contents}
+            </Description>
+            <div className="flex gap-4 justify-center">
+              <Button
+                className="rounded bg-sky-900 py-2 px-6 text-sm text-white hover:bg-sky-800"
+                onClick={() => {
+                  modalParams.onClickOk && modalParams.onClickOk();
+                  setModalClose();
+                }}
+              >
+                확인
+              </Button>
+              <Button
+                className="rounded border border-sky-900 py-2 px-6 text-sm text-sky-950 hover:bg-sky-50 font-semibold"
+                onClick={() => setModalClose()}
+              >
+                취소
+              </Button>
             </div>
           </DialogPanel>
         </div>

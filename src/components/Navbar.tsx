@@ -21,12 +21,15 @@ export default function Navbar() {
 
   // 로그아웃
   const onClickLogout = () => {
-    setModalOpen("이게 타이틀이다", "안녕 나는 내용물이야");
-    // try {
-    //   return authService.signOut();
-    // } catch (error) {
-    //   console.error("Error signing out with Google", error);
-    // }
+    setModalOpen("알림", "로그아웃 하시겠습니까?", async () => {
+      try {
+        await authService.signOut();
+        setModalOpen("알림", "로그아웃 하였습니다");
+      } catch (error) {
+        setModalOpen("알림", "로그아웃에 실패하였습니다");
+        console.log("Error signing out with Google", error);
+      }
+    });
   };
 
   useEffect(() => {
@@ -37,7 +40,6 @@ export default function Navbar() {
     // 유저가 로그인했는지 여부 체크
     authService.onAuthStateChanged((user) => {
       if (user) {
-        console.log(user, "로그인 되어있음 ㅋ");
         setIsAdmin(true);
       } else {
         setIsAdmin(false);

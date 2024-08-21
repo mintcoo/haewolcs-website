@@ -38,7 +38,7 @@ export default function Admin() {
   return (
     <div className="f-c-c w-full h-[70vh]">
       <div className="w-full p-6 m-auto bg-white border rounded-md drop-shadow-lg lg:max-w-xl">
-        <h1 className="text-3xl font-semibold text-center haewol-blue-title">
+        <h1 className="text-3xl font-semibold text-center haewol-darkblue-title">
           해월씨에스의원
         </h1>
         <form onSubmit={onSubmitForm} className="mt-6">

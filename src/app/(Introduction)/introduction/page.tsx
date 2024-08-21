@@ -11,9 +11,13 @@ export default function Introduction() {
       <div className="sub-title-bar"></div>
       <div className="w-full flex justify-between">
         <div className="text-xl text-contents-color tracking-tight">
-          <div className="text-4xl haewol-blue-title">해월씨에스 의원 원장</div>
-          <span className="font-bold text-4xl haewol-blue-title">한창순</span>
-          <span className="text-4xl haewol-blue-title">입니다.</span>
+          <div className="text-4xl haewol-darkblue-title">
+            해월씨에스 의원 원장
+          </div>
+          <span className="font-bold text-4xl haewol-darkblue-title">
+            한창순
+          </span>
+          <span className="text-4xl haewol-darkblue-title">입니다.</span>
           <div className="my-8">
             방문해 주신 모든 분들께 감사의 말씀드립니다.
           </div>

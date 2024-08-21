@@ -5,9 +5,14 @@ interface IModalStore {
   modalParams: {
     title: string;
     contents: string;
+    onClickOk?: () => void;
   };
   setModalClose: () => void;
-  setModalOpen: (title: string, contents: string) => void;
+  setModalOpen: (
+    title: string,
+    contents: string,
+    onClickOk?: () => void,
+  ) => void;
 }
 
 export const useModalStore = create<IModalStore>()((set) => ({
@@ -15,19 +20,21 @@ export const useModalStore = create<IModalStore>()((set) => ({
   modalParams: {
     title: "",
     contents: "",
+    onClickOk: undefined,
   },
 
   setModalClose: () => {
     set({ modalState: false });
   },
 
-  setModalOpen: (title, contents) => {
+  setModalOpen: (title, contents, onClickOk) => {
     set({ modalState: true });
     set((state) => ({
       modalParams: {
         ...state.modalParams,
-        title: title,
-        contents: contents,
+        title,
+        contents,
+        onClickOk,
       },
     }));
   },

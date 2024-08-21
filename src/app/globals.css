@@ -52,10 +52,13 @@
   .haewol-blue-color {
     color: rgb(149, 220, 253);
   }
-  .haewol-blue-title {
-    color: rgb(0, 66, 97);
-  }
   .haewol-blue-bg {
     background-color: rgb(149, 220, 253);
+  }
+  .haewol-darkblue-title {
+    color: rgb(0, 66, 97);
+  }
+  .haewol-darkblue-bg {
+    background-color: rgb(0, 66, 97);
   }
 }
