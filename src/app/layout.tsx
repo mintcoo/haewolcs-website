@@ -3,7 +3,7 @@ import Header from "@/components/Header";
 
 import Modal from "@/components/common/Modal";
 import MainCarousel from "@/components/home/MainCarousel";
-import Navbar from "@/components/Navbar";
+import Navbar from "@/components/Navbars";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
