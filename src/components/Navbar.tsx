@@ -76,19 +76,6 @@ export default function Navbar() {
                 )}
               </Link>
             ))}
-            {isAdmin && (
-              <div className="flex items-end">
-                <div className="text-sky-100 h-full flex items-end">
-                  한창순 원장님, 어서오세요
-                </div>
-                <Button
-                  onClick={onClickLogout}
-                  className="rounded bg-sky-600 px-2 text-sm text-white data-[hover]:bg-sky-500 data-[active]:bg-sky-700"
-                >
-                  로그아웃
-                </Button>
-              </div>
-            )}
           </ul>
           <Transition show={open}>
             <ul
@@ -112,6 +99,19 @@ export default function Navbar() {
               ))}
             </ul>
           </Transition>
+        </div>
+      )}
+      {isAdmin && (
+        <div className="fixed bottom-4 right-4 flex items-end">
+          <div className=" h-full flex items-end">
+            한창순 원장님, 어서오세요
+          </div>
+          <Button
+            onClick={onClickLogout}
+            className="rounded bg-sky-600 px-2 text-sm text-white data-[hover]:bg-sky-500 data-[active]:bg-sky-700"
+          >
+            로그아웃
+          </Button>
         </div>
       )}
     </>

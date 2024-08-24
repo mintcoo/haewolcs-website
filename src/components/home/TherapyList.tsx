@@ -12,7 +12,7 @@ export default function TherapyList() {
           암치료에 관한 맞춤형 통합 치료를 진행합니다
         </div>
       </div>
-      <div className="flex flex-wrap flex-1 justify-evenly bg-sky-100">
+      <div className="grid grid-cols-2 gap-4 flex-1 place-items-center bg-sky-100">
         {THERAPY_LIST.map((therapy, index) => {
           return (
             <div

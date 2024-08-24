@@ -37,7 +37,7 @@ export default function RootLayout({
           <MainCarousel />
           <Header />
 
-          <div className="lg:px-16 xl:px-80">{children}</div>
+          <div className="lg:px-16 xl:px-24 2xl:px-48">{children}</div>
           <Footer />
         </div>
       </body>
