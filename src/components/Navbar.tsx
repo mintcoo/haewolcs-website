@@ -1,5 +1,6 @@
 "use client";
 
+import { checkAdminAuth } from "@/lib/commonFnc";
 import { CATEGORY_LIST, NAVBAR_MENU_LIST } from "@/lib/constants";
 import { authService } from "@/lib/firebase";
 import { useModalStore } from "@/store/useModalStore";
@@ -23,12 +24,17 @@ export default function Navbar() {
     setModalOpen("알림", "로그아웃 하시겠습니까?", async () => {
       try {
         await authService.signOut();
+        await checkAdminAuth(false);
         setModalOpen("알림", "로그아웃 하였습니다");
       } catch (error) {
         setModalOpen("알림", "로그아웃에 실패하였습니다");
         console.log("Error signing out with Google", error);
       }
     });
+  };
+  // 관리자 여부 cookie 세팅
+  const handleAdminAuth = async (bool: boolean) => {
+    await checkAdminAuth(bool);
   };
 
   useEffect(() => {
@@ -40,8 +46,10 @@ export default function Navbar() {
     authService.onAuthStateChanged((user) => {
       if (user) {
         setIsAdmin(true);
+        handleAdminAuth(true);
       } else {
         setIsAdmin(false);
+        handleAdminAuth(false);
       }
     });
   }, []);
