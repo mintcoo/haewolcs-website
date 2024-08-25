@@ -29,7 +29,7 @@ export default function Modal() {
             </Description>
             <div className="flex gap-4 justify-center">
               <Button
-                className="rounded bg-sky-900 py-2 px-6 text-sm text-white hover:bg-sky-800"
+                className="btn-dark-blue py-2 px-6"
                 onClick={() => {
                   modalParams.onClickOk && modalParams.onClickOk();
                   setModalClose();
@@ -38,7 +38,7 @@ export default function Modal() {
                 확인
               </Button>
               <Button
-                className="rounded border border-sky-900 py-2 px-6 text-sm text-sky-950 hover:bg-sky-50 font-semibold"
+                className="btn-white py-2 px-6 "
                 onClick={() => setModalClose()}
               >
                 취소

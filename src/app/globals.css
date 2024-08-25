@@ -36,6 +36,16 @@
   .sub-title-bar {
     @apply w-1/20 min-w-10 h-1 mb-10 xl:mb-20 haewol-blue-bg;
   }
+  /* 버튼 모음 */
+  .btn-white {
+    @apply rounded border border-sky-900 text-sm text-sky-950 hover:bg-sky-50 font-semibold;
+  }
+  .btn-dark-blue {
+    @apply rounded bg-sky-900 text-sm text-white hover:bg-sky-800;
+  }
+  .btn-blue {
+    @apply rounded bg-sky-600 text-sm text-white hover:bg-sky-500;
+  }
 
   .text-stroke {
     -webkit-text-stroke: 0.5px black; /*텍스트 외곽선 두께 및 색상 설정*/

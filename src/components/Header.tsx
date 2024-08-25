@@ -12,7 +12,7 @@ export default function Header() {
 
   // 서브 메뉴바 안의 내용 바꾸기
   const changeSubNavbar = (path: string) => {
-    CATEGORY_LIST.forEach(category => {
+    CATEGORY_LIST.forEach((category) => {
       if (category.url === path) {
         setSubNavMenus(NAVBAR_MENU_LIST[category.title]);
       }
@@ -25,7 +25,7 @@ export default function Header() {
 
   return (
     <>
-      {path !== "/" && path !== "/admin" && (
+      {path !== "/" && path !== "/admin" && path !== "/edit" && (
         <>
           <div className="min-h-40 h-25vh bg-red-100 lg:text-lg f-c-c-c">
             {" "}

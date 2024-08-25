@@ -6,12 +6,11 @@ import { useModalStore } from "@/store/useModalStore";
 import { Button, Transition } from "@headlessui/react";
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-
 export default function Navbar() {
-  // 현재 나의 페이지 url정보 가져오자
   const path = usePathname();
+  const router = useRouter();
   const { setModalOpen } = useModalStore();
   const [open, setOpen] = useState<boolean>(false);
   const [isAdmin, setIsAdmin] = useState<boolean>(false);
@@ -37,7 +36,7 @@ export default function Navbar() {
   }, [path]);
 
   useEffect(() => {
-    // 유저가 로그인했는지 여부 체크
+    // 유저가 로그인 여부 체크
     authService.onAuthStateChanged((user) => {
       if (user) {
         setIsAdmin(true);
@@ -102,14 +101,17 @@ export default function Navbar() {
         </div>
       )}
       {isAdmin && (
-        <div className="fixed bottom-4 right-4 flex items-end">
-          <div className=" h-full flex items-end">
-            한창순 원장님, 어서오세요
-          </div>
+        <div className="fixed bottom-4 right-4 flex items-end gap-1">
+          <div>한창순 원장님, 어서오세요</div>
           <Button
-            onClick={onClickLogout}
-            className="rounded bg-sky-600 px-2 text-sm text-white data-[hover]:bg-sky-500 data-[active]:bg-sky-700"
+            onClick={() => {
+              router.push("/edit");
+            }}
+            className="btn-white px-4 py-1"
           >
+            관리
+          </Button>
+          <Button onClick={onClickLogout} className="btn-dark-blue px-4 py-1">
             로그아웃
           </Button>
         </div>
