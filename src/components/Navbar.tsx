@@ -24,7 +24,7 @@ export default function Navbar() {
     setModalOpen("알림", "로그아웃 하시겠습니까?", async () => {
       try {
         await authService.signOut();
-        await checkAdminAuth(false);
+        handleAdminAuth(false);
         setModalOpen("알림", "로그아웃 하였습니다");
       } catch (error) {
         setModalOpen("알림", "로그아웃에 실패하였습니다");
