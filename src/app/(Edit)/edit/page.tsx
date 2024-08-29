@@ -15,7 +15,7 @@ export default function Edit() {
     if (files && files.length >= 1) {
       for (let i = 0; i < files.length; i++) {
         if (files[i].size > FILE_MAX_SIZE) {
-          openModal("알림", "1MB 이하의 사진 업로드만 가능합니다.");
+          openModal("알림", "5MB 이하의 사진 업로드만 가능합니다.");
           return;
         }
         setFileList((prev) => [...prev, files[i]]);
