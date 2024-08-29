@@ -1,12 +1,14 @@
 import { create } from "zustand";
 
+export interface IModalProps {
+  title: string;
+  contents: string;
+  onClickOk?: () => void;
+}
+
 interface IModalStore {
   modalState: boolean;
-  modalParams: {
-    title: string;
-    contents: string;
-    onClickOk?: () => void;
-  };
+  modalParams: IModalProps;
   setModalClose: () => void;
   setModalOpen: (
     title: string,

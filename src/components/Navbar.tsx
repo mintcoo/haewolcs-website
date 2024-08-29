@@ -1,9 +1,9 @@
 "use client";
 
-import { checkAdminAuth } from "@/lib/commonFnc";
+import { useModal } from "@/hooks/useModal";
+import { checkAdminAuth } from "@/lib/commonServerFnc";
 import { CATEGORY_LIST, NAVBAR_MENU_LIST } from "@/lib/constants";
 import { authService } from "@/lib/firebase";
-import { useModalStore } from "@/store/useModalStore";
 import { Button, Transition } from "@headlessui/react";
 import Image from "next/image";
 import Link from "next/link";
@@ -12,7 +12,7 @@ import { useEffect, useState } from "react";
 export default function Navbar() {
   const path = usePathname();
   const router = useRouter();
-  const { setModalOpen } = useModalStore();
+  const { openModal } = useModal();
   const [open, setOpen] = useState<boolean>(false);
   const [isAdmin, setIsAdmin] = useState<boolean>(false);
 
@@ -21,20 +21,20 @@ export default function Navbar() {
 
   // 로그아웃
   const onClickLogout = () => {
-    setModalOpen("알림", "로그아웃 하시겠습니까?", async () => {
+    openModal("알림", "로그아웃 하시겠습니까?", async () => {
       try {
         await authService.signOut();
         handleAdminAuth(false);
-        setModalOpen("알림", "로그아웃 하였습니다");
+        openModal("알림", "로그아웃 하였습니다");
       } catch (error) {
-        setModalOpen("알림", "로그아웃에 실패하였습니다");
+        openModal("알림", "로그아웃에 실패하였습니다");
         console.log("Error signing out with Google", error);
       }
     });
   };
   // 관리자 여부 cookie 세팅
-  const handleAdminAuth = async (bool: boolean) => {
-    await checkAdminAuth(bool);
+  const handleAdminAuth = async (isAdmin: boolean) => {
+    await checkAdminAuth(isAdmin);
   };
 
   useEffect(() => {

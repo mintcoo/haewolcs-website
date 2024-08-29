@@ -37,3 +37,6 @@ export const THERAPY_LIST = [
   { name: "면역증강 치료" },
   { name: "항산화 치료" },
 ];
+
+// 이미지 파일 최대 업로드 용량
+export const FILE_MAX_SIZE = 1 * 10 * 10;
