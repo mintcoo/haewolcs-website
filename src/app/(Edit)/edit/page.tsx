@@ -2,12 +2,24 @@
 
 import { useModal } from "@/hooks/useModal";
 import { FILE_MAX_SIZE } from "@/lib/constants";
-import { useModalStore } from "@/store/useModalStore";
-import { useState } from "react";
+import { db, storage } from "@/lib/firebase";
+import { IMainCarousel } from "@/types/edit";
+import { Unsubscribe } from "firebase/auth";
+import {
+  addDoc,
+  collection,
+  onSnapshot,
+  orderBy,
+  query,
+} from "firebase/firestore";
+import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
+import Image from "next/image";
+import { useEffect, useState } from "react";
 
 export default function Edit() {
   const { openModal } = useModal();
   const [fileList, setFileList] = useState<File[]>([]);
+  const [mainCaroImages, setMainCaroImages] = useState<IMainCarousel[]>([]);
 
   // 이미지 파일 업로드
   const onFilesChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -19,15 +31,76 @@ export default function Edit() {
           return;
         }
         setFileList((prev) => [...prev, files[i]]);
+        filesUploadStorage(files[i], i);
       }
     }
+    setFileList([]);
   };
 
-  const filesUploadStorage = async () => {};
-  console.log(fileList);
+  // 이미지 파일 업로드
+  const filesUploadStorage = async (file: File, idx: number) => {
+    const index = mainCaroImages.length + idx;
+    try {
+      if (file) {
+        const locationRef = ref(storage, `mainCarousel/${index}`);
+        const result = await uploadBytes(locationRef, file);
+        const url = await getDownloadURL(result.ref);
+        const doc = await addDoc(collection(db, "mainCarousel"), {
+          index: index,
+          url: url,
+        });
+        console.log(index, url, doc, fileList, "ㅋㅋㅋㅋ");
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
+  console.log(mainCaroImages, "이미지?");
+
+  useEffect(() => {
+    let unsubscribe: Unsubscribe | null = null;
+    const fetchImages = async () => {
+      const mainCarouselQuery = query(
+        collection(db, "mainCarousel"),
+        orderBy("index"),
+      );
+
+      unsubscribe = await onSnapshot(mainCarouselQuery, (snapshot) => {
+        const imageUrls = snapshot.docs.map((doc) => {
+          const { url } = doc.data();
+          console.log(url, doc.data(), "zzzz");
+          return {
+            url,
+            id: doc.id,
+          };
+        });
+        setMainCaroImages(imageUrls);
+      });
+    };
+    fetchImages();
+    // 실시간 감지 이벤트 해제
+    return () => {
+      unsubscribe && unsubscribe();
+    };
+  }, []);
 
   return (
     <div className="bg-slate-400 ">
+      <div className="flex gap-2">
+        {mainCaroImages.map((image, idx) => {
+          return (
+            <div className="relative w-20 h-20 bg-red-200">
+              <Image
+                key={`main_caro_${idx}`}
+                src={image.url}
+                alt={`main carousel image ${idx}`}
+                fill
+                style={{ objectFit: "contain" }}
+              />
+            </div>
+          );
+        })}
+      </div>
       <input
         onChange={onFilesChange}
         type="file"

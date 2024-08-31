@@ -41,10 +41,10 @@
     @apply rounded border border-sky-900 text-sm text-sky-950 hover:bg-sky-50 font-semibold;
   }
   .btn-dark-blue {
-    @apply rounded bg-sky-900 text-sm text-white hover:bg-sky-800;
+    @apply rounded border border-sky-900  bg-sky-900 text-sm text-white hover:bg-sky-800;
   }
   .btn-blue {
-    @apply rounded bg-sky-600 text-sm text-white hover:bg-sky-500;
+    @apply rounded border border-sky-900  bg-sky-600 text-sm text-white hover:bg-sky-500;
   }
 
   .text-stroke {
