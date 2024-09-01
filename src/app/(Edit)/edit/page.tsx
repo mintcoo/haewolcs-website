@@ -4,15 +4,24 @@ import { useModal } from "@/hooks/useModal";
 import { FILE_MAX_SIZE } from "@/lib/constants";
 import { db, storage } from "@/lib/firebase";
 import { IMainCarousel } from "@/types/edit";
+import { Cancel } from "@mui/icons-material";
 import { Unsubscribe } from "firebase/auth";
 import {
   addDoc,
   collection,
+  deleteDoc,
+  doc,
   onSnapshot,
   orderBy,
   query,
+  updateDoc,
 } from "firebase/firestore";
-import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
+import {
+  deleteObject,
+  getDownloadURL,
+  ref,
+  uploadBytes,
+} from "firebase/storage";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
@@ -42,14 +51,16 @@ export default function Edit() {
     const index = mainCaroImages.length + idx;
     try {
       if (file) {
-        const locationRef = ref(storage, `mainCarousel/${index}`);
-        const result = await uploadBytes(locationRef, file);
-        const url = await getDownloadURL(result.ref);
         const doc = await addDoc(collection(db, "mainCarousel"), {
           index: index,
+        });
+        // 이미지 저장
+        const locationRef = ref(storage, `mainCarousel/${doc.id}`);
+        const result = await uploadBytes(locationRef, file);
+        const url = await getDownloadURL(result.ref);
+        await updateDoc(doc, {
           url: url,
         });
-        console.log(index, url, doc, fileList, "ㅋㅋㅋㅋ");
       }
     } catch (e) {
       console.log(e);
@@ -57,6 +68,7 @@ export default function Edit() {
   };
   console.log(mainCaroImages, "이미지?");
 
+  // 이미지 받아와서 세팅
   useEffect(() => {
     let unsubscribe: Unsubscribe | null = null;
     const fetchImages = async () => {
@@ -68,7 +80,6 @@ export default function Edit() {
       unsubscribe = await onSnapshot(mainCarouselQuery, (snapshot) => {
         const imageUrls = snapshot.docs.map((doc) => {
           const { url } = doc.data();
-          console.log(url, doc.data(), "zzzz");
           return {
             url,
             id: doc.id,
@@ -84,12 +95,28 @@ export default function Edit() {
     };
   }, []);
 
+  const onDeleteImage = async (imageId: string) => {
+    try {
+      await deleteDoc(doc(db, "mainCarousel", imageId));
+      const imageRef = ref(storage, `mainCarousel/${imageId}`);
+      await deleteObject(imageRef);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   return (
     <div className="bg-slate-400 ">
       <div className="flex gap-2">
         {mainCaroImages.map((image, idx) => {
           return (
             <div className="relative w-20 h-20 bg-red-200">
+              <Cancel
+                onClick={() => {
+                  onDeleteImage(image.id);
+                }}
+                className="absolute right-0 top-0 z-10 cursor-pointer hover:scale-110"
+              />
               <Image
                 key={`main_caro_${idx}`}
                 src={image.url}
