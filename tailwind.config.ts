@@ -34,6 +34,15 @@ const config: Config = {
         "3vw": "3vw",
         "30vw": "30vw",
       },
+      keyframes: {
+        hourglass: {
+          "0%": { transform: "rotate(0deg)" },
+          "100%": { transform: "rotate(360deg)" },
+        },
+      },
+      animation: {
+        hourglass: "hourglass 2s ease-in-out infinite",
+      },
     },
   },
   plugins: [],

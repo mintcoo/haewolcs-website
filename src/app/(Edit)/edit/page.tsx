@@ -1,5 +1,6 @@
 "use client";
 
+import Loading from "@/components/Loading";
 import { useModal } from "@/hooks/useModal";
 import { FILE_MAX_SIZE } from "@/lib/constants";
 import { db, storage } from "@/lib/firebase";
@@ -27,7 +28,6 @@ import { useEffect, useState } from "react";
 
 export default function Edit() {
   const { openModal } = useModal();
-  const [fileList, setFileList] = useState<File[]>([]);
   const [mainCaroImages, setMainCaroImages] = useState<IMainCarousel[]>([]);
 
   // 이미지 파일 업로드
@@ -39,11 +39,9 @@ export default function Edit() {
           openModal("알림", "5MB 이하의 사진 업로드만 가능합니다.");
           return;
         }
-        setFileList((prev) => [...prev, files[i]]);
         filesUploadStorage(files[i], i);
       }
     }
-    setFileList([]);
   };
 
   // 이미지 파일 업로드
@@ -97,8 +95,8 @@ export default function Edit() {
 
   const onDeleteImage = async (imageId: string) => {
     try {
-      await deleteDoc(doc(db, "mainCarousel", imageId));
       const imageRef = ref(storage, `mainCarousel/${imageId}`);
+      await deleteDoc(doc(db, "mainCarousel", imageId));
       await deleteObject(imageRef);
     } catch (e) {
       console.log(e);
@@ -135,6 +133,7 @@ export default function Edit() {
         accept="image/*"
         multiple
       ></input>
+      <Loading />
     </div>
   );
 }
