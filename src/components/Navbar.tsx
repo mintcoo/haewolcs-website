@@ -56,7 +56,7 @@ export default function Navbar() {
 
   return (
     <>
-      {path !== "/admin" && (
+      {path === "/admin" && (
         <div
           onMouseLeave={onMouseLeave}
           className="sticky top-0 left-0 right-0 z-40 h-10vh"

@@ -30,7 +30,7 @@ export default function Edit() {
   const { openModal } = useModal();
   const [mainCaroImages, setMainCaroImages] = useState<IMainCarousel[]>([]);
 
-  // 이미지 파일 업로드
+  // 파일 업로드
   const onFilesChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { files } = e.target;
     if (files && files.length >= 1) {
@@ -44,7 +44,7 @@ export default function Edit() {
     }
   };
 
-  // 이미지 파일 업로드
+  // 이미지 파일 Storage 저장
   const filesUploadStorage = async (file: File, idx: number) => {
     const index = mainCaroImages.length + idx;
     try {
@@ -89,6 +89,7 @@ export default function Edit() {
     fetchImages();
     // 실시간 감지 이벤트 해제
     return () => {
+      console.log("실시간 이벤트 해제");
       unsubscribe && unsubscribe();
     };
   }, []);
