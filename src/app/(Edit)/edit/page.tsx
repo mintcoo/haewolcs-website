@@ -25,6 +25,7 @@ import {
 } from "firebase/storage";
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 
 export default function Edit() {
   const { openModal } = useModal();
@@ -106,27 +107,41 @@ export default function Edit() {
 
   return (
     <div className="bg-slate-400 ">
-      <div className="flex gap-2">
-        {mainCaroImages.map((image, idx) => {
-          return (
-            <div className="relative w-20 h-20 bg-red-200">
-              <Cancel
-                onClick={() => {
-                  onDeleteImage(image.id);
-                }}
-                className="absolute right-0 top-0 z-10 cursor-pointer hover:scale-110"
-              />
-              <Image
-                key={`main_caro_${idx}`}
-                src={image.url}
-                alt={`main carousel image ${idx}`}
-                fill
-                style={{ objectFit: "contain" }}
-              />
+      <DragDropContext
+        onDragEnd={() => {
+          console.log("드래그 끝");
+        }}
+      >
+        <Droppable droppableId="droppable">
+          {(provided, snapshot) => (
+            <div className="flex gap-2 bg-red-500" ref={provided.innerRef}>
+              {mainCaroImages.map((image, idx) => {
+                return (
+                  <Draggable draggableId={`${image}-${idx}`} index={idx}>
+                    {() => (
+                      <div className="relative w-20 h-20 bg-red-200">
+                        <Cancel
+                          onClick={() => {
+                            onDeleteImage(image.id);
+                          }}
+                          className="absolute right-0 top-0 z-10 cursor-pointer hover:scale-110"
+                        />
+                        <Image
+                          key={`main_caro_${idx}`}
+                          src={image.url}
+                          alt={`main carousel image ${idx}`}
+                          fill
+                          style={{ objectFit: "contain" }}
+                        />
+                      </div>
+                    )}
+                  </Draggable>
+                );
+              })}
             </div>
-          );
-        })}
-      </div>
+          )}
+        </Droppable>
+      </DragDropContext>
       <input
         onChange={onFilesChange}
         type="file"
