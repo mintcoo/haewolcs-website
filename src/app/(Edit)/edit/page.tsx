@@ -106,20 +106,28 @@ export default function Edit() {
   };
 
   return (
-    <div className="bg-slate-400 ">
+    <div className="bg-slate-400 h-screen">
       <DragDropContext
         onDragEnd={() => {
           console.log("드래그 끝");
         }}
       >
-        <Droppable droppableId="droppable">
+        <Droppable droppableId="droppable-main" direction="horizontal">
           {(provided, snapshot) => (
-            <div className="flex gap-2 bg-red-500" ref={provided.innerRef}>
+            <ul
+              ref={provided.innerRef}
+              {...provided.droppableProps}
+              className="f-c-c gap-2 bg-blue-100 w-full  h-1/3"
+            >
               {mainCaroImages.map((image, idx) => {
                 return (
                   <Draggable draggableId={`${image}-${idx}`} index={idx}>
-                    {() => (
-                      <div className="relative w-20 h-20 bg-red-200">
+                    {(provided) => (
+                      <li
+                        ref={provided.innerRef}
+                        {...provided.draggableProps}
+                        className="relative w-20 h-20 border border-red-600"
+                      >
                         <Cancel
                           onClick={() => {
                             onDeleteImage(image.id);
@@ -127,18 +135,20 @@ export default function Edit() {
                           className="absolute right-0 top-0 z-10 cursor-pointer hover:scale-110"
                         />
                         <Image
+                          {...provided.dragHandleProps}
                           key={`main_caro_${idx}`}
                           src={image.url}
                           alt={`main carousel image ${idx}`}
                           fill
                           style={{ objectFit: "contain" }}
                         />
-                      </div>
+                      </li>
                     )}
                   </Draggable>
                 );
               })}
-            </div>
+              {provided.placeholder}
+            </ul>
           )}
         </Droppable>
       </DragDropContext>
