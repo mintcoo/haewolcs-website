@@ -12,6 +12,7 @@ import {
   collection,
   deleteDoc,
   doc,
+  getDocs,
   onSnapshot,
   orderBy,
   query,
@@ -25,7 +26,12 @@ import {
 } from "firebase/storage";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
+import {
+  DragDropContext,
+  Draggable,
+  Droppable,
+  DropResult,
+} from "react-beautiful-dnd";
 
 export default function Edit() {
   const { openModal } = useModal();
@@ -53,6 +59,7 @@ export default function Edit() {
         const doc = await addDoc(collection(db, "mainCarousel"), {
           index: index,
         });
+        console.log(doc, "ㅋㅋㅋ");
         // 이미지 저장
         const locationRef = ref(storage, `mainCarousel/${doc.id}`);
         const result = await uploadBytes(locationRef, file);
@@ -77,13 +84,16 @@ export default function Edit() {
       );
 
       unsubscribe = await onSnapshot(mainCarouselQuery, (snapshot) => {
-        const imageUrls = snapshot.docs.map((doc) => {
+        const imageUrls = snapshot.docs.map((doc, idx) => {
           const { url } = doc.data();
           return {
             url,
             id: doc.id,
+            index: idx,
+            ref: doc.ref,
           };
         });
+        console.log("다시 세팅함 이미지");
         setMainCaroImages(imageUrls);
       });
     };
@@ -104,14 +114,29 @@ export default function Edit() {
       console.log(e);
     }
   };
+  // 캐러셀 이미지 재배치
+  const onDragEnd = async ({ destination, source }: DropResult) => {
+    if (destination?.index === undefined) {
+      return;
+    }
+    const sourceRef = mainCaroImages[source.index].ref;
+
+    mainCaroImages.forEach(async (image) => {
+      if (image.index >= destination!.index && image.index < source.index) {
+        await updateDoc(image.ref, {
+          index: image.index + 1,
+        });
+      }
+    });
+
+    await updateDoc(sourceRef, {
+      index: destination?.index,
+    });
+  };
 
   return (
     <div className="bg-slate-400 h-screen">
-      <DragDropContext
-        onDragEnd={() => {
-          console.log("드래그 끝");
-        }}
-      >
+      <DragDropContext onDragEnd={onDragEnd}>
         <Droppable droppableId="droppable-main" direction="horizontal">
           {(provided, snapshot) => (
             <ul
@@ -121,7 +146,7 @@ export default function Edit() {
             >
               {mainCaroImages.map((image, idx) => {
                 return (
-                  <Draggable draggableId={`${image}-${idx}`} index={idx}>
+                  <Draggable key={image.id} draggableId={image.id} index={idx}>
                     {(provided) => (
                       <li
                         ref={provided.innerRef}

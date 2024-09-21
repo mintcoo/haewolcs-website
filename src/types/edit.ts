@@ -2,4 +2,6 @@
 export interface IMainCarousel {
   url: string;
   id: string;
+  index: number;
+  ref: any;
 }
