@@ -6,6 +6,7 @@ import { useModal } from "@/hooks/useModal";
 import { FILE_MAX_SIZE } from "@/lib/constants";
 import { db, storage } from "@/lib/firebase";
 import { IMainCarousel } from "@/types/edit";
+import { Button } from "@headlessui/react";
 import { Unsubscribe } from "firebase/auth";
 import {
   addDoc,
@@ -84,14 +85,12 @@ export default function Edit() {
             ref: doc.ref,
           };
         });
-        console.log("다시 세팅함 이미지");
         setMainCaroImages(imageUrls);
       });
     };
     fetchImages();
     // 실시간 감지 이벤트 해제
     return () => {
-      console.log("실시간 이벤트 해제");
       unsubscribe && unsubscribe();
     };
   }, []);
@@ -131,40 +130,99 @@ export default function Edit() {
       index: destination?.index,
     });
   };
+  //   return (
+  //     <div className="border h-screen p-8 bg-gray-100">
+  //       <div className="bg-white shadow-lg rounded-lg p-6 w-full h-auto">
+  //         <div className="text-2xl font-bold text-gray-800 mb-6">
+  //           1. 메인 화면 가장 위 사진들
+  //         </div>
+  //         <DragDropContext onDragEnd={onDragEnd}>
+  //           <Droppable droppableId="droppable-main" direction="horizontal">
+  //             {(provided) => (
+  //               <ul
+  //                 ref={provided.innerRef}
+  //                 {...provided.droppableProps}
+  //                 className="flex gap-4 overflow-x-auto p-4 bg-blue-50 rounded-lg"
+  //               >
+  //                 {mainCaroImages.map((image, idx) => {
+  //                   return (
+  //                     <DraggableCard
+  //                       key={image.id}
+  //                       image={image}
+  //                       index={idx}
+  //                       onDeleteImage={onDeleteImage}
+  //                     />
+  //                   );
+  //                 })}
+  //                 {provided.placeholder}
+  //               </ul>
+  //             )}
+  //           </Droppable>
+  //         </DragDropContext>
 
+  //         <label
+  //           htmlFor="file"
+  //           className="block mt-6 text-center text-sm text-gray-700 font-medium cursor-pointer bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 transition duration-200"
+  //         >
+  //           이미지 파일 추가
+  //         </label>
+  //         <input
+  //           onChange={onFilesChange}
+  //           type="file"
+  //           id="file"
+  //           accept="image/*"
+  //           multiple
+  //           className="hidden"
+  //         />
+  //       </div>
+  //     </div>
+  //   );
+  // }
   return (
-    <div className="bg-slate-400 h-screen">
-      <DragDropContext onDragEnd={onDragEnd}>
-        <Droppable droppableId="droppable-main" direction="horizontal">
-          {(provided) => (
-            <ul
-              ref={provided.innerRef}
-              {...provided.droppableProps}
-              className="f-c-c gap-2 bg-blue-100 w-full  h-1/3"
-            >
-              {mainCaroImages.map((image, idx) => {
-                return (
-                  <DraggableCard
-                    key={image.id}
-                    image={image}
-                    index={idx}
-                    onDeleteImage={onDeleteImage}
-                  />
-                );
-              })}
-              {provided.placeholder}
-            </ul>
-          )}
-        </Droppable>
-      </DragDropContext>
-      <input
-        onChange={onFilesChange}
-        type="file"
-        id="file"
-        accept="image/*"
-        multiple
-      ></input>
-      <Loading />
+    <div className="border h-screen p-8 bg-gray-100">
+      <div className="bg-white shadow-lg rounded-lg p-6 w-full h-auto">
+        <div className="text-lg font-bold  text-gray-800 mb-6">
+          1. 메인 화면 가장 위 사진들
+        </div>
+        <DragDropContext onDragEnd={onDragEnd}>
+          <Droppable droppableId="droppable-main" direction="horizontal">
+            {(provided) => (
+              <ul
+                ref={provided.innerRef}
+                {...provided.droppableProps}
+                className="flex gap-4 overflow-x-auto p-4 bg-blue-50 rounded-lg"
+              >
+                {mainCaroImages.map((image, idx) => {
+                  return (
+                    <DraggableCard
+                      key={image.id}
+                      image={image}
+                      index={idx}
+                      onDeleteImage={onDeleteImage}
+                    />
+                  );
+                })}
+                {provided.placeholder}
+              </ul>
+            )}
+          </Droppable>
+        </DragDropContext>
+        <label
+          htmlFor="file"
+          className="inline-block mt-6 text-center text-sm font-medium cursor-pointer bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 transition duration-200"
+        >
+          이미지 파일 추가
+        </label>
+        <input
+          onChange={onFilesChange}
+          type="file"
+          id="file"
+          accept="image/*"
+          className="hidden"
+          multiple
+        ></input>
+      </div>
+      {/* <Loading /> */}
     </div>
   );
 }

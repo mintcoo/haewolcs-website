@@ -17,8 +17,11 @@ function DraggableCard({ image, index, onDeleteImage }: IDraggableCardProps) {
         <li
           ref={provided.innerRef}
           {...provided.draggableProps}
-          className="relative w-20 h-20 border border-red-600"
+          className="relative w-40 h-40 border border-blue-600 bg-white"
         >
+          <div className="absolute left-0 top-0 z-10 text-orange-600">
+            {index}
+          </div>
           <Cancel
             onClick={() => {
               onDeleteImage(image.id);
