@@ -1,5 +1,6 @@
 "use client";
 
+import DraggableCard from "@/components/edit/DraggableCard";
 import Loading from "@/components/Loading";
 import { useModal } from "@/hooks/useModal";
 import { FILE_MAX_SIZE } from "@/lib/constants";
@@ -12,7 +13,6 @@ import {
   collection,
   deleteDoc,
   doc,
-  getDocs,
   onSnapshot,
   orderBy,
   query,
@@ -72,7 +72,6 @@ export default function Edit() {
       console.log(e);
     }
   };
-  console.log(mainCaroImages, "이미지?");
 
   // 이미지 받아와서 세팅
   useEffect(() => {
@@ -122,9 +121,16 @@ export default function Edit() {
     const sourceRef = mainCaroImages[source.index].ref;
 
     mainCaroImages.forEach(async (image) => {
+      // 이미지를 뒤로 이동할 때
       if (image.index >= destination!.index && image.index < source.index) {
         await updateDoc(image.ref, {
           index: image.index + 1,
+        });
+      }
+      // 이미지를 앞으로 이동할 때
+      if (image.index <= destination!.index && image.index > source.index) {
+        await updateDoc(image.ref, {
+          index: image.index - 1,
         });
       }
     });
@@ -146,30 +152,12 @@ export default function Edit() {
             >
               {mainCaroImages.map((image, idx) => {
                 return (
-                  <Draggable key={image.id} draggableId={image.id} index={idx}>
-                    {(provided) => (
-                      <li
-                        ref={provided.innerRef}
-                        {...provided.draggableProps}
-                        className="relative w-20 h-20 border border-red-600"
-                      >
-                        <Cancel
-                          onClick={() => {
-                            onDeleteImage(image.id);
-                          }}
-                          className="absolute right-0 top-0 z-10 cursor-pointer hover:scale-110"
-                        />
-                        <Image
-                          {...provided.dragHandleProps}
-                          key={`main_caro_${idx}`}
-                          src={image.url}
-                          alt={`main carousel image ${idx}`}
-                          fill
-                          style={{ objectFit: "contain" }}
-                        />
-                      </li>
-                    )}
-                  </Draggable>
+                  <DraggableCard
+                    key={image.id}
+                    image={image}
+                    index={idx}
+                    onDeleteImage={onDeleteImage}
+                  />
                 );
               })}
               {provided.placeholder}
