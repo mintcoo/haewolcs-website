@@ -9,9 +9,8 @@ interface IDraggableCardProps {
   index: number;
   onDeleteImage: (imageId: string) => Promise<void>;
 }
-function DraggableCard({ image, index, onDeleteImage }: IDraggableCardProps) {
-  console.log(image, "바뀌냐");
 
+function DraggableCard({ image, index, onDeleteImage }: IDraggableCardProps) {
   return (
     <Draggable draggableId={image.id} index={index}>
       {(provided) => (

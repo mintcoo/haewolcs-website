@@ -6,7 +6,6 @@ import { useModal } from "@/hooks/useModal";
 import { FILE_MAX_SIZE } from "@/lib/constants";
 import { db, storage } from "@/lib/firebase";
 import { IMainCarousel } from "@/types/edit";
-import { Cancel } from "@mui/icons-material";
 import { Unsubscribe } from "firebase/auth";
 import {
   addDoc,
@@ -24,14 +23,8 @@ import {
   ref,
   uploadBytes,
 } from "firebase/storage";
-import Image from "next/image";
 import { useEffect, useState } from "react";
-import {
-  DragDropContext,
-  Draggable,
-  Droppable,
-  DropResult,
-} from "react-beautiful-dnd";
+import { DragDropContext, Droppable, DropResult } from "react-beautiful-dnd";
 
 export default function Edit() {
   const { openModal } = useModal();
@@ -43,7 +36,7 @@ export default function Edit() {
     if (files && files.length >= 1) {
       for (let i = 0; i < files.length; i++) {
         if (files[i].size > FILE_MAX_SIZE) {
-          openModal("알림", "5MB 이하의 사진 업로드만 가능합니다.");
+          openModal("알림", "10MB 이하의 사진 업로드만 가능합니다.");
           return;
         }
         filesUploadStorage(files[i], i);
@@ -59,7 +52,6 @@ export default function Edit() {
         const doc = await addDoc(collection(db, "mainCarousel"), {
           index: index,
         });
-        console.log(doc, "ㅋㅋㅋ");
         // 이미지 저장
         const locationRef = ref(storage, `mainCarousel/${doc.id}`);
         const result = await uploadBytes(locationRef, file);
@@ -69,7 +61,7 @@ export default function Edit() {
         });
       }
     } catch (e) {
-      console.log(e);
+      console.log("File Uploaded Error", e);
     }
   };
 
@@ -144,7 +136,7 @@ export default function Edit() {
     <div className="bg-slate-400 h-screen">
       <DragDropContext onDragEnd={onDragEnd}>
         <Droppable droppableId="droppable-main" direction="horizontal">
-          {(provided, snapshot) => (
+          {(provided) => (
             <ul
               ref={provided.innerRef}
               {...provided.droppableProps}

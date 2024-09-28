@@ -39,4 +39,4 @@ export const THERAPY_LIST = [
 ];
 
 // 이미지 파일 최대 업로드 용량
-export const FILE_MAX_SIZE = 5 * 1024 * 1024;
+export const FILE_MAX_SIZE = 10 * 1024 * 1024;
