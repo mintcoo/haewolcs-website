@@ -20,14 +20,14 @@ export default function Modal() {
         className="relative z-50"
       >
         <div className="fixed inset-0 flex w-screen items-center justify-center py-4 bg-black bg-opacity-50 ">
-          <DialogPanel className="max-w-lg rounded space-y-4 border bg-white py-8 px-20">
+          <DialogPanel className="max-w-lg rounded space-y-4 border bg-white py-6 px-20">
             <DialogTitle className="font-bold text-lg flex justify-center">
               {modalParams.title}
             </DialogTitle>
-            <Description className="flex justify-center ">
+            <Description className="flex justify-center pb-4">
               {modalParams.contents}
             </Description>
-            <div className="flex gap-4 justify-center">
+            <div className="flex gap-2 justify-center">
               <Button
                 className="btn-dark-blue py-2 px-6"
                 onClick={() => {
