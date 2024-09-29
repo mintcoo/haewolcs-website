@@ -1,5 +1,5 @@
-// ------ 메인 캐러셀 ------
-export interface IMainCarousel {
+// ------ 캐러셀용 이미지 ------
+export interface ICarouselImage {
   url: string;
   id: string;
   index: number;

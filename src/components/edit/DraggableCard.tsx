@@ -1,11 +1,11 @@
-import { IMainCarousel } from "@/types/edit";
+import { ICarouselImage } from "@/types/edit";
 import { Cancel } from "@mui/icons-material";
 import Image from "next/image";
 import React from "react";
 import { Draggable } from "react-beautiful-dnd";
 
 interface IDraggableCardProps {
-  image: IMainCarousel;
+  image: ICarouselImage;
   index: number;
   onDeleteImage: (imageId: string) => Promise<void>;
 }
@@ -17,7 +17,7 @@ function DraggableCard({ image, index, onDeleteImage }: IDraggableCardProps) {
         <li
           ref={provided.innerRef}
           {...provided.draggableProps}
-          className="relative w-40 h-40 border border-blue-600 bg-white"
+          className="relative w-40 h-40 border border-blue-600 bg-white active:border-orange-600 hover:border-orange-600 "
         >
           <div className="absolute left-0 top-0 z-10 text-orange-600">
             {index}
