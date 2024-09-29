@@ -17,7 +17,7 @@ function DraggableCard({ image, index, onDeleteImage }: IDraggableCardProps) {
         <li
           ref={provided.innerRef}
           {...provided.draggableProps}
-          className="relative w-40 h-40 border border-blue-600 bg-white active:border-orange-600 hover:border-orange-600 "
+          className="relative w-40 h-40 border-2  bg-white active:border-orange-600 hover:border-orange-600 "
         >
           <div className="absolute left-0 top-0 z-10 text-orange-600">
             {index}
@@ -30,9 +30,9 @@ function DraggableCard({ image, index, onDeleteImage }: IDraggableCardProps) {
           />
           <Image
             {...provided.dragHandleProps}
-            key={`main_caro_${index}`}
+            key={`caro_image_${index}`}
             src={image.url}
-            alt={`main carousel image ${index}`}
+            alt={`carousel image ${index}`}
             fill
             style={{ objectFit: "contain" }}
           />

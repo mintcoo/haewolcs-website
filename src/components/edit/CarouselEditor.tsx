@@ -36,6 +36,7 @@ export default function CarouselEditor({
 
   // 파일 업로드
   const onFilesChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    console.log(carouselName, "으으으음?");
     const { files } = e.target;
     if (files && files.length >= 1) {
       for (let i = 0; i < files.length; i++) {
@@ -113,6 +114,11 @@ export default function CarouselEditor({
       case "mainCarousel":
         setTitle("1. 메인화면 최상단 슬라이드");
         break;
+      case "facilityCarousel":
+        setTitle("2. 메인화면 중간 슬라이드");
+        break;
+      default:
+        break;
     }
   };
 
@@ -121,7 +127,7 @@ export default function CarouselEditor({
   }, []);
 
   return (
-    <div className="bg-white shadow-lg rounded-lg p-6 w-full h-auto">
+    <div className="bg-white shadow-lg rounded-lg p-6 mb-2 w-full h-auto">
       <div className="text-lg font-bold  text-gray-800 mb-6">{title}</div>
       <DragDropContext onDragEnd={onDragEnd}>
         <Droppable droppableId="droppable-main" direction="horizontal">
@@ -147,7 +153,7 @@ export default function CarouselEditor({
         </Droppable>
       </DragDropContext>
       <label
-        htmlFor="file"
+        htmlFor={carouselName}
         className="inline-block mt-6 text-center text-sm font-medium cursor-pointer bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 transition duration-200"
       >
         이미지 파일 추가
@@ -155,7 +161,7 @@ export default function CarouselEditor({
       <input
         onChange={onFilesChange}
         type="file"
-        id="file"
+        id={carouselName}
         accept="image/*"
         className="hidden"
         multiple

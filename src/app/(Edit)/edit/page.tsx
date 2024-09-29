@@ -9,6 +9,9 @@ import { useEffect, useState } from "react";
 
 export default function Edit() {
   const [mainCaroImages, setMainCaroImages] = useState<ICarouselImage[]>([]);
+  const [facilityCaroImages, setFacilityCaroImages] = useState<
+    ICarouselImage[]
+  >([]);
 
   const fetchImages = async (carouselName: string) => {
     const carouselQuery = query(collection(db, carouselName), orderBy("index"));
@@ -23,7 +26,16 @@ export default function Edit() {
           ref: doc.ref,
         };
       });
-      setMainCaroImages(imageUrls);
+      switch (carouselName) {
+        case "mainCarousel":
+          setMainCaroImages(imageUrls);
+          break;
+        case "facilityCarousel":
+          setFacilityCaroImages(imageUrls);
+          break;
+        default:
+          break;
+      }
     });
 
     return unsubscribe;
@@ -31,22 +43,29 @@ export default function Edit() {
 
   // 이미지 받아와서 세팅
   useEffect(() => {
-    let unsubscribe: Unsubscribe | null = null;
+    let unsubscribeMain: Unsubscribe | null = null;
+    let unsubscribeFacility: Unsubscribe | null = null;
 
     const fetchAndSetImages = async () => {
-      unsubscribe = await fetchImages("mainCarousel");
+      unsubscribeMain = await fetchImages("mainCarousel");
+      unsubscribeFacility = await fetchImages("facilityCarousel");
     };
 
     fetchAndSetImages();
     // 실시간 감지 이벤트 해제
     return () => {
-      unsubscribe && unsubscribe();
+      unsubscribeMain && unsubscribeMain();
+      unsubscribeFacility && unsubscribeFacility();
     };
   }, []);
 
   return (
     <div className="border h-screen p-8 bg-gray-100">
       <CarouselEditor imageList={mainCaroImages} carouselName="mainCarousel" />
+      <CarouselEditor
+        imageList={facilityCaroImages}
+        carouselName="facilityCarousel"
+      />
 
       {/* <Loading /> */}
     </div>

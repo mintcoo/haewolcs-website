@@ -1,31 +1,57 @@
 "use client";
 
 import Image from "next/image";
+import { collection, getDocs, orderBy, query } from "firebase/firestore";
+import { useEffect, useState } from "react";
 import Slider from "react-slick";
+import { db } from "@/lib/firebase";
 
-// ------ 캐러셀 세팅 ------
-const carouselSetting = {
-  customPaging: function (i: number) {
-    const thumbnailImages = [
-      "/images/test01.png",
-      "/images/hospital.jpg",
-      "/images/terrace.jpg",
-      "/images/walking.jpg",
-    ];
-    return (
-      <a>
-        <Image src={thumbnailImages[i]} alt={`thumbnail-${i}`} fill />
-      </a>
-    );
-  },
-  dots: true,
-  dotsClass: "slick-dots slick-thumb ",
-  infinite: true,
-  speed: 500,
-  slidesToShow: 1,
-  slidesToScroll: 1,
-};
 export default function FacilityCarousel() {
+  const [facilityCaroImages, setFacilityCaroImages] = useState<string[]>([]);
+
+  // ------ 캐러셀 세팅 ------
+  const carouselSetting = {
+    customPaging: function (i: number) {
+      return (
+        <a>
+          <Image
+            src={facilityCaroImages[i]}
+            alt={`thumbnail-${i}`}
+            fill
+            // style={{ objectFit: "cover" }}
+          />
+        </a>
+      );
+    },
+    dots: true,
+    dotsClass: "slick-dots slick-thumb ",
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+  };
+
+  // 시설 캐러셀 이미지 받아와서 세팅
+  const getCarouselImages = async () => {
+    let imageUrls: string[] = [];
+    const carouselQuery = query(
+      collection(db, "facilityCarousel"),
+      orderBy("index"),
+    );
+
+    const querySnapshot = await getDocs(carouselQuery);
+    querySnapshot.forEach((doc) => {
+      const { url } = doc.data();
+      imageUrls.push(url);
+    });
+
+    setFacilityCaroImages(imageUrls);
+  };
+
+  useEffect(() => {
+    getCarouselImages();
+  }, []);
+
   return (
     <>
       <div className="w-full bg-pink-100 f-c-c-c">
@@ -38,43 +64,20 @@ export default function FacilityCarousel() {
       </div>
       <Slider
         {...carouselSetting}
-        className=" mx-auto w-full xl:w-[90%] bg-slate-400"
+        className=" mx-auto w-full xl:w-[85%] bg-slate-400"
       >
-        <div className="relative h-[60vh]">
-          <Image
-            src="/images/test01.png"
-            alt="cinna"
-            fill
-            style={{ objectFit: "cover" }}
-          />
-        </div>
-        <div className="relative h-[60vh]">
-          <Image
-            // layout="responsive"
-            src="/images/hospital.jpg"
-            alt="hospital"
-            fill
-            style={{ objectFit: "cover" }}
-          />
-        </div>
-        <div className="relative h-[60vh]">
-          <Image
-            // layout="responsive"
-            src="/images/terrace.jpg"
-            alt="terrace"
-            fill
-            style={{ objectFit: "cover" }}
-          />
-        </div>
-        <div className="relative h-[60vh]">
-          <Image
-            // layout="responsive"
-            src="/images/walking.jpg"
-            alt="walking"
-            fill
-            style={{ objectFit: "cover" }}
-          />
-        </div>
+        {facilityCaroImages.map((imageUrl, index) => {
+          return (
+            <div className="relative h-[65vh]">
+              <Image
+                src={imageUrl}
+                alt={`facility image ${index}`}
+                fill
+                style={{ objectFit: "cover" }}
+              />
+            </div>
+          );
+        })}
       </Slider>
     </>
   );

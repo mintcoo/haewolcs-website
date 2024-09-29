@@ -109,19 +109,21 @@ export default function Navbar() {
         </div>
       )}
       {isAdmin && (
-        <div className="fixed bottom-4 right-4 flex items-end gap-1">
+        <div className="fixed bottom-4 right-4">
           <div>한창순 원장님, 어서오세요</div>
-          <Button
-            onClick={() => {
-              router.push("/edit");
-            }}
-            className="btn-white px-4 py-1"
-          >
-            관리
-          </Button>
-          <Button onClick={onClickLogout} className="btn-dark-blue px-4 py-1">
-            로그아웃
-          </Button>
+          <div className=" flex items-end gap-1">
+            <Button
+              onClick={() => {
+                router.push("/edit");
+              }}
+              className="btn-white px-4 py-1"
+            >
+              관리
+            </Button>
+            <Button onClick={onClickLogout} className="btn-dark-blue px-4 py-1">
+              로그아웃
+            </Button>
+          </div>
         </div>
       )}
     </>
