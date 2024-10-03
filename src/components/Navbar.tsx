@@ -56,7 +56,7 @@ export default function Navbar() {
 
   return (
     <>
-      {path === "/admin" && (
+      {path !== "/admin" && (
         <div
           onMouseLeave={onMouseLeave}
           className="sticky top-0 left-0 right-0 z-40 h-10vh"
@@ -116,7 +116,7 @@ export default function Navbar() {
               onClick={() => {
                 router.push("/edit");
               }}
-              className="btn-white px-4 py-1"
+              className="btn-white px-7 py-1"
             >
               관리
             </Button>

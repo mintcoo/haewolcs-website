@@ -7,8 +7,8 @@ export const metadata: Metadata = {
 export default function Introduction() {
   return (
     <div className="contents-layout">
-      <div className="sub-title">인사말</div>
-      <div className="sub-title-bar"></div>
+      <div className="sub-menu-title">인사말</div>
+      <div className="sub-menu-title-bar"></div>
       <div className="w-full flex justify-between">
         <div className="text-xl text-contents-color tracking-tight">
           <div className="text-4xl haewol-darkblue-title">
@@ -30,7 +30,7 @@ export default function Introduction() {
           </div>
           <div>다양하고 최적의 치료법을 통해</div>
           <div>
-            환우 여러분의 기능 회복 및 일방 복귀를 위하여 전력을 다하겠습니다.
+            환우 여러분의 기능 회복 및 일상 복귀를 위하여 전력을 다하겠습니다.
           </div>
           <div>감사합니다.</div>
         </div>

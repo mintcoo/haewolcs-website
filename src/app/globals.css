@@ -30,11 +30,14 @@
   .contents-layout {
     @apply w-full f-c-c-c pt-10 pb-20 px-10;
   }
-  .sub-title {
+  .sub-menu-title {
     @apply f-c-c font-semibold text-5xl my-8;
   }
-  .sub-title-bar {
+  .sub-menu-title-bar {
     @apply w-1/20 min-w-10 h-1 mb-10 xl:mb-20 haewol-blue-bg;
+  }
+  .sub-title {
+    @apply font-semibold text-3xl text-sky-950 mx-4;
   }
   /* 버튼 모음 */
   .btn-white {
@@ -60,10 +63,10 @@
     background-color: rgb(253 186 116);
   }
   .haewol-blue-color {
-    color: rgb(149, 220, 253);
+    color: rgb(116, 191, 226);
   }
   .haewol-blue-bg {
-    background-color: rgb(149, 220, 253);
+    background-color: rgb(116, 191, 226);
   }
   .haewol-darkblue-title {
     color: rgb(0, 66, 97);
