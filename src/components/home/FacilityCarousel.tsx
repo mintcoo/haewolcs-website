@@ -53,7 +53,7 @@ export default function FacilityCarousel() {
   }, []);
 
   return (
-    <>
+    <div data-aos="fade-up">
       <div className="w-full bg-pink-100 f-c-c-c">
         <div className="font-semibold text-gray-700 text-2.5vw ">
           해월씨에스 <span className="haewol-orange-color">둘러보기</span>
@@ -79,6 +79,6 @@ export default function FacilityCarousel() {
           );
         })}
       </Slider>
-    </>
+    </div>
   );
 }

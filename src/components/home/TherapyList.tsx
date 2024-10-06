@@ -2,7 +2,7 @@ import { THERAPY_LIST } from "@/lib/constants";
 
 export default function TherapyList() {
   return (
-    <div className="flex h-full bg-slate-400">
+    <div data-aos="fade-up" className="flex h-full bg-slate-400 my-20">
       <div className="flex flex-col items-start justify-center bg-yellow-100 w-30vw">
         <div className="w-1/5 h-1 mb-2 xl:mb-8 haewol-blue-bg"></div>
         <div className="font-semibold text-gray-700 text-2.5vw ">

@@ -7,7 +7,7 @@ import NaverMapScript from "../script/NaverMapScript";
 export default function NaverMap() {
   // 네이버 지도 생성
   useEffect(() => {
-    if (window.naver) {
+    if (window.naver && window.naver.maps?.LatLng) {
       const mapOptions = {
         center: new naver.maps.LatLng(LAT, LNG),
         zoom: 17,
@@ -32,7 +32,7 @@ export default function NaverMap() {
   }, []);
 
   return (
-    <div className="flex justify-center w-full h-[80vh] ">
+    <div data-aos="fade-up" className="flex justify-center w-full h-[80vh] ">
       <div id="map" className="w-full h-full shadow-lg "></div>
       <NaverMapScript />
     </div>

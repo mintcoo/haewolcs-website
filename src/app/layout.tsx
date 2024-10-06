@@ -7,8 +7,6 @@ import Navbar from "@/components/Navbar";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
-import { authService } from "@/lib/firebase";
-import { cookies } from "next/headers";
 
 const pretendard = localFont({
   src: "../../public/fonts/PretendardVariable.woff2",
