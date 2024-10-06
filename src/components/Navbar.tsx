@@ -61,13 +61,13 @@ export default function Navbar() {
           onMouseLeave={onMouseLeave}
           className="sticky top-0 left-0 right-0 z-40 h-10vh"
         >
-          <ul className="flex justify-center sticky top-0 left-0 right-0 z-40 bg-stone-700 h-full">
+          <ul className="flex justify-center sticky top-0 left-0 right-0 z-40 bg-white h-full border-b lg:px-16 xl:px-24 2xl:px-48">
             {CATEGORY_LIST.map((category) => (
               <Link
                 onMouseOver={onMouseOver}
                 href={category.url}
                 key={category.title}
-                className={`nav-menu-tap text-white hover:text-sky-200 w-1/6`}
+                className={`nav-menu-tap hover:haewol-orange-color w-1/6 ${category.title === "홈" && "mr-28"}`}
               >
                 {category.title === "홈" ? (
                   <div className="relative w-full h-full bg-white">
@@ -75,7 +75,7 @@ export default function Navbar() {
                       src="/images/logo.png"
                       alt="haewol_logo"
                       fill
-                      style={{ objectFit: "contain" }}
+                      style={{ objectFit: "contain", minWidth: "10rem" }}
                     />
                   </div>
                 ) : (
@@ -86,16 +86,16 @@ export default function Navbar() {
           </ul>
           <Transition show={open}>
             <ul
-              className={`fixed left-0 right-0 z-30 flex justify-center text-white bg-black text-2vw lg:text-1vw opacity-70 h-20vh font-bold trans-expand`}
+              className={`fixed left-0 right-0 z-30 flex justify-center bg-white text-2vw opacity-95 h-20vh trans-expand lg:text-1vw  lg:px-16 xl:px-24 2xl:px-48`}
             >
               {Object.entries(NAVBAR_MENU_LIST).map(([categori, subMenus]) => (
                 <li
                   key={categori}
-                  className="w-1/6 h-full border-r-2 border-red-500 flex flex-col first:border-l-2"
+                  className={`w-1/6 h-full flex flex-col ${categori === "홈" && "mr-28"} border-t-2 border-transparent ${categori !== "홈" && "hover:border-amber-400"} transition duration-200 `}
                 >
                   {subMenus.map((menu) => (
                     <Link
-                      className="w-full h-1/5 f-c-c text-center bg-sky-800"
+                      className="w-full h-1/5 f-c-c text-center hover:haewol-orange-color first:mt-2"
                       href={menu.url}
                       key={menu.title}
                     >
