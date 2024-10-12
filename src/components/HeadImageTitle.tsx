@@ -1,26 +1,38 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import { getDownloadURL, ref, StorageReference } from "firebase/storage";
+import { storage } from "@/lib/firebase";
 
 interface HeadImageTitleProps {
-  imageUrl: string;
   path: string;
 }
 
-export default function HeadImageTitle({
-  imageUrl,
-  path,
-}: HeadImageTitleProps) {
+export default function HeadImageTitle({ path }: HeadImageTitleProps) {
+  const [imageRef, setImageRef] = useState<StorageReference | null>(null);
+  const [imageUrl, setImageURL] = useState<string>("");
   const [centerTitle, setCenterTitle] = useState<string>("");
   const [centerText, setCenterText] = useState<string>("");
 
   useEffect(() => {
-    switch (path) {
-      case "/introduction":
-        setCenterTitle("해월씨에스 소개");
-        setCenterText("환자 중심의 암 요양 전문 해월씨에스");
-        break;
-      default:
-        break;
+    const fetchImage = async () => {
+      try {
+        const url = await getDownloadURL(imageRef!);
+        setImageURL(url);
+      } catch (error) {
+        console.error("Error fetching image:", error);
+      }
+    };
+    if (imageRef) {
+      fetchImage();
+    }
+  }, [imageRef]);
+
+  // imageRef 및 text 세팅
+  useEffect(() => {
+    if (path.includes("/introduction")) {
+      setImageRef(ref(storage, `headImages/introduction.jpg`));
+      setCenterTitle("해월씨에스 소개");
+      setCenterText("환자 중심의 암 요양 전문 해월씨에스");
     }
   }, [path]);
 
