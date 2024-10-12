@@ -54,6 +54,11 @@ export default function Navbar() {
     });
   }, []);
 
+  // 페이지 변경 시 스크롤 위치 최상단
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [path]);
+
   return (
     <>
       {path !== "/admin" && (

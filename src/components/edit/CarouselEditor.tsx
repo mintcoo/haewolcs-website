@@ -36,7 +36,6 @@ export default function CarouselEditor({
 
   // 파일 업로드
   const onFilesChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(carouselName, "으으으음?");
     const { files } = e.target;
     if (files && files.length >= 1) {
       for (let i = 0; i < files.length; i++) {
