@@ -48,11 +48,12 @@ export default function MainCarousel() {
       {path === "/" && (
         <Slider
           {...carouselSetting}
-          className="overflow-hidden mx-auto w-full xl:max-h-[80vh] xl:w-[90%]"
+          className="overflow-hidden mx-auto w-full h-screen"
+          // className="overflow-hidden  w-screen"
         >
           {mainCaroImages.map((imageUrl, index) => {
             return (
-              <div className="relative h-[80vh]">
+              <div className="relative h-screen">
                 <Image
                   src={imageUrl}
                   alt={`carousel image ${index}`}

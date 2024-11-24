@@ -64,7 +64,7 @@ export default function Navbar() {
       {path !== "/admin" && (
         <div
           onMouseLeave={onMouseLeave}
-          className="sticky top-0 left-0 right-0 z-40 h-10vh"
+          className="fixed top-0 left-0 right-0 z-40 h-10vh"
         >
           <ul className="flex justify-center sticky top-0 left-0 right-0 z-40 bg-white h-full border-b lg:px-16 xl:px-24 2xl:px-48">
             {CATEGORY_LIST.map((category) => (

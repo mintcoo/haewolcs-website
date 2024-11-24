@@ -37,7 +37,7 @@ export default function HeadImageTitle({ path }: HeadImageTitleProps) {
   }, [path]);
 
   return (
-    <div className="min-h-40 h-30vh lg:text-lg f-c-c-c relative">
+    <div className="min-h-40 h-30vh lg:text-lg f-c-c-c relative mt-[10vh]">
       <div className="bg-black bg-opacity-30 w-full h-full z-10 text-white f-c-c-c">
         <div className="font-semibold text-5xl mb-4">{centerTitle}</div>
         <div className="text-xl">{centerText}</div>

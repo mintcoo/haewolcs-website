@@ -54,7 +54,7 @@ export default function FacilityCarousel() {
 
   return (
     <div data-aos="fade-up">
-      <div className="w-full bg-pink-100 f-c-c-c">
+      <div className="w-full f-c-c-c my-8">
         <div className="font-semibold text-gray-700 text-2.5vw ">
           해월씨에스 <span className="haewol-orange-color">둘러보기</span>
         </div>
@@ -62,10 +62,7 @@ export default function FacilityCarousel() {
           암치료에 관한 맞춤형 통합 치료를 진행합니다
         </div>
       </div>
-      <Slider
-        {...carouselSetting}
-        className=" mx-auto w-full xl:w-[85%] bg-slate-400"
-      >
+      <Slider {...carouselSetting} className=" mx-auto w-full xl:w-[85%] ">
         {facilityCaroImages.map((imageUrl, index) => {
           return (
             <div className="relative h-[65vh]">
