@@ -10,7 +10,7 @@ export default function Introduction() {
       <div className="sub-menu-title">인사말</div>
       <div className="sub-menu-title-bar"></div>
       <div className="w-full flex justify-between">
-        <div className="text-xl text-contents-color tracking-tight">
+        <div className="text-xl text-contents-color tracking-tight leading-relaxed">
           <div className="text-4xl haewol-darkblue-title">
             해월씨에스 의원 원장
           </div>
@@ -18,23 +18,19 @@ export default function Introduction() {
             한창순
           </span>
           <span className="text-4xl haewol-darkblue-title">입니다.</span>
-          <div className="my-8">
+          <p className="whitespace-pre-line my-8">
             방문해 주신 모든 분들께 감사의 말씀드립니다.
-          </div>
-          <div>
-            해월씨에스 의원은 아름다운 달맞이길 문탠로드를 따라 펼쳐진 소나무
-            숲과
-          </div>
-          <div>
-            그 너머로 펼쳐지는 푸른 바다를 감상하며 휴식과 안정을 취할 수
-            있습니다.
-          </div>
-          <div>최적의 치료법과 맞춤형 진료를 통해</div>
-          <div>
-            환우 여러분의 빠른 기능 회복과 일상 복귀를 위하여 전력을
-            다하겠습니다.
-          </div>
-          <div>감사합니다.</div>
+          </p>
+          <p className="whitespace-pre-line">
+            {`해월씨에스 의원은 아름다운 달맞이길 문탠로드를 따라 펼쳐진 소나무 숲과
+            그 너머로 펼쳐지는 푸른 바다를 감상하며 휴식과 안정을 취할 수 있습니다.`}
+          </p>
+          <br />
+          <p className="whitespace-pre-line">
+            {`최적의 치료법과 맞춤형 진료를 통해, 
+            환우 여러분의 빠른 기능 회복과 일상 복귀를 위하여 전력을 다하겠습니다. 
+            감사합니다.`}
+          </p>
         </div>
         <div className="w-1/3 bg-orange-100">사진</div>
       </div>

@@ -23,9 +23,9 @@ export const NAVBAR_MENU_LIST: INavbarMenu = {
   진료안내: [{ url: "/infoguide", title: "진료안내" }],
   암통합치료: [
     { url: "/therapies", title: "암 통합치료" },
-    { url: "/therapies", title: "고주파 온열치료" },
-    { url: "/therapies", title: "면역증강 치료" },
-    { url: "/therapies", title: "항산화 치료" },
+    { url: "/therapies/high-frequency", title: "고주파 온열치료" },
+    { url: "/therapies/immunity", title: "면역증강 치료" },
+    { url: "/therapies/antioxidant", title: "항산화 치료" },
   ],
   오시는길: [],
 };
