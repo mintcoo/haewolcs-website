@@ -15,7 +15,7 @@ export default function Header() {
   // 서브 메뉴바 안의 내용 바꾸기
   const changeSubNavbar = (path: string) => {
     CATEGORY_LIST.forEach((category) => {
-      if (category.url === path) {
+      if (path.includes(category.url)) {
         setSubNavMenus(NAVBAR_MENU_LIST[category.title]);
       }
     });

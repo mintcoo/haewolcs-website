@@ -15,7 +15,7 @@ export default function SubNavbar({ subNavMenus, path }: ISubNavbarProps) {
       <TabList className="min-h-10 h-5vh bg-orange-100 lg:text-lg f-c-c space-x-2 rounded-lg">
         {subNavMenus.map((menu) => {
           const isSelected = path === menu.url;
-          console.log(menu.title, isSelected, "ㅋㅋ"); // path와 menu.url이 같으면 true
+
           return (
             <Tab
               key={menu.title}
@@ -23,7 +23,7 @@ export default function SubNavbar({ subNavMenus, path }: ISubNavbarProps) {
               className={({ selected }) =>
                 `px-4 py-2 w-40 text-center cursor-pointer rounded-t-lg transition-all duration-300
               ${
-                selected || isSelected
+                isSelected
                   ? "bg-white text-black transform scale-110"
                   : "bg-transparent text-gray-800  hover:bg-orange-200"
               }`
