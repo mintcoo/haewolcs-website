@@ -3,7 +3,7 @@ import SubTitle from "@/components/common/SubTitle";
 export default function Therapies() {
   return (
     <div className="contents-layout">
-      <div className="sub-menu-title">암 통합치료 zz</div>
+      <div className="sub-menu-title">암 통합치료</div>
       <div className="sub-menu-title-bar"></div>
       <SubTitle title="암 통합치료에 대한 이해" />
       <div className="w-full flex justify-between gap-8 my-8">
