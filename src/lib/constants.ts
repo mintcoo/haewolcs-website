@@ -32,10 +32,26 @@ export const NAVBAR_MENU_LIST: INavbarMenu = {
 
 // ------ 치료 프로그램 리스트------
 export const THERAPY_LIST = [
-  { name: "암 통합치료" },
-  { name: "고주파 온열치료" },
-  { name: "면역증강 치료" },
-  { name: "항산화 치료" },
+  {
+    url: "/therapies",
+    name: "암 통합치료",
+    image: "/images/therapies/integrated.jpg",
+  },
+  {
+    url: "/therapies/high-frequency",
+    name: "고주파 온열치료",
+    image: "/images/therapies/frequency.png",
+  },
+  {
+    url: "/therapies/immunity",
+    name: "면역증강 치료",
+    image: "/images/therapies/immunity.jpg",
+  },
+  {
+    url: "/therapies/antioxidant",
+    name: "항산화 치료",
+    image: "/images/therapies/antioxidant.jpg",
+  },
 ];
 
 // 이미지 파일 최대 업로드 용량
