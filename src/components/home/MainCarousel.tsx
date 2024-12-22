@@ -10,9 +10,9 @@ import { db } from "@/lib/firebase";
 // ------ 캐러셀 세팅 ------
 const carouselSetting = {
   infinite: true,
-  // autoplay: true,
+  autoplay: true,
   fade: true,
-  speed: 500,
+  speed: 300,
   slidesToShow: 1,
   slidesToScroll: 1,
   arrows: false,

@@ -3,11 +3,42 @@ import { useEffect, useState } from "react";
 import { getDownloadURL, ref, StorageReference } from "firebase/storage";
 import { storage } from "@/lib/firebase";
 
-interface HeadImageTitleProps {
+interface IHeadImageTitleProps {
   path: string;
 }
 
-export default function HeadImageTitle({ path }: HeadImageTitleProps) {
+interface IHeadImageConfig {
+  [key: string]: {
+    title: string;
+    text: string;
+    image: string;
+  };
+}
+
+const HEAD_IMAGE_CONFIG: IHeadImageConfig = {
+  introduction: {
+    title: "해월씨에스 소개",
+    text: "환자 중심의 암 요양 전문 해월씨에스",
+    image: "headImages/introduction.jpg",
+  },
+  infoguide: {
+    title: "진료안내",
+    text: "해월씨에스는 환우 여러분들의 시간을 소중히 여깁니다",
+    image: "headImages/introduction.jpg",
+  },
+  therapies: {
+    title: "암통합치료",
+    text: "전문적이고 효과적인 암통합치료",
+    image: "headImages/introduction.jpg",
+  },
+  navigate: {
+    title: "오시는길",
+    text: "환자와 보호자가 안심할 수 있도록 정성을 다합니다",
+    image: "headImages/introduction.jpg",
+  },
+};
+
+export default function HeadImageTitle({ path }: IHeadImageTitleProps) {
   const [imageRef, setImageRef] = useState<StorageReference | null>(null);
   const [imageUrl, setImageURL] = useState<string>("");
   const [centerTitle, setCenterTitle] = useState<string>("");
@@ -29,10 +60,15 @@ export default function HeadImageTitle({ path }: HeadImageTitleProps) {
 
   // imageRef 및 text 세팅
   useEffect(() => {
-    if (path.includes("/introduction")) {
-      setImageRef(ref(storage, `headImages/introduction.jpg`));
-      setCenterTitle("해월씨에스 소개");
-      setCenterText("환자 중심의 암 요양 전문 해월씨에스");
+    const configKey = Object.keys(HEAD_IMAGE_CONFIG).find((key) =>
+      path.includes(`/${key}`),
+    );
+
+    if (configKey) {
+      const { title, text, image } = HEAD_IMAGE_CONFIG[configKey];
+      setImageRef(ref(storage, image));
+      setCenterTitle(title);
+      setCenterText(text);
     }
   }, [path]);
 
