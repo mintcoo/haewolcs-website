@@ -14,7 +14,7 @@ interface IHeadImageConfig {
     image: string;
   };
 }
-
+// 헤드 타이틀 이미지 및 텍스트 세팅
 const HEAD_IMAGE_CONFIG: IHeadImageConfig = {
   introduction: {
     title: "해월씨에스 소개",
