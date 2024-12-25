@@ -5,9 +5,7 @@ import {
   collection,
   deleteDoc,
   doc,
-  onSnapshot,
-  orderBy,
-  query,
+  getDoc,
   updateDoc,
 } from "firebase/firestore";
 import {
@@ -21,6 +19,8 @@ import { db, storage } from "@/lib/firebase";
 import { FILE_MAX_SIZE } from "@/lib/constants";
 import { useModal } from "@/hooks/useModal";
 import { useEffect, useState } from "react";
+import Loading from "../Loading";
+import { compressImage } from "@/lib/commonClientFnc";
 
 interface ICarouselEditorProps {
   imageList: ICarouselImage[];
@@ -35,15 +35,17 @@ export default function CarouselEditor({
   const [title, setTitle] = useState<string>("");
 
   // 파일 업로드
-  const onFilesChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const onFilesChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const { files } = e.target;
+
     if (files && files.length >= 1) {
       for (let i = 0; i < files.length; i++) {
         if (files[i].size > FILE_MAX_SIZE) {
-          openModal("알림", "10MB 이하의 사진 업로드만 가능합니다.");
+          openModal("알림", "20MB 이하의 사진 업로드만 가능합니다.");
           return;
         }
-        filesUploadStorage(files[i], i);
+        const compressedFile = await compressImage(files[i]);
+        filesUploadStorage(compressedFile, i);
       }
     }
   };
@@ -55,6 +57,7 @@ export default function CarouselEditor({
       if (file) {
         const doc = await addDoc(collection(db, carouselName), {
           index: index,
+          name: "해월씨에스",
         });
         // 이미지 저장
         const locationRef = ref(storage, `${carouselName}/${doc.id}`);
@@ -66,6 +69,26 @@ export default function CarouselEditor({
       }
     } catch (e) {
       console.log("File Uploaded Error", e);
+    }
+  };
+  // 이미지 이름 Storage 저장
+  const uploadImageName = async (imageName: string, imageId: string) => {
+    try {
+      // 기존 문서 참조 가져오기
+      const docRef = doc(db, carouselName, imageId);
+      const docSnap = await getDoc(docRef);
+
+      if (docSnap.exists()) {
+        // 기존 문서에 이름 업데이트
+        await updateDoc(docRef, {
+          name: imageName,
+        });
+        openModal("알림", "이미지 이름이 변경되었습니다");
+      } else {
+        console.log("해당 이미지가 존재하지 않습니다.");
+      }
+    } catch (e) {
+      console.log("Image Name Update Error", e);
     }
   };
 
@@ -136,16 +159,21 @@ export default function CarouselEditor({
               {...provided.droppableProps}
               className="flex gap-4 overflow-x-auto p-4 bg-blue-50 rounded-lg"
             >
-              {imageList.map((image, idx) => {
-                return (
-                  <DraggableCard
-                    key={image.id}
-                    image={image}
-                    index={idx}
-                    onDeleteImage={onDeleteImage}
-                  />
-                );
-              })}
+              {imageList.length > 0 ? (
+                imageList.map((image, idx) => {
+                  return (
+                    <DraggableCard
+                      key={image.id}
+                      image={image}
+                      index={idx}
+                      onDeleteImage={onDeleteImage}
+                      uploadImageName={uploadImageName}
+                    />
+                  );
+                })
+              ) : (
+                <Loading />
+              )}
               {provided.placeholder}
             </ul>
           )}

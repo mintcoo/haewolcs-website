@@ -91,7 +91,7 @@ export default function Navbar() {
           </ul>
           <Transition show={open}>
             <ul
-              className={`fixed left-0 right-0 z-30 flex justify-center bg-white text-2vw opacity-95 h-20vh trans-expand lg:text-1vw  lg:px-16 xl:px-24 2xl:px-48`}
+              className={`fixed left-0 right-0 z-30 border-b  flex justify-center bg-white text-2vw opacity-95 h-20vh trans-expand lg:text-1vw  lg:px-16 xl:px-24 2xl:px-48`}
             >
               {Object.entries(NAVBAR_MENU_LIST).map(([categori, subMenus]) => (
                 <li
@@ -114,7 +114,7 @@ export default function Navbar() {
         </div>
       )}
       {isAdmin && (
-        <div className="fixed bottom-4 right-4">
+        <div className="fixed bottom-4 right-4 z-50">
           <div>한창순 원장님, 어서오세요</div>
           <div className=" flex items-end gap-1">
             <Button

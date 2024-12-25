@@ -4,4 +4,5 @@ export interface ICarouselImage {
   id: string;
   index: number;
   ref: any;
+  name: string;
 }
