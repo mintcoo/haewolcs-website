@@ -42,7 +42,7 @@
   }
   /* 버튼 모음 */
   .btn-white {
-    @apply rounded border border-sky-900 text-sm text-sky-950 hover:bg-sky-50 font-semibold;
+    @apply rounded border border-sky-900 text-sm text-sky-950 bg-white hover:bg-sky-50 font-semibold;
   }
   .btn-dark-blue {
     @apply rounded border border-sky-900  bg-sky-900 text-sm text-white hover:bg-sky-800;

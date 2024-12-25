@@ -18,12 +18,13 @@ export default function Edit() {
 
     const unsubscribe = await onSnapshot(carouselQuery, (snapshot) => {
       const imageUrls = snapshot.docs.map((doc, idx) => {
-        const { url } = doc.data();
+        const { url, name } = doc.data();
         return {
           url,
           id: doc.id,
           index: idx,
           ref: doc.ref,
+          name,
         };
       });
       switch (carouselName) {

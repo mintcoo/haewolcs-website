@@ -6,8 +6,13 @@ import { useEffect, useState } from "react";
 import Slider from "react-slick";
 import { db } from "@/lib/firebase";
 
+interface imageInfo {
+  url: string;
+  name: string;
+}
+
 export default function FacilityCarousel() {
-  const [facilityCaroImages, setFacilityCaroImages] = useState<string[]>([]);
+  const [facilityCaroImages, setFacilityCaroImages] = useState<imageInfo[]>([]);
 
   // ------ 캐러셀 세팅 ------
   const carouselSetting = {
@@ -15,7 +20,7 @@ export default function FacilityCarousel() {
       return (
         <a>
           <Image
-            src={facilityCaroImages[i]}
+            src={facilityCaroImages[i].url}
             alt={`thumbnail-${i}`}
             fill
             // style={{ objectFit: "cover" }}
@@ -33,7 +38,7 @@ export default function FacilityCarousel() {
 
   // 시설 캐러셀 이미지 받아와서 세팅
   const getCarouselImages = async () => {
-    let imageUrls: string[] = [];
+    let imageInfos: imageInfo[] = [];
     const carouselQuery = query(
       collection(db, "facilityCarousel"),
       orderBy("index"),
@@ -41,11 +46,11 @@ export default function FacilityCarousel() {
 
     const querySnapshot = await getDocs(carouselQuery);
     querySnapshot.forEach((doc) => {
-      const { url } = doc.data();
-      imageUrls.push(url);
+      const { url, name } = doc.data();
+      imageInfos.push({ url, name });
     });
 
-    setFacilityCaroImages(imageUrls);
+    setFacilityCaroImages(imageInfos);
   };
 
   useEffect(() => {
@@ -63,15 +68,18 @@ export default function FacilityCarousel() {
         </div>
       </div>
       <Slider {...carouselSetting} className=" mx-auto w-full xl:w-[85%] ">
-        {facilityCaroImages.map((imageUrl, index) => {
+        {facilityCaroImages.map((imageInfo, index) => {
           return (
             <div className="relative h-[65vh]">
               <Image
-                src={imageUrl}
+                src={imageInfo.url}
                 alt={`facility image ${index}`}
                 fill
                 style={{ objectFit: "cover" }}
               />
+              <div className="absolute bottom-0 left-0 border border-white w-1/5 h-[10%] bg-white bg-opacity-60 z-10 haewol-darkblue-title f-c-c-c text-xl font-semibold">
+                {imageInfo.name}
+              </div>
             </div>
           );
         })}

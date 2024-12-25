@@ -114,7 +114,7 @@ export default function Navbar() {
         </div>
       )}
       {isAdmin && (
-        <div className="fixed bottom-4 right-4">
+        <div className="fixed bottom-4 right-4 z-50">
           <div>한창순 원장님, 어서오세요</div>
           <div className=" flex items-end gap-1">
             <Button
