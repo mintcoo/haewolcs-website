@@ -7,20 +7,25 @@ import { useEffect, useState } from "react";
 import Slider from "react-slick";
 import { db } from "@/lib/firebase";
 
-// ------ 캐러셀 세팅 ------
-const carouselSetting = {
-  infinite: true,
-  autoplay: true,
-  fade: true,
-  speed: 300,
-  slidesToShow: 1,
-  slidesToScroll: 1,
-  arrows: false,
-};
-
 export default function MainCarousel() {
   const path = usePathname();
   const [mainCaroImages, setMainCaroImages] = useState<string[]>([]);
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  // ------ 캐러셀 세팅 ------
+  const carouselSetting = {
+    infinite: true,
+    autoplay: true,
+    fade: true,
+    autoplaySpeed: 10000,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    arrows: false,
+    beforeChange: (current: number, next: number) => {
+      setCurrentSlide(next);
+    },
+  };
 
   // 메인 캐러셀 이미지 받아와서 세팅
   const getCarouselImages = async () => {
@@ -47,6 +52,7 @@ export default function MainCarousel() {
     <>
       {path === "/" && (
         <Slider
+          pauseOnHover={false}
           {...carouselSetting}
           className="overflow-hidden mx-auto w-full h-screen"
           // className="overflow-hidden  w-screen"
@@ -59,6 +65,7 @@ export default function MainCarousel() {
                   alt={`carousel image ${index}`}
                   fill
                   style={{ objectFit: "cover" }}
+                  className={`${currentSlide === index ? "animate-zoomout" : ""}`}
                 />
               </div>
             );

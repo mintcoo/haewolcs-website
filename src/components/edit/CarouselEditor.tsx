@@ -20,6 +20,7 @@ import { FILE_MAX_SIZE } from "@/lib/constants";
 import { useModal } from "@/hooks/useModal";
 import { useEffect, useState } from "react";
 import Loading from "../Loading";
+import { compressImage } from "@/lib/commonClientFnc";
 
 interface ICarouselEditorProps {
   imageList: ICarouselImage[];
@@ -32,18 +33,19 @@ export default function CarouselEditor({
 }: ICarouselEditorProps) {
   const { openModal } = useModal();
   const [title, setTitle] = useState<string>("");
-  const [isShowInputName, setIsShowInputName] = useState<boolean>(false);
 
   // 파일 업로드
-  const onFilesChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const onFilesChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const { files } = e.target;
+
     if (files && files.length >= 1) {
       for (let i = 0; i < files.length; i++) {
         if (files[i].size > FILE_MAX_SIZE) {
-          openModal("알림", "10MB 이하의 사진 업로드만 가능합니다.");
+          openModal("알림", "20MB 이하의 사진 업로드만 가능합니다.");
           return;
         }
-        filesUploadStorage(files[i], i);
+        const compressedFile = await compressImage(files[i]);
+        filesUploadStorage(compressedFile, i);
       }
     }
   };

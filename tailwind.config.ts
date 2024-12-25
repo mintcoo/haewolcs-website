@@ -39,9 +39,14 @@ const config: Config = {
           "0%": { transform: "rotate(0deg)" },
           "100%": { transform: "rotate(360deg)" },
         },
+        zoomout: {
+          "0%": { transform: "scale(1.2)" },
+          "100%": { transform: "scale(1.0)" },
+        },
       },
       animation: {
         hourglass: "hourglass 2s ease-in-out infinite",
+        zoomout: "zoomout 10s ease-out forwards",
       },
     },
   },
