@@ -10,6 +10,7 @@ export const CATEGORY_LIST: ICategories[] = [
   { url: "/introduction", title: "해월씨에스" },
   { url: "/infoguide", title: "진료안내" },
   { url: "/therapies", title: "암통합치료" },
+  { url: "/story", title: "해월이야기" },
   { url: "/navigate", title: "오시는길" },
 ];
 
@@ -27,6 +28,7 @@ export const NAVBAR_MENU_LIST: INavbarMenu = {
     { url: "/therapies/immunity", title: "면역증강 치료" },
     { url: "/therapies/antioxidant", title: "항산화 치료" },
   ],
+  해월이야기: [{ url: "/story", title: "도란도란" }],
   오시는길: [],
 };
 
