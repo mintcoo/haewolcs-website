@@ -37,12 +37,14 @@ export default function Modal() {
               >
                 확인
               </Button>
-              <Button
-                className="btn-white py-2 px-6 "
-                onClick={() => setModalClose()}
-              >
-                취소
-              </Button>
+              {modalParams.onClickOk && (
+                <Button
+                  className="btn-white py-2 px-6 "
+                  onClick={() => setModalClose()}
+                >
+                  취소
+                </Button>
+              )}
             </div>
           </DialogPanel>
         </div>
