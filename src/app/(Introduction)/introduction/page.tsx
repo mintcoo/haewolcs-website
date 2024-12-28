@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "의원소개",
+  title: "인사말",
 };
 
 export default function Introduction() {
