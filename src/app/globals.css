@@ -48,7 +48,10 @@
     @apply rounded border border-sky-900  bg-sky-900 text-sm text-white hover:bg-sky-800;
   }
   .btn-blue {
-    @apply rounded border border-sky-900  bg-sky-600 text-sm text-white hover:bg-sky-500;
+    @apply rounded border border-sky-700  bg-sky-600 text-sm text-white hover:bg-sky-500;
+  }
+  .btn-red {
+    @apply rounded border border-red-900  bg-red-800 text-sm text-white hover:bg-red-700;
   }
 
   .text-stroke {
