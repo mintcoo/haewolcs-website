@@ -24,7 +24,7 @@ export default function TextEditor({ onCallbackDone }: ITextEditorProps) {
         return;
       }
 
-      const docRef = await addDoc(collection(db, "posts"), {
+      await addDoc(collection(db, "posts"), {
         title,
         content,
         createdAt: serverTimestamp(),
@@ -41,18 +41,24 @@ export default function TextEditor({ onCallbackDone }: ITextEditorProps) {
 
   return (
     <div className="w-full h-full lg:w-2/3 f-c-c-c">
-      <div className="w-full flex gap-2 mb-5 ">
+      <div className="w-full flex gap-1 mb-5 ">
         <input
           type="text"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
           placeholder="제목을 입력하세요"
-          className="flex-1 px-4 py-2 text-xl border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
+          className="flex-1 px-4 py-1 text-lg border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
         />
+        <button
+          onClick={onCallbackDone}
+          className="px-6 py-1 rounded-md btn-white"
+        >
+          취소
+        </button>
         {/* 저장 버튼 */}
         <button
           onClick={handleSave}
-          className="px-6 py-2 rounded-md btn-dark-blue"
+          className="px-6 py-1 rounded-md btn-dark-blue"
         >
           저장하기
         </button>
