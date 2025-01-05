@@ -1,15 +1,23 @@
 import dynamic from "next/dynamic";
 import "react-quill/dist/quill.snow.css";
-import { useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 
-import { collection, addDoc, serverTimestamp } from "firebase/firestore";
+import {
+  collection,
+  addDoc,
+  serverTimestamp,
+  updateDoc,
+  doc,
+} from "firebase/firestore";
 import { db, storage } from "@/lib/firebase";
 import { useModal } from "@/hooks/useModal";
 import ReactQuill, { ReactQuillProps } from "react-quill";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { compressImage } from "@/lib/commonClientFnc";
+import { StoryPost } from "@/types/story";
 
 interface ITextEditorProps {
+  selectedPost?: StoryPost | null;
   onCallbackDone: () => void;
 }
 
@@ -29,10 +37,15 @@ const CustomReactQuill = dynamic(
   { ssr: false },
 );
 
-export default function TextEditor({ onCallbackDone }: ITextEditorProps) {
+export default function TextEditor({
+  onCallbackDone,
+  selectedPost,
+}: ITextEditorProps) {
   const { openModal } = useModal();
-  const [title, setTitle] = useState("");
-  const [content, setContent] = useState("");
+  const [title, setTitle] = useState<string>("");
+  const [content, setContent] = useState<string>("");
+  const [isNotice, setIsNotice] = useState<boolean>(false);
+  const [isEditMode, setIsEditMode] = useState<boolean>(false);
   const quillRef = useRef<ReactQuill>(null);
 
   const handleSave = async () => {
@@ -42,14 +55,22 @@ export default function TextEditor({ onCallbackDone }: ITextEditorProps) {
         return;
       }
 
-      await addDoc(collection(db, "posts"), {
-        title,
-        content,
-        createdAt: serverTimestamp(),
-        // author: '작성자 정보',
-        // userId: '사용자ID',
-      });
-
+      if (isEditMode) {
+        await updateDoc(doc(db, "posts", selectedPost!.id), {
+          title,
+          content,
+          isNotice,
+        });
+      } else {
+        await addDoc(collection(db, "posts"), {
+          title,
+          content,
+          isNotice,
+          createdAt: serverTimestamp(),
+          // author: '작성자 정보',
+          // userId: '사용자ID',
+        });
+      }
       openModal("알림", "저장되었습니다!");
       onCallbackDone();
     } catch (error) {
@@ -109,6 +130,16 @@ export default function TextEditor({ onCallbackDone }: ITextEditorProps) {
     };
   }, []);
 
+  // 수정 모드로 들어와서 선택된 게시글이 있을 때
+  useEffect(() => {
+    if (selectedPost) {
+      setTitle(selectedPost.title);
+      setContent(selectedPost.content);
+      setIsNotice(selectedPost.isNotice);
+      setIsEditMode(true);
+    }
+  }, [selectedPost]);
+
   return (
     <div className="w-full h-full lg:w-2/3 f-c-c-c">
       <div className="w-full flex gap-1 mb-5 ">
@@ -119,6 +150,18 @@ export default function TextEditor({ onCallbackDone }: ITextEditorProps) {
           placeholder="제목을 입력하세요"
           className="flex-1 px-4 py-1 text-lg border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
         />
+        <div className="flex items-center gap-2 mx-2">
+          <input
+            type="checkbox"
+            id="notice"
+            checked={isNotice}
+            onChange={(e) => setIsNotice(e.target.checked)}
+            className="w-4 h-4"
+          />
+          <label htmlFor="notice" className="text-sm">
+            공지
+          </label>
+        </div>
         <button
           onClick={onCallbackDone}
           className="px-6 py-1 rounded-md btn-white"
