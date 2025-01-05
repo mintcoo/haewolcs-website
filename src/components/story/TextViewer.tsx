@@ -10,7 +10,8 @@ import { useModal } from "@/hooks/useModal";
 interface ITextViewerProps {
   selectedPost: StoryPost | null;
   isAdmin: boolean;
-  setIsShowPost: (isShowPost: boolean) => void;
+  initState: () => void;
+  onEditPost: () => void;
 }
 
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
@@ -18,16 +19,17 @@ const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 export default function TextViewer({
   selectedPost,
   isAdmin,
-  setIsShowPost,
+  initState,
+  onEditPost,
 }: ITextViewerProps) {
   const { openModal } = useModal();
+
   // 게시글 삭제
   const onDeletePost = async () => {
-    console.log("삭제", selectedPost);
     try {
       if (selectedPost) {
         await deleteDoc(doc(db, "posts", selectedPost.id));
-        setIsShowPost(false);
+        initState();
         openModal("알림", "게시글이 삭제되었습니다.");
       }
     } catch (e) {
@@ -40,7 +42,7 @@ export default function TextViewer({
       <div className="flex justify-between w-full gap-1">
         <Button
           onClick={() => {
-            setIsShowPost(false);
+            initState();
           }}
           className="btn-white px-6 py-1"
         >
@@ -48,7 +50,7 @@ export default function TextViewer({
         </Button>
         {isAdmin && (
           <div className="flex gap-1">
-            <Button onClick={() => {}} className="btn-dark-blue px-6 py-1">
+            <Button onClick={onEditPost} className="btn-dark-blue px-6 py-1">
               수정
             </Button>
             <Button onClick={onDeletePost} className="btn-red px-6 py-1">

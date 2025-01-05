@@ -46,6 +46,18 @@ export default function Story() {
     setIsShowPost(true);
   };
 
+  // 게시글 수정
+  const onEditPost = () => {
+    setIsEditorVisible(true);
+  };
+
+  // 상태 초기화
+  const initState = () => {
+    setIsEditorVisible(false);
+    setIsShowPost(false);
+    setSelectedPost(null);
+  };
+
   // 게시글 리스트 갱신
   useEffect(() => {
     // 에디터 안보이면 새로갱신
@@ -68,7 +80,12 @@ export default function Story() {
   return (
     <div className="contents-layout">
       {isEditorVisible ? (
-        <TextEditor onCallbackDone={() => setIsEditorVisible(false)} />
+        <TextEditor
+          selectedPost={selectedPost}
+          onCallbackDone={() => {
+            initState();
+          }}
+        />
       ) : (
         <>
           <div className="sub-menu-title">해월이야기</div>
@@ -80,7 +97,8 @@ export default function Story() {
                 <TextViewer
                   selectedPost={selectedPost}
                   isAdmin={isAdmin}
-                  setIsShowPost={setIsShowPost}
+                  initState={initState}
+                  onEditPost={onEditPost}
                 />
               </>
             ) : (

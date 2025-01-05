@@ -1,15 +1,23 @@
 import dynamic from "next/dynamic";
 import "react-quill/dist/quill.snow.css";
-import { useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 
-import { collection, addDoc, serverTimestamp } from "firebase/firestore";
+import {
+  collection,
+  addDoc,
+  serverTimestamp,
+  updateDoc,
+  doc,
+} from "firebase/firestore";
 import { db, storage } from "@/lib/firebase";
 import { useModal } from "@/hooks/useModal";
 import ReactQuill, { ReactQuillProps } from "react-quill";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { compressImage } from "@/lib/commonClientFnc";
+import { StoryPost } from "@/types/story";
 
 interface ITextEditorProps {
+  selectedPost?: StoryPost | null;
   onCallbackDone: () => void;
 }
 
@@ -29,11 +37,15 @@ const CustomReactQuill = dynamic(
   { ssr: false },
 );
 
-export default function TextEditor({ onCallbackDone }: ITextEditorProps) {
+export default function TextEditor({
+  onCallbackDone,
+  selectedPost,
+}: ITextEditorProps) {
   const { openModal } = useModal();
   const [title, setTitle] = useState<string>("");
   const [content, setContent] = useState<string>("");
   const [isNotice, setIsNotice] = useState<boolean>(false);
+  const [isEditMode, setIsEditMode] = useState<boolean>(false);
   const quillRef = useRef<ReactQuill>(null);
 
   const handleSave = async () => {
@@ -43,15 +55,22 @@ export default function TextEditor({ onCallbackDone }: ITextEditorProps) {
         return;
       }
 
-      await addDoc(collection(db, "posts"), {
-        title,
-        content,
-        isNotice,
-        createdAt: serverTimestamp(),
-        // author: '작성자 정보',
-        // userId: '사용자ID',
-      });
-
+      if (isEditMode) {
+        await updateDoc(doc(db, "posts", selectedPost!.id), {
+          title,
+          content,
+          isNotice,
+        });
+      } else {
+        await addDoc(collection(db, "posts"), {
+          title,
+          content,
+          isNotice,
+          createdAt: serverTimestamp(),
+          // author: '작성자 정보',
+          // userId: '사용자ID',
+        });
+      }
       openModal("알림", "저장되었습니다!");
       onCallbackDone();
     } catch (error) {
@@ -110,6 +129,16 @@ export default function TextEditor({ onCallbackDone }: ITextEditorProps) {
       },
     };
   }, []);
+
+  // 수정 모드로 들어와서 선택된 게시글이 있을 때
+  useEffect(() => {
+    if (selectedPost) {
+      setTitle(selectedPost.title);
+      setContent(selectedPost.content);
+      setIsNotice(selectedPost.isNotice);
+      setIsEditMode(true);
+    }
+  }, [selectedPost]);
 
   return (
     <div className="w-full h-full lg:w-2/3 f-c-c-c">
