@@ -34,8 +34,8 @@ export default function Story() {
 
     const querySnapshot = await getDocs(postQuery);
     querySnapshot.forEach((doc) => {
-      const { title, content, createdAt } = doc.data();
-      posts.push({ title, content, createdAt, id: doc.id });
+      const { title, content, createdAt, isNotice } = doc.data();
+      posts.push({ title, content, createdAt, id: doc.id, isNotice });
     });
 
     setStoryPosts(posts);
@@ -95,8 +95,29 @@ export default function Story() {
                     글쓰기
                   </Button>
                 )}
+                {/* 공지사항 섹션 */}
+                <div className="border-t border-b mt-4 w-full bg-gray-50">
+                  {storyPosts
+                    .filter((post) => post.isNotice)
+                    .map((post, index) => (
+                      <div
+                        onClick={() => onClickPost(post)}
+                        key={`notice-${index}`}
+                        className="flex justify-between items-center px-6 py-4 border-b border-gray-200 last:border-b-0 hover:bg-gray-100 transition-colors duration-200 cursor-pointer group"
+                      >
+                        <div className="flex items-center space-x-4">
+                          <span className="text-xs font-medium haewol-darkblue-title w-8">
+                            ★
+                          </span>
+                          <h2 className="text-base font-medium text-gray-800 group-hover:haewol-orange-color transition-colors duration-200">
+                            {post.title}
+                          </h2>
+                        </div>
+                      </div>
+                    ))}
+                </div>
                 {/* 게시글 리스트 */}
-                <div className="border-t border-b mt-4 w-full">
+                <div className="border-t border-b w-full">
                   {storyPosts.map((post, index) => (
                     <div
                       onClick={() => onClickPost(post)}

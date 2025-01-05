@@ -31,8 +31,9 @@ const CustomReactQuill = dynamic(
 
 export default function TextEditor({ onCallbackDone }: ITextEditorProps) {
   const { openModal } = useModal();
-  const [title, setTitle] = useState("");
-  const [content, setContent] = useState("");
+  const [title, setTitle] = useState<string>("");
+  const [content, setContent] = useState<string>("");
+  const [isNotice, setIsNotice] = useState<boolean>(false);
   const quillRef = useRef<ReactQuill>(null);
 
   const handleSave = async () => {
@@ -45,6 +46,7 @@ export default function TextEditor({ onCallbackDone }: ITextEditorProps) {
       await addDoc(collection(db, "posts"), {
         title,
         content,
+        isNotice,
         createdAt: serverTimestamp(),
         // author: '작성자 정보',
         // userId: '사용자ID',
@@ -119,6 +121,18 @@ export default function TextEditor({ onCallbackDone }: ITextEditorProps) {
           placeholder="제목을 입력하세요"
           className="flex-1 px-4 py-1 text-lg border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
         />
+        <div className="flex items-center gap-2 mx-2">
+          <input
+            type="checkbox"
+            id="notice"
+            checked={isNotice}
+            onChange={(e) => setIsNotice(e.target.checked)}
+            className="w-4 h-4"
+          />
+          <label htmlFor="notice" className="text-sm">
+            공지
+          </label>
+        </div>
         <button
           onClick={onCallbackDone}
           className="px-6 py-1 rounded-md btn-white"
