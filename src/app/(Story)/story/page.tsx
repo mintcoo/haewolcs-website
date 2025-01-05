@@ -50,7 +50,6 @@ export default function Story() {
   useEffect(() => {
     // 에디터 안보이면 새로갱신
     if (!isEditorVisible) {
-      console.log("갱신");
       getPosts();
     }
   }, [isEditorVisible, isShowPost]);

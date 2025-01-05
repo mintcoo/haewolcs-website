@@ -1,21 +1,39 @@
 import dynamic from "next/dynamic";
 import "react-quill/dist/quill.snow.css";
-import { useState } from "react";
+import { useMemo, useRef, useState } from "react";
 
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
-import { db } from "@/lib/firebase";
+import { db, storage } from "@/lib/firebase";
 import { useModal } from "@/hooks/useModal";
+import ReactQuill, { ReactQuillProps } from "react-quill";
+import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
+import { compressImage } from "@/lib/commonClientFnc";
 
 interface ITextEditorProps {
   onCallbackDone: () => void;
 }
 
-const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
+// const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
+interface CustomReactQuillProps extends ReactQuillProps {
+  forwardedRef: React.RefObject<ReactQuill>;
+}
+// 이미지 ref 연결을 위해 커스텀 컴포넌트 생성
+const CustomReactQuill = dynamic(
+  async () => {
+    const { default: RQ } = await import("react-quill");
+    const Quill = ({ forwardedRef, ...props }: CustomReactQuillProps) => (
+      <RQ ref={forwardedRef} {...props} />
+    );
+    return Quill;
+  },
+  { ssr: false },
+);
 
 export default function TextEditor({ onCallbackDone }: ITextEditorProps) {
   const { openModal } = useModal();
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
+  const quillRef = useRef<ReactQuill>(null);
 
   const handleSave = async () => {
     try {
@@ -38,6 +56,58 @@ export default function TextEditor({ onCallbackDone }: ITextEditorProps) {
       openModal("알림", "저장에 실패했습니다.");
     }
   };
+
+  const handleImage = () => {
+    const input = document.createElement("input");
+    input.setAttribute("type", "file");
+    input.setAttribute("accept", "image/*");
+    input.click();
+
+    input.onchange = async () => {
+      const file = input.files?.[0];
+      if (!file) return;
+      // 이미지 리사이징 압축
+      const compressedFile = await compressImage(file);
+      const editor = quillRef.current!.getEditor();
+      // 현재 커서 위치 가져오기
+      const range = editor.getSelection(true);
+
+      // 로딩 이미지 표시
+      editor.insertEmbed(range.index, "image", `/images/loading.gif`);
+
+      if (compressedFile) {
+        try {
+          const fileName = `${Date.now()}-${file.name}`;
+          const storageRef = ref(storage, `posts/${fileName}`);
+          await uploadBytes(storageRef, file);
+          const url = await getDownloadURL(storageRef);
+
+          editor.deleteText(range.index, 1); // 로딩 이미지 제거
+          editor.insertEmbed(range.index, "image", url);
+        } catch (error) {
+          openModal("알림", "이미지 업로드에 실패했습니다.");
+        }
+      }
+    };
+  };
+
+  const modules = useMemo(() => {
+    return {
+      toolbar: {
+        container: [
+          [{ header: [1, 2, 3, 4, 5, 6, false] }],
+          [{ font: [] }], // 폰트 종류
+          ["bold", "italic", "underline", "strike"],
+          [{ color: [] }, { background: [] }], // 글자색, 배경색
+          [{ align: [] }], // 정렬
+          ["image"],
+        ],
+        handlers: {
+          image: handleImage,
+        },
+      },
+    };
+  }, []);
 
   return (
     <div className="w-full h-full lg:w-2/3 f-c-c-c">
@@ -63,24 +133,14 @@ export default function TextEditor({ onCallbackDone }: ITextEditorProps) {
           저장하기
         </button>
       </div>
-      <ReactQuill
+      <CustomReactQuill
+        forwardedRef={quillRef}
         value={content}
         onChange={setContent}
         theme="snow"
         className="w-full h-[50vh] mb-5"
         placeholder="내용을 입력해주세요."
-        modules={{
-          toolbar: {
-            container: [
-              [{ header: [1, 2, 3, 4, 5, 6, false] }],
-              [{ font: [] }], // 폰트 종류
-              ["bold", "italic", "underline", "strike"],
-              [{ color: [] }, { background: [] }], // 글자색, 배경색
-              [{ align: [] }], // 정렬
-              ["image"],
-            ],
-          },
-        }}
+        modules={modules}
       />
     </div>
   );

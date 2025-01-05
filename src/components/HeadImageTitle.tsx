@@ -31,6 +31,11 @@ const HEAD_IMAGE_CONFIG: IHeadImageConfig = {
     text: "전문적이고 효과적인 암통합치료",
     image: "headImages/introduction.jpg",
   },
+  story: {
+    title: "해월이야기",
+    text: "도란도란 해월씨에스의 이야기",
+    image: "headImages/introduction.jpg",
+  },
   navigate: {
     title: "오시는길",
     text: "환자와 보호자가 안심할 수 있도록 정성을 다합니다",
