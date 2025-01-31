@@ -7,7 +7,7 @@ export const LNG = 129.1840298; // 경도
 // ------ 카테고리 리스트 ------
 export const CATEGORY_LIST: ICategories[] = [
   { url: "/", title: "홈" },
-  { url: "/introduction", title: "해월씨에스" },
+  { url: "/introduction", title: "해월씨에스 의원" },
   { url: "/infoguide", title: "진료안내" },
   { url: "/therapies", title: "암통합치료" },
   { url: "/story", title: "해월이야기" },
@@ -17,8 +17,9 @@ export const CATEGORY_LIST: ICategories[] = [
 // ------ 내브바 메뉴 리스트 ------
 export const NAVBAR_MENU_LIST: INavbarMenu = {
   홈: [],
-  해월씨에스: [
+  "해월씨에스 의원": [
     { url: "/introduction", title: "인사말" },
+    { url: "/introduction/profile", title: "원장 약력" },
     { url: "/introduction/haewol", title: "해월 미리보기" },
   ],
   진료안내: [{ url: "/infoguide", title: "진료안내" }],
