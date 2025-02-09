@@ -17,8 +17,8 @@ const pretendard = localFont({
 
 export const metadata: Metadata = {
   title: {
-    template: "%s | 해월씨에스의원",
-    default: "해월씨에스의원",
+    template: "%s | 해월씨에스 의원",
+    default: "해월씨에스 의원",
   },
   description: "암치료 통합 전문 해월씨에스 의원",
 };

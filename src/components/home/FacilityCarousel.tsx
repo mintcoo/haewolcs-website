@@ -1,15 +1,12 @@
 "use client";
 
+import {
+  getFacilityImages,
+  imageInfo,
+} from "@/services/facility/facilityService";
 import Image from "next/image";
-import { collection, getDocs, orderBy, query } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import Slider from "react-slick";
-import { db } from "@/lib/firebase";
-
-interface imageInfo {
-  url: string;
-  name: string;
-}
 
 export default function FacilityCarousel() {
   const [facilityCaroImages, setFacilityCaroImages] = useState<imageInfo[]>([]);
@@ -38,17 +35,7 @@ export default function FacilityCarousel() {
 
   // 시설 캐러셀 이미지 받아와서 세팅
   const getCarouselImages = async () => {
-    let imageInfos: imageInfo[] = [];
-    const carouselQuery = query(
-      collection(db, "facilityCarousel"),
-      orderBy("index"),
-    );
-
-    const querySnapshot = await getDocs(carouselQuery);
-    querySnapshot.forEach((doc) => {
-      const { url, name } = doc.data();
-      imageInfos.push({ url, name });
-    });
+    const imageInfos = await getFacilityImages();
 
     setFacilityCaroImages(imageInfos);
   };

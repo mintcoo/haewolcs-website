@@ -1,11 +1,11 @@
 "use client";
 
+import { getMainCarouselImages } from "@/services/main/mainService";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { collection, getDocs, orderBy, query } from "firebase/firestore";
+
 import { useEffect, useState } from "react";
 import Slider from "react-slick";
-import { db } from "@/lib/firebase";
 
 export default function MainCarousel() {
   const path = usePathname();
@@ -29,17 +29,7 @@ export default function MainCarousel() {
 
   // 메인 캐러셀 이미지 받아와서 세팅
   const getCarouselImages = async () => {
-    let imageUrls: string[] = [];
-    const mainCarouselQuery = query(
-      collection(db, "mainCarousel"),
-      orderBy("index"),
-    );
-
-    const querySnapshot = await getDocs(mainCarouselQuery);
-    querySnapshot.forEach((doc) => {
-      const { url } = doc.data();
-      imageUrls.push(url);
-    });
+    const imageUrls = await getMainCarouselImages();
 
     setMainCaroImages(imageUrls);
   };
