@@ -29,7 +29,10 @@ export const NAVBAR_MENU_LIST: INavbarMenu = {
     { url: "/therapies/immunity", title: "면역증강 치료" },
     { url: "/therapies/antioxidant", title: "항산화 치료" },
   ],
-  해월이야기: [{ url: "/story", title: "도란도란" }],
+  해월이야기: [
+    { url: "/story", title: "환우들과 함께" },
+    { url: "/story/haewol", title: "도란도란" },
+  ],
   오시는길: [],
 };
 
