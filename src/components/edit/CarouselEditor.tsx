@@ -42,6 +42,12 @@ export default function CarouselEditor({
       case "facilityCarousel":
         setTitle("2. 메인화면 중간 슬라이드");
         break;
+      case "haewolCarousel":
+        setTitle("3. 해월 미리보기 '내부시설' 슬라이드");
+        break;
+      case "externalCarousel":
+        setTitle("4. 해월 미리보기 '외부시설' 슬라이드");
+        break;
       default:
         break;
     }
