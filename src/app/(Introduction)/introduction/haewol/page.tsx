@@ -13,12 +13,17 @@ export default function HaewolIntroduction() {
 
   // ------ 캐러셀 세팅 ------
   const carouselSetting = {
-    customPaging: function () {
+    customPaging: function (i: number) {
+      let index = i;
+      if (selectedImages.length - 1 < i) {
+        index = selectedImages.length - 1;
+      }
+
       return (
         <a>
           <Image
-            src={selectedImages[selectedImages.length - 1].url}
-            alt={`thumbnail-${selectedImages.length - 1}`}
+            src={selectedImages[index].url}
+            alt={`thumbnail-${index}`}
             fill
             // style={{ objectFit: "cover" }}
           />

@@ -3,6 +3,7 @@ import { Cancel } from "@mui/icons-material";
 import Image from "next/image";
 import React, { useState } from "react";
 import { Draggable } from "react-beautiful-dnd";
+import Loading from "../Loading";
 
 interface IDraggableCardProps {
   image: ICarouselImage;
@@ -35,14 +36,18 @@ function DraggableCard({
             onClick={onDeleteImage}
             className="absolute right-0 top-0 z-10 cursor-pointer hover:scale-110"
           />
-          <Image
-            {...provided.dragHandleProps}
-            key={`caro_image_${index}`}
-            src={image.url}
-            alt={`carousel image ${index}`}
-            fill
-            style={{ objectFit: "contain" }}
-          />
+          {image.url ? (
+            <Image
+              {...provided.dragHandleProps}
+              key={`caro_image_${index}`}
+              src={image.url}
+              alt={`carousel image ${index}`}
+              fill
+              style={{ objectFit: "contain" }}
+            />
+          ) : (
+            <Loading />
+          )}
           <div className="absolute bottom-0 left-0 w-full z-20 flex">
             <input
               type="text"
