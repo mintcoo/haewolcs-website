@@ -8,10 +8,17 @@ import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
 import { useEffect, useState } from "react";
 
 export default function Edit() {
-  const [mainCaroImages, setMainCaroImages] = useState<ICarouselImage[]>([]);
-  const [facilityCaroImages, setFacilityCaroImages] = useState<
-    ICarouselImage[]
-  >([]);
+  const [carouselImages, setCarouselImages] = useState<{
+    mainCarousel: ICarouselImage[];
+    facilityCarousel: ICarouselImage[];
+    haewolCarousel: ICarouselImage[];
+    externalCarousel: ICarouselImage[];
+  }>({
+    mainCarousel: [],
+    facilityCarousel: [],
+    haewolCarousel: [],
+    externalCarousel: [],
+  });
 
   const fetchImages = async (carouselName: string) => {
     const carouselQuery = query(collection(db, carouselName), orderBy("index"));
@@ -27,16 +34,10 @@ export default function Edit() {
           name,
         };
       });
-      switch (carouselName) {
-        case "mainCarousel":
-          setMainCaroImages(imageUrls);
-          break;
-        case "facilityCarousel":
-          setFacilityCaroImages(imageUrls);
-          break;
-        default:
-          break;
-      }
+      setCarouselImages((prev) => ({
+        ...prev,
+        [carouselName]: imageUrls,
+      }));
     });
 
     return unsubscribe;
@@ -46,10 +47,14 @@ export default function Edit() {
   useEffect(() => {
     let unsubscribeMain: Unsubscribe | null = null;
     let unsubscribeFacility: Unsubscribe | null = null;
+    let unsubscribeHaewol: Unsubscribe | null = null;
+    let unsubscribeExternal: Unsubscribe | null = null;
 
     const fetchAndSetImages = async () => {
       unsubscribeMain = await fetchImages("mainCarousel");
       unsubscribeFacility = await fetchImages("facilityCarousel");
+      unsubscribeHaewol = await fetchImages("haewolCarousel");
+      unsubscribeExternal = await fetchImages("externalCarousel");
     };
 
     fetchAndSetImages();
@@ -57,17 +62,29 @@ export default function Edit() {
     return () => {
       unsubscribeMain && unsubscribeMain();
       unsubscribeFacility && unsubscribeFacility();
+      unsubscribeHaewol && unsubscribeHaewol();
+      unsubscribeExternal && unsubscribeExternal();
     };
   }, []);
 
   return (
-    <div className="border h-screen p-8 bg-gray-100">
-      <CarouselEditor imageList={mainCaroImages} carouselName="mainCarousel" />
+    <div className="border min-h-screen p-8 bg-gray-100 mt-[10vh]">
       <CarouselEditor
-        imageList={facilityCaroImages}
+        imageList={carouselImages.mainCarousel}
+        carouselName="mainCarousel"
+      />
+      <CarouselEditor
+        imageList={carouselImages.facilityCarousel}
         carouselName="facilityCarousel"
       />
-
+      <CarouselEditor
+        imageList={carouselImages.haewolCarousel}
+        carouselName="haewolCarousel"
+      />
+      <CarouselEditor
+        imageList={carouselImages.externalCarousel}
+        carouselName="externalCarousel"
+      />
       {/* <Loading /> */}
     </div>
   );

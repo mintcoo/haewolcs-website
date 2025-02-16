@@ -16,7 +16,7 @@ import TextViewer from "@/components/story/TextViewer";
 //   title: "해월이야기",
 // };
 
-export default function StoryWith() {
+export default function StoryHaewol() {
   const [isAdmin, setIsAdmin] = useState<boolean>(false);
   const [isEditorVisible, setIsEditorVisible] = useState<boolean>(false);
   const [isShowPost, setIsShowPost] = useState<boolean>(false);
@@ -88,7 +88,7 @@ export default function StoryWith() {
         />
       ) : (
         <>
-          <div className="sub-menu-title">환우들과 함께</div>
+          <div className="sub-menu-title">해월이야기</div>
           <div className="sub-menu-title-bar"></div>
           <SubTitle title="도란도란" />
           <div className="w-full lg:w-2/3 flex flex-col items-end ">

@@ -3,12 +3,14 @@ import { Cancel } from "@mui/icons-material";
 import Image from "next/image";
 import React, { useState } from "react";
 import { Draggable } from "react-beautiful-dnd";
+import Loading from "../Loading";
 
 interface IDraggableCardProps {
   image: ICarouselImage;
   index: number;
-  onDeleteImage: (imageId: string) => Promise<void>;
-  uploadImageName: (imageName: string, imageId: string) => Promise<void>;
+  carouselName: string;
+  onDeleteImage: () => void;
+  uploadImageName: (newName: string) => void;
 }
 
 function DraggableCard({
@@ -31,19 +33,21 @@ function DraggableCard({
             {index}
           </div>
           <Cancel
-            onClick={() => {
-              onDeleteImage(image.id);
-            }}
+            onClick={onDeleteImage}
             className="absolute right-0 top-0 z-10 cursor-pointer hover:scale-110"
           />
-          <Image
-            {...provided.dragHandleProps}
-            key={`caro_image_${index}`}
-            src={image.url}
-            alt={`carousel image ${index}`}
-            fill
-            style={{ objectFit: "contain" }}
-          />
+          {image.url ? (
+            <Image
+              {...provided.dragHandleProps}
+              key={`caro_image_${index}`}
+              src={image.url}
+              alt={`carousel image ${index}`}
+              fill
+              style={{ objectFit: "contain" }}
+            />
+          ) : (
+            <Loading />
+          )}
           <div className="absolute bottom-0 left-0 w-full z-20 flex">
             <input
               type="text"
@@ -55,9 +59,7 @@ function DraggableCard({
                 hover:bg-black/60"
             />
             <button
-              onClick={() => {
-                uploadImageName(imageName, image.id);
-              }}
+              onClick={() => uploadImageName(imageName)}
               className="flex-1 px-2 py-1 bg-sky-900 text-white text-sm font-medium
                 hover:bg-sky-700 transition-colors duration-200"
             >
