@@ -1,15 +1,14 @@
 "use client";
 
-import {
-  getFacilityImages,
-  imageInfo,
-} from "@/services/facility/facilityService";
+import { getImages, IImageInfo } from "@/services/common/imagesService";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import Slider from "react-slick";
 
 export default function FacilityCarousel() {
-  const [facilityCaroImages, setFacilityCaroImages] = useState<imageInfo[]>([]);
+  const [facilityCaroImages, setFacilityCaroImages] = useState<IImageInfo[]>(
+    [],
+  );
 
   // ------ 캐러셀 세팅 ------
   const carouselSetting = {
@@ -27,7 +26,7 @@ export default function FacilityCarousel() {
     },
     dots: true,
     dotsClass: "slick-dots slick-thumb ",
-    infinite: true,
+    infinite: facilityCaroImages.length > 1,
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
@@ -35,7 +34,7 @@ export default function FacilityCarousel() {
 
   // 시설 캐러셀 이미지 받아와서 세팅
   const getCarouselImages = async () => {
-    const imageInfos = await getFacilityImages();
+    const imageInfos = await getImages("facilityCarousel");
 
     setFacilityCaroImages(imageInfos);
   };

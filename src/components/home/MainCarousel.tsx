@@ -1,6 +1,6 @@
 "use client";
 
-import { getMainCarouselImages } from "@/services/main/mainService";
+import { getImages, IImageInfo } from "@/services/common/imagesService";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 
@@ -9,12 +9,12 @@ import Slider from "react-slick";
 
 export default function MainCarousel() {
   const path = usePathname();
-  const [mainCaroImages, setMainCaroImages] = useState<string[]>([]);
+  const [mainCaroImages, setMainCaroImages] = useState<IImageInfo[]>([]);
   const [currentSlide, setCurrentSlide] = useState(0);
 
   // ------ 캐러셀 세팅 ------
   const carouselSetting = {
-    infinite: true,
+    infinite: mainCaroImages.length > 1,
     autoplay: true,
     fade: true,
     autoplaySpeed: 9500,
@@ -29,7 +29,7 @@ export default function MainCarousel() {
 
   // 메인 캐러셀 이미지 받아와서 세팅
   const getCarouselImages = async () => {
-    const imageUrls = await getMainCarouselImages();
+    const imageUrls = await getImages("mainCarousel");
 
     setMainCaroImages(imageUrls);
   };
@@ -47,11 +47,11 @@ export default function MainCarousel() {
           className="overflow-hidden mx-auto w-full h-screen"
           // className="overflow-hidden  w-screen"
         >
-          {mainCaroImages.map((imageUrl, index) => {
+          {mainCaroImages.map((imageInfo, index) => {
             return (
               <div className="relative h-screen">
                 <Image
-                  src={imageUrl}
+                  src={imageInfo.url}
                   alt={`carousel image ${index}`}
                   fill
                   style={{ objectFit: "cover" }}

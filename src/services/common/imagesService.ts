@@ -1,18 +1,15 @@
 import { collection, getDocs, orderBy, query } from "firebase/firestore";
 import { db } from "@/lib/firebase";
 
-export interface imageInfo {
+export interface IImageInfo {
   url: string;
   name: string;
 }
 
-// 시설 캐러셀 이미지 받아오기
-export const getFacilityImages = async () => {
-  const imageInfos: imageInfo[] = [];
-  const carouselQuery = query(
-    collection(db, "facilityCarousel"),
-    orderBy("index"),
-  );
+// 시설 캐러셀용 이미지 받아오기
+export const getImages = async (carouselName: string) => {
+  const imageInfos: IImageInfo[] = [];
+  const carouselQuery = query(collection(db, carouselName), orderBy("index"));
 
   const querySnapshot = await getDocs(carouselQuery);
   querySnapshot.forEach((doc) => {

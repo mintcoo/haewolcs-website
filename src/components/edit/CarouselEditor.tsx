@@ -75,17 +75,18 @@ export default function CarouselEditor({
                       key={image.id}
                       image={image}
                       index={idx}
-                      onDeleteImage={() =>
-                        onDeleteImage(image.id, carouselName)
-                      }
-                      uploadImageName={() =>
+                      carouselName={carouselName}
+                      onDeleteImage={() => {
+                        onDeleteImage(image.id, carouselName);
+                      }}
+                      uploadImageName={(newName) => {
                         uploadImageName({
-                          imageName: image.name,
+                          imageName: newName,
                           imageId: image.id,
                           carouselName: carouselName,
                           openModal: openModal,
-                        })
-                      }
+                        });
+                      }}
                     />
                   );
                 })
