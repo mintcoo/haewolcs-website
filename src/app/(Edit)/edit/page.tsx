@@ -61,7 +61,7 @@ export default function Edit() {
   }, []);
 
   return (
-    <div className="border h-screen p-8 bg-gray-100">
+    <div className="border h-screen p-8 bg-gray-100 mt-[10vh]">
       <CarouselEditor imageList={mainCaroImages} carouselName="mainCarousel" />
       <CarouselEditor
         imageList={facilityCaroImages}
