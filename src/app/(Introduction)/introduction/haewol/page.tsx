@@ -13,12 +13,12 @@ export default function HaewolIntroduction() {
 
   // ------ 캐러셀 세팅 ------
   const carouselSetting = {
-    customPaging: function (i: number) {
+    customPaging: function () {
       return (
         <a>
           <Image
-            src={selectedImages[i].url}
-            alt={`thumbnail-${i}`}
+            src={selectedImages[selectedImages.length - 1].url}
+            alt={`thumbnail-${selectedImages.length - 1}`}
             fill
             // style={{ objectFit: "cover" }}
           />
@@ -28,6 +28,8 @@ export default function HaewolIntroduction() {
     dots: true,
     dotsClass: "slick-dots slick-thumb ",
     infinite: selectedImages.length > 1,
+    autoplay: true,
+    autoplaySpeed: 3000,
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
@@ -44,8 +46,6 @@ export default function HaewolIntroduction() {
     getCarouselImages(selectedCarouselName);
   }, [selectedCarouselName]);
 
-  console.log(selectedImages);
-
   return (
     <div className="contents-layout">
       <div className="sub-menu-title">해월 미리보기</div>
@@ -55,7 +55,7 @@ export default function HaewolIntroduction() {
           onClick={() => setSelectedCarouselName("haewolCarousel")}
           className={`px-8 py-3 rounded-full text-lg font-medium transition-all duration-300 ${
             selectedCarouselName === "haewolCarousel"
-              ? "bg-orange-500 text-white shadow-lg"
+              ? "bg-orange-400 text-white shadow-lg"
               : "bg-gray-200 text-gray-600 hover:bg-gray-300"
           }`}
         >
@@ -65,7 +65,7 @@ export default function HaewolIntroduction() {
           onClick={() => setSelectedCarouselName("externalCarousel")}
           className={`px-8 py-3 rounded-full text-lg font-medium transition-all duration-300 ${
             selectedCarouselName === "externalCarousel"
-              ? "bg-orange-500 text-white shadow-lg"
+              ? "bg-orange-400 text-white shadow-lg"
               : "bg-gray-200 text-gray-600 hover:bg-gray-300"
           }`}
         >
