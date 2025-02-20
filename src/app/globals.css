@@ -14,6 +14,16 @@
   height: 10vh;
 }
 
+/* 활성화된 썸네일의 오버레이는 숨김 */
+.slick-active .slick-thumbnail-overlay {
+  opacity: 0;
+}
+
+/* 비활성화된 썸네일에 호버했을 때 오버레이 투명도 조절 */
+.slick-dots li:not(.slick-active) .slick-thumbnail-overlay:hover {
+  opacity: 0.1;
+}
+
 @layer components {
   .f-c-c {
     @apply flex items-center justify-center;

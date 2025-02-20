@@ -27,6 +27,7 @@ export default function HaewolIntroduction() {
             fill
             // style={{ objectFit: "cover" }}
           />
+          <div className="absolute inset-0 bg-black opacity-70 transition-opacity duration-200 hover:opacity-0 slick-thumbnail-overlay" />
         </a>
       );
     },
