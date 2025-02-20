@@ -13,6 +13,7 @@ import { StoryPost } from "@/types/story";
 import TextViewer from "@/components/story/TextViewer";
 import { usePathname } from "next/navigation";
 import { getStoryPosts } from "@/services/story/postService";
+import Image from "next/image";
 
 // export const metadata: Metadata = {
 //   title: "해월이야기",
@@ -32,7 +33,6 @@ export default function Story() {
   const [storyPosts, setStoryPosts] = useState<StoryPost[]>([]);
   // 상세보기용 선택한 게시물
   const [selectedPost, setSelectedPost] = useState<StoryPost | null>(null);
-  console.log(pathName, "패스네임");
 
   // 게시물들 받아와서 세팅
   const getPosts = async (dbName: string) => {
@@ -62,7 +62,7 @@ export default function Story() {
   const extractFirstImageUrl = (content: string): string => {
     const imgRegex = /<img[^>]+src="([^">]+)"/;
     const match = content.match(imgRegex);
-    return match ? match[1] : "/default-thumbnail.jpg";
+    return match ? match[1] : "/images/therapies/antioxidant.jpg";
   };
 
   // 게시글 리스트 갱신
@@ -118,6 +118,7 @@ export default function Story() {
               <>
                 <TextViewer
                   selectedPost={selectedPost}
+                  pathName={pathName}
                   isAdmin={isAdmin}
                   initState={initState}
                   onEditPost={onEditPost}
@@ -158,22 +159,23 @@ export default function Story() {
                 </div>
                 {/* 게시글 리스트 */}
                 {pathName === EPathName.STORY ? (
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 w-full">
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 w-full mt-4">
                     {storyPosts.map((post, index) => (
                       <div
                         onClick={() => onClickPost(post)}
                         key={index}
-                        className="bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200 cursor-pointer overflow-hidden"
+                        className="bg-white border border-gray-200 rounded-md shadow-sm hover:shadow-md hover:text-orange-400 text-gray-800  transition-shadow duration-150 cursor-pointer overflow-hidden"
                       >
-                        <div className="aspect-video w-full overflow-hidden">
-                          <img
+                        <div className="relative h-[20vh] w-full overflow-hidden">
+                          <Image
                             src={extractFirstImageUrl(post.content)}
                             alt={post.title}
-                            className="w-full h-full object-cover"
+                            fill
+                            className="object-cover"
                           />
                         </div>
                         <div className="p-4">
-                          <h2 className="text-lg font-medium text-gray-800 mb-2 line-clamp-2 hover:text-orange-500">
+                          <h2 className="text-lg font-medium mb-2 line-clamp-2 ">
                             {post.title}
                           </h2>
                           <div className="flex justify-between items-center text-sm text-gray-500">

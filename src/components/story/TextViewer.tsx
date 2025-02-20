@@ -10,6 +10,7 @@ import { useModal } from "@/hooks/useModal";
 interface ITextViewerProps {
   selectedPost: StoryPost | null;
   isAdmin: boolean;
+  pathName: string;
   initState: () => void;
   onEditPost: () => void;
 }
@@ -19,6 +20,7 @@ const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 export default function TextViewer({
   selectedPost,
   isAdmin,
+  pathName,
   initState,
   onEditPost,
 }: ITextViewerProps) {
@@ -28,7 +30,7 @@ export default function TextViewer({
   const onDeletePost = async () => {
     try {
       if (selectedPost) {
-        await deleteDoc(doc(db, "posts", selectedPost.id));
+        await deleteDoc(doc(db, pathName, selectedPost.id));
         initState();
         openModal("알림", "게시글이 삭제되었습니다.");
       }
