@@ -3,9 +3,8 @@
 import SubTitle from "@/components/common/SubTitle";
 import TextEditor from "@/components/story/TextEditor";
 import { formatDate } from "@/lib/commonClientFnc";
-import { authService, db } from "@/lib/firebase";
+import { authService } from "@/lib/firebase";
 import { Button } from "@headlessui/react";
-import { collection, getDocs, orderBy, query } from "firebase/firestore";
 import "react-quill/dist/quill.bubble.css";
 // import { Metadata } from "next";
 import { useEffect, useState } from "react";
@@ -15,14 +14,12 @@ import { usePathname } from "next/navigation";
 import { getStoryPosts } from "@/services/story/postService";
 import Image from "next/image";
 
-// export const metadata: Metadata = {
-//   title: "해월이야기",
-// };
-
-enum EPathName {
+export enum EPathName {
   STORY = "story",
   HAEWOL = "haewol",
 }
+
+const POST_PAGENATION_COUNT = 9; // 페이지당 게시글 수
 
 export default function Story() {
   const path = usePathname();
@@ -33,6 +30,18 @@ export default function Story() {
   const [storyPosts, setStoryPosts] = useState<StoryPost[]>([]);
   // 상세보기용 선택한 게시물
   const [selectedPost, setSelectedPost] = useState<StoryPost | null>(null);
+  // 페이지네이션
+  const [currentPage, setCurrentPage] = useState<number>(1);
+
+  // 페이지네이션 계산
+  const lastIndex = currentPage * POST_PAGENATION_COUNT;
+  const firstIndex = lastIndex - POST_PAGENATION_COUNT;
+  const filteredPosts = storyPosts
+    .filter((post) => !post.isNotice)
+    .slice(firstIndex, lastIndex);
+  const totalPages = Math.ceil(
+    storyPosts.filter((post) => !post.isNotice).length / POST_PAGENATION_COUNT,
+  );
 
   // 게시물들 받아와서 세팅
   const getPosts = async (dbName: string) => {
@@ -63,6 +72,11 @@ export default function Story() {
     const imgRegex = /<img[^>]+src="([^">]+)"/;
     const match = content.match(imgRegex);
     return match ? match[1] : "/images/therapies/antioxidant.jpg";
+  };
+
+  // 페이지 변경 핸들러
+  const handlePageChange = (pageNumber: number) => {
+    setCurrentPage(pageNumber);
   };
 
   // 게시글 리스트 갱신
@@ -160,7 +174,7 @@ export default function Story() {
                 {/* 게시글 리스트 */}
                 {pathName === EPathName.STORY ? (
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 w-full mt-4">
-                    {storyPosts.map((post, index) => (
+                    {filteredPosts.map((post, index) => (
                       <div
                         onClick={() => onClickPost(post)}
                         key={index}
@@ -187,7 +201,7 @@ export default function Story() {
                   </div>
                 ) : (
                   <div className="border-t border-b w-full">
-                    {storyPosts.map((post, index) => (
+                    {filteredPosts.map((post, index) => (
                       <div
                         onClick={() => onClickPost(post)}
                         key={index}
@@ -208,6 +222,24 @@ export default function Story() {
                     ))}
                   </div>
                 )}
+                {/* 페이지네이션 UI */}
+                <div className="flex w-full justify-center gap-4 mt-8">
+                  {Array.from({ length: totalPages }, (_, i) => i + 1).map(
+                    (pageNum) => (
+                      <button
+                        key={pageNum}
+                        onClick={() => handlePageChange(pageNum)}
+                        className={`${
+                          currentPage === pageNum
+                            ? "text-lg font-bold"
+                            : "text-base text-gray-500 hover:text-gray-700"
+                        }`}
+                      >
+                        {pageNum}
+                      </button>
+                    ),
+                  )}
+                </div>
               </>
             )}
           </div>

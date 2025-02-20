@@ -15,6 +15,7 @@ import ReactQuill, { ReactQuillProps } from "react-quill";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { compressImage } from "@/lib/commonClientFnc";
 import { StoryPost } from "@/types/story";
+import { EPathName } from "@/app/(Story)/story/page";
 
 interface ITextEditorProps {
   selectedPost?: StoryPost | null;
@@ -152,7 +153,9 @@ export default function TextEditor({
           placeholder="제목을 입력하세요"
           className="flex-1 px-4 py-1 text-lg border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
         />
-        <div className="flex items-center gap-2 mx-2">
+        <div
+          className={`flex items-center gap-2 mx-2 ${pathName === EPathName.STORY ? "hidden" : ""}`}
+        >
           <input
             type="checkbox"
             id="notice"
@@ -160,7 +163,7 @@ export default function TextEditor({
             onChange={(e) => setIsNotice(e.target.checked)}
             className="w-4 h-4"
           />
-          <label htmlFor="notice" className="text-sm">
+          <label htmlFor="notice" className={`text-sm`}>
             공지
           </label>
         </div>
