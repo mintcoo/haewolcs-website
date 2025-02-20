@@ -11,32 +11,32 @@ import "react-quill/dist/quill.bubble.css";
 import { useEffect, useState } from "react";
 import { StoryPost } from "@/types/story";
 import TextViewer from "@/components/story/TextViewer";
+import { usePathname } from "next/navigation";
+import { getStoryPosts } from "@/services/story/postService";
 
 // export const metadata: Metadata = {
 //   title: "해월이야기",
 // };
 
-export default function StoryWith() {
+enum EPathName {
+  STORY = "story",
+  HAEWOL = "haewol",
+}
+
+export default function Story() {
+  const path = usePathname();
+  const [pathName, setPathName] = useState<string>("");
   const [isAdmin, setIsAdmin] = useState<boolean>(false);
   const [isEditorVisible, setIsEditorVisible] = useState<boolean>(false);
   const [isShowPost, setIsShowPost] = useState<boolean>(false);
   const [storyPosts, setStoryPosts] = useState<StoryPost[]>([]);
   // 상세보기용 선택한 게시물
   const [selectedPost, setSelectedPost] = useState<StoryPost | null>(null);
+  console.log(pathName, "패스네임");
 
   // 게시물들 받아와서 세팅
-  const getPosts = async () => {
-    let posts: StoryPost[] = [];
-    const postQuery = query(
-      collection(db, "posts"),
-      orderBy("createdAt", "desc"),
-    );
-
-    const querySnapshot = await getDocs(postQuery);
-    querySnapshot.forEach((doc) => {
-      const { title, content, createdAt, isNotice } = doc.data();
-      posts.push({ title, content, createdAt, id: doc.id, isNotice });
-    });
+  const getPosts = async (dbName: string) => {
+    const posts = await getStoryPosts(dbName);
 
     setStoryPosts(posts);
   };
@@ -58,13 +58,32 @@ export default function StoryWith() {
     setSelectedPost(null);
   };
 
+  // 첫 번째 이미지 URL 추출
+  const extractFirstImageUrl = (content: string): string => {
+    const imgRegex = /<img[^>]+src="([^">]+)"/;
+    const match = content.match(imgRegex);
+    return match ? match[1] : "/default-thumbnail.jpg";
+  };
+
   // 게시글 리스트 갱신
   useEffect(() => {
     // 에디터 안보이면 새로갱신
     if (!isEditorVisible) {
-      getPosts();
+      if (pathName === EPathName.STORY) {
+        getPosts(EPathName.STORY);
+      } else {
+        getPosts(EPathName.HAEWOL);
+      }
     }
-  }, [isEditorVisible, isShowPost]);
+  }, [isEditorVisible, isShowPost, pathName]);
+
+  useEffect(() => {
+    if (path === "/story") {
+      setPathName(EPathName.STORY);
+    } else {
+      setPathName(EPathName.HAEWOL);
+    }
+  }, [path]);
 
   useEffect(() => {
     // 유저가 로그인 여부 체크
@@ -82,15 +101,18 @@ export default function StoryWith() {
       {isEditorVisible ? (
         <TextEditor
           selectedPost={selectedPost}
+          pathName={pathName}
           onCallbackDone={() => {
             initState();
           }}
         />
       ) : (
         <>
-          <div className="sub-menu-title">환우들과 함께</div>
+          <div className="sub-menu-title">해월이야기</div>
           <div className="sub-menu-title-bar"></div>
-          <SubTitle title="도란도란" />
+          <SubTitle
+            title={`${pathName === EPathName.STORY ? "환우들과 함께" : "도란도란"}`}
+          />
           <div className="w-full lg:w-2/3 flex flex-col items-end ">
             {isShowPost ? (
               <>
@@ -135,27 +157,55 @@ export default function StoryWith() {
                     ))}
                 </div>
                 {/* 게시글 리스트 */}
-                <div className="border-t border-b w-full">
-                  {storyPosts.map((post, index) => (
-                    <div
-                      onClick={() => onClickPost(post)}
-                      key={index}
-                      className="flex justify-between items-center px-6 py-4 border-b border-gray-200 last:border-b-0 hover:bg-gray-50 transition-colors duration-200 cursor-pointer group"
-                    >
-                      <div className="flex items-center space-x-4">
-                        <span className="text-sm font-medium text-gray-400 w-8">
-                          {index + 1}
-                        </span>
-                        <h2 className="text-base font-medium text-gray-800 group-hover:haewol-orange-color transition-colors duration-200">
-                          {post.title}
-                        </h2>
+                {pathName === EPathName.STORY ? (
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 w-full">
+                    {storyPosts.map((post, index) => (
+                      <div
+                        onClick={() => onClickPost(post)}
+                        key={index}
+                        className="bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200 cursor-pointer overflow-hidden"
+                      >
+                        <div className="aspect-video w-full overflow-hidden">
+                          <img
+                            src={extractFirstImageUrl(post.content)}
+                            alt={post.title}
+                            className="w-full h-full object-cover"
+                          />
+                        </div>
+                        <div className="p-4">
+                          <h2 className="text-lg font-medium text-gray-800 mb-2 line-clamp-2 hover:text-orange-500">
+                            {post.title}
+                          </h2>
+                          <div className="flex justify-between items-center text-sm text-gray-500">
+                            <span>{formatDate(post.createdAt)}</span>
+                          </div>
+                        </div>
                       </div>
-                      <span className="text-sm text-gray-500 whitespace-nowrap">
-                        {formatDate(post.createdAt)}
-                      </span>
-                    </div>
-                  ))}
-                </div>
+                    ))}
+                  </div>
+                ) : (
+                  <div className="border-t border-b w-full">
+                    {storyPosts.map((post, index) => (
+                      <div
+                        onClick={() => onClickPost(post)}
+                        key={index}
+                        className="flex justify-between items-center px-6 py-4 border-b border-gray-200 last:border-b-0 hover:bg-gray-50 transition-colors duration-200 cursor-pointer group"
+                      >
+                        <div className="flex items-center space-x-4">
+                          <span className="text-sm font-medium text-gray-400 w-8">
+                            {index + 1}
+                          </span>
+                          <h2 className="text-base font-medium text-gray-800 group-hover:haewol-orange-color transition-colors duration-200">
+                            {post.title}
+                          </h2>
+                        </div>
+                        <span className="text-sm text-gray-500 whitespace-nowrap">
+                          {formatDate(post.createdAt)}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                )}
               </>
             )}
           </div>

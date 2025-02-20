@@ -19,6 +19,7 @@ import { StoryPost } from "@/types/story";
 interface ITextEditorProps {
   selectedPost?: StoryPost | null;
   onCallbackDone: () => void;
+  pathName: string;
 }
 
 // const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
@@ -40,6 +41,7 @@ const CustomReactQuill = dynamic(
 export default function TextEditor({
   onCallbackDone,
   selectedPost,
+  pathName,
 }: ITextEditorProps) {
   const { openModal } = useModal();
   const [title, setTitle] = useState<string>("");
@@ -56,13 +58,13 @@ export default function TextEditor({
       }
 
       if (isEditMode) {
-        await updateDoc(doc(db, "posts", selectedPost!.id), {
+        await updateDoc(doc(db, pathName, selectedPost!.id), {
           title,
           content,
           isNotice,
         });
       } else {
-        await addDoc(collection(db, "posts"), {
+        await addDoc(collection(db, pathName), {
           title,
           content,
           isNotice,
