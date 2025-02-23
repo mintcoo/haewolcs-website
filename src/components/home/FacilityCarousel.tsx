@@ -21,7 +21,7 @@ export default function FacilityCarousel() {
             fill
             // style={{ objectFit: "cover" }}
           />
-          <div className="absolute inset-0 bg-black opacity-30 transition-opacity duration-200 hover:opacity-0 slick-thumbnail-overlay" />
+          <div className="absolute inset-0 bg-black opacity-50 transition-opacity duration-200 hover:opacity-0 slick-thumbnail-overlay" />
         </a>
       );
     },
