@@ -91,7 +91,7 @@ export default function Navbar() {
           </ul>
           <Transition show={open}>
             <ul
-              className={`fixed left-0 right-0 z-30 border-b  flex justify-center bg-white text-2vw opacity-95 h-20vh trans-expand lg:text-1vw  lg:px-16 xl:px-24 2xl:px-48`}
+              className={`fixed left-0 right-0 z-30 border-b  flex justify-center bg-white text-2vw opacity-95 h-20vh trans-expand pb-4 lg:text-1vw  lg:px-16 xl:px-24 2xl:px-48`}
             >
               {Object.entries(NAVBAR_MENU_LIST).map(([categori, subMenus]) => (
                 <li
