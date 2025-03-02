@@ -10,10 +10,28 @@
 }
 
 .slick-dots li {
-  width: 15vh;
-  height: 10vh;
+  width: 10vh;
+  height: 7vh;
+}
+@media (min-width: 640px) {
+  .slick-dots li {
+    width: 12vh;
+    height: 8vh;
+  }
 }
 
+@media (min-width: 768px) {
+  .slick-dots li {
+    width: 14vh;
+    height: 9vh;
+  }
+}
+@media (min-width: 1024px) {
+  .slick-dots li {
+    width: 15vh;
+    height: 10vh;
+  }
+}
 /* 활성화된 썸네일의 오버레이는 숨김 */
 .slick-active .slick-thumbnail-overlay {
   opacity: 0;
@@ -62,6 +80,12 @@
   }
   .btn-red {
     @apply rounded border border-red-900  bg-red-800 text-sm text-white hover:bg-red-700;
+  }
+  .text-title-responsive {
+    @apply text-xl sm:text-2xl md:text-3xl lg:text-2.5vw;
+  }
+  .text-contents-responsive {
+    @apply text-sm sm:text-base md:text-lg lg:text-1.1vw;
   }
 
   .text-stroke {
