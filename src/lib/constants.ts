@@ -24,11 +24,11 @@ export const NAVBAR_MENU_LIST: INavbarMenu = {
   ],
   진료안내: [{ url: "/infoguide", title: "진료안내" }],
   암통합치료: [
-    { url: "/therapies", title: "암 통합치료" },
+    { url: "/therapies", title: "암의 발생기전" },
+    { url: "/therapies/integrated", title: "암 통합치료" },
     { url: "/therapies/high-frequency", title: "고주파 온열치료" },
     { url: "/therapies/immunity", title: "면역증강 치료" },
     { url: "/therapies/antioxidant", title: "항산화 치료" },
-    { url: "/therapies/diet", title: "암의 식이요법" },
   ],
   해월이야기: [
     { url: "/story", title: "환우들과 함께" },
@@ -41,6 +41,11 @@ export const NAVBAR_MENU_LIST: INavbarMenu = {
 export const THERAPY_LIST = [
   {
     url: "/therapies",
+    name: "암의 발생기전",
+    image: "/images/therapies/immunity.jpg",
+  },
+  {
+    url: "/therapies/integrated",
     name: "암 통합치료",
     image: "/images/therapies/integrated.jpg",
   },
@@ -58,11 +63,6 @@ export const THERAPY_LIST = [
     url: "/therapies/antioxidant",
     name: "항산화 치료",
     image: "/images/therapies/antioxidant.jpg",
-  },
-  {
-    url: "/therapies/diet",
-    name: "암의 식이요법",
-    image: "/images/therapies/immunity.jpg",
   },
 ];
 

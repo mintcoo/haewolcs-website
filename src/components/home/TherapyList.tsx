@@ -22,7 +22,7 @@ export default function TherapyList() {
       </div>
       <div className="grid grid-cols-2 gap-4 flex-1 place-items-cente">
         {THERAPY_LIST.map((therapy, index) => {
-          if (therapy.name === "암의 식이요법") {
+          if (therapy.name === "암의 발생기전") {
             return <></>;
           }
           return (
