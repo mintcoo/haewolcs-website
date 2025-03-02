@@ -78,10 +78,12 @@ export default function HeadImageTitle({ path }: IHeadImageTitleProps) {
   }, [path]);
 
   return (
-    <div className="min-h-40 h-30vh lg:text-lg f-c-c-c relative mt-[10vh]">
+    <div className="min-h-40 h-30vh f-c-c-c relative mt-[10vh]">
       <div className="bg-black bg-opacity-30 w-full h-full z-10 text-white f-c-c-c">
-        <div className="font-semibold text-5xl mb-4">{centerTitle}</div>
-        <div className="text-xl">{centerText}</div>
+        <div className="font-semibold text-2xl md:text-3xl lg:text-5xl mb-4">
+          {centerTitle}
+        </div>
+        <div className="text-base md:text-lg lg:text-xl">{centerText}</div>
       </div>
       <Image
         src={imageUrl}
