@@ -66,7 +66,36 @@ export default function Navbar() {
           onMouseLeave={onMouseLeave}
           className="fixed top-0 left-0 right-0 z-40 h-10vh"
         >
-          <ul className="flex justify-center sticky top-0 left-0 right-0 z-40 bg-white h-full border-b lg:px-16 xl:px-24 2xl:px-48">
+          {/* 모바일 햄버거 메뉴 */}
+          <div className="sm:hidden flex items-center justify-between px-4 h-full bg-white border-b">
+            <Link href="/" className="relative w-32 h-full">
+              <Image
+                src="/images/logo.png"
+                alt="haewol_logo"
+                fill
+                style={{ objectFit: "contain" }}
+              />
+            </Link>
+            <button onClick={() => setOpen(!open)} className="p-2">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                className="w-6 h-6 mr-4"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d={open ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"}
+                />
+              </svg>
+            </button>
+          </div>
+
+          {/* 데스크탑 메뉴 */}
+          <ul className="hidden sm:flex justify-center sticky top-0 left-0 right-0 z-40 bg-white h-full border-b lg:px-16 xl:px-24 2xl:px-48">
             {CATEGORY_LIST.map((category) => (
               <Link
                 onMouseOver={onMouseOver}
@@ -89,10 +118,10 @@ export default function Navbar() {
               </Link>
             ))}
           </ul>
-          <Transition show={open}>
-            <ul
-              className={`fixed left-0 right-0 z-30 border-b  flex justify-center bg-white text-2vw opacity-95 h-20vh trans-expand pb-4 lg:text-1vw  lg:px-16 xl:px-24 2xl:px-48`}
-            >
+
+          {/* 데스크탑 드롭다운 메뉴 */}
+          <Transition show={open && window.innerWidth >= 640}>
+            <ul className="hidden sm:flex fixed left-0 right-0 z-30 border-b justify-center bg-white text-2vw opacity-95 h-20vh trans-expand pb-4 lg:text-1vw lg:px-16 xl:px-24 2xl:px-48">
               {Object.entries(NAVBAR_MENU_LIST).map(([categori, subMenus]) => (
                 <li
                   key={categori}
@@ -111,10 +140,48 @@ export default function Navbar() {
               ))}
             </ul>
           </Transition>
+
+          {/* 모바일 드롭다운 메뉴 */}
+          <Transition
+            show={open && window.innerWidth < 640}
+            enter="transition ease-out duration-200"
+            enterFrom="transform translate-x-full"
+            enterTo="transform translate-x-0"
+            leave="transition ease-in duration-150"
+            leaveFrom="transform translate-x-0"
+            leaveTo="transform translate-x-full"
+          >
+            <div className="sm:hidden fixed top-[10vh] right-0 w-2/3 h-[90vh] bg-white border-l shadow-lg z-50 overflow-y-auto">
+              {CATEGORY_LIST.filter((category) => category.title !== "홈").map(
+                (category) => (
+                  <div key={category.title} className="border-b">
+                    <Link
+                      href={category.url}
+                      className="block px-6 py-3 font-medium hover:haewol-orange-color"
+                    >
+                      {category.title}
+                    </Link>
+                    <div className="pl-10 pb-2">
+                      {NAVBAR_MENU_LIST[category.title]?.map((menu) => (
+                        <Link
+                          href={menu.url}
+                          key={menu.title}
+                          className="block py-1.5 hover:haewol-orange-color"
+                          onClick={() => setOpen(false)}
+                        >
+                          {menu.title}
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                ),
+              )}
+            </div>
+          </Transition>
         </div>
       )}
       {isAdmin && (
-        <div className="fixed bottom-4 right-4 z-50">
+        <div className="fixed bottom-4 right-4 z-50 ">
           <div>한창순 원장님, 어서오세요</div>
           <div className=" flex items-end gap-1">
             <Button

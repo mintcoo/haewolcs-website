@@ -26,7 +26,7 @@ export default function FacilityCarousel() {
       );
     },
     dots: true,
-    dotsClass: "slick-dots slick-thumb ",
+    dotsClass: "slick-dots slick-thumb",
     infinite: facilityCaroImages.length > 1,
     speed: 500,
     slidesToShow: 1,
@@ -47,24 +47,24 @@ export default function FacilityCarousel() {
   return (
     <div data-aos="fade-up">
       <div className="w-full f-c-c-c my-8">
-        <div className="font-semibold text-gray-700 text-2.5vw ">
+        <div className="font-semibold text-gray-700 text-title-responsive">
           해월씨에스 <span className="haewol-orange-color">둘러보기</span>
         </div>
-        <div className="mt-4 text-gray-500 text-1.1vw">
+        <div className="mt-4 text-gray-500 text-contents-responsive">
           암치료에 관한 맞춤형 통합 치료를 진행합니다
         </div>
       </div>
       <Slider {...carouselSetting} className=" mx-auto w-full xl:w-[85%] ">
         {facilityCaroImages.map((imageInfo, index) => {
           return (
-            <div className="relative h-[65vh]">
+            <div className="relative h-[30vh] sm:h-[40vh] md:h-[50vh] lg:h-[65vh]">
               <Image
                 src={imageInfo.url}
                 alt={`facility image ${index}`}
                 fill
                 style={{ objectFit: "cover" }}
               />
-              <div className="absolute bottom-0 left-0 border border-white w-1/5 h-[10%] bg-white bg-opacity-60 z-10 haewol-darkblue-title f-c-c-c text-xl font-semibold">
+              <div className="absolute bottom-0 left-0 border border-white w-1/5 h-[10%] bg-white bg-opacity-60 z-10 haewol-darkblue-title f-c-c-c text-contents-responsive font-semibold">
                 {imageInfo.name}
               </div>
             </div>

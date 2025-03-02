@@ -44,12 +44,12 @@ export default function MainCarousel() {
         <Slider
           pauseOnHover={false}
           {...carouselSetting}
-          className="overflow-hidden mx-auto w-full h-screen"
+          className="overflow-hidden mx-auto w-full h-[50vh] sm:h-[60vh] md:h-[70vh] lg:h-screen"
           // className="overflow-hidden  w-screen"
         >
           {mainCaroImages.map((imageInfo, index) => {
             return (
-              <div className="relative h-screen">
+              <div className="relative h-[50vh] sm:h-[60vh] md:h-[70vh] lg:h-screen">
                 <Image
                   src={imageInfo.url}
                   alt={`carousel image ${index}`}
