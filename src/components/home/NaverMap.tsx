@@ -32,12 +32,20 @@ export default function NaverMap() {
   }, []);
 
   return (
-    <div
-      data-aos="fade-up"
-      className="flex justify-center w-full h-[40vh] sm:h-[50vh] md:h-[60vh] lg:h-[80vh] mt-8 "
-    >
-      <div id="map" className="w-full h-full shadow-lg "></div>
-      <NaverMapScript />
-    </div>
+    <>
+      <div className="w-full f-c-c-c my-8 md:my-16">
+        <div className="font-semibold text-gray-700 text-title-responsive">
+          해월씨에스 <span className="haewol-orange-color">오시는 길</span>
+        </div>
+      </div>
+
+      <div
+        data-aos="fade-up"
+        className="w-full flex justify-center mt-8 h-[40vh] sm:h-[50vh] md:h-[60vh] lg:h-[80vh] "
+      >
+        <div id="map" className="w-full h-full shadow-lg "></div>
+        <NaverMapScript />
+      </div>
+    </>
   );
 }

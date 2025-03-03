@@ -33,7 +33,7 @@ export default function TherapyList() {
             <div
               onClick={() => onClickTherapy(therapy.url)}
               key={index}
-              className="w-[42vw] h-[42vw] sm:w-[35vw] sm:h-[35vw] md:w-[25vw] md:h-[25vw] lg:w-[16vw] lg:h-[16vw] 
+              className="w-[35vw] h-[35vw] md:w-[25vw] md:h-[25vw] lg:w-[16vw] lg:h-[16vw] 
               rounded-full f-c-c shadow-md 
               transition-all duration-300 ease-in-out hover:scale-105 
               group cursor-pointer relative 
@@ -55,8 +55,8 @@ export default function TherapyList() {
               ></div>
               {/* 텍스트 컨텐츠 */}
               <div
-                className="relative flex flex-col items-center gap-3 p-4
-                         translate-y-[-75%] group-hover:translate-y-[10%] 
+                className="relative flex flex-col items-center gap-3 p-4 text-sub-title-responsive
+                         translate-y-[-45%] md:translate-y-[-75%] group-hover:translate-y-[10%] 
                          transition-all duration-300"
               >
                 <div

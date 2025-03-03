@@ -10,9 +10,29 @@ interface ISubNavbarProps {
 // 서브 네브바
 export default function SubNavbar({ subNavMenus, path }: ISubNavbarProps) {
   const router = useRouter();
+
+  const getTabWidth = (menuLength: number) => {
+    switch (menuLength) {
+      case 2:
+        return "w-1/2";
+      case 3:
+        return "w-1/3";
+      case 4:
+        return "w-1/4";
+      case 5:
+        return "w-1/5";
+      case 6:
+        return "w-1/6";
+      default:
+        return "w-40";
+    }
+  };
+
   return (
     <TabGroup>
-      <TabList className="h-14 lg:h-5vh bg-orange-100 text-sm lg:text-lg f-c-c rounded-lg">
+      <TabList
+        className={`h-14 lg:h-5vh bg-orange-100 text-sm lg:text-lg f-c-c rounded-lg`}
+      >
         {subNavMenus.map((menu) => {
           const isSelected = path === menu.url;
 
@@ -21,7 +41,7 @@ export default function SubNavbar({ subNavMenus, path }: ISubNavbarProps) {
               key={menu.title}
               onClick={() => router.push(menu.url)}
               className={({ selected }) =>
-                `px-4 py-2 w-1/5 lg:w-40 h-full text-center cursor-pointer rounded-t-lg outline-none transition-all duration-300 
+                `px-4 py-2  ${getTabWidth(subNavMenus.length)} lg:w-40 h-full text-center cursor-pointer rounded-t-lg outline-none transition-all duration-300 
               ${
                 isSelected
                   ? "bg-white text-black"
