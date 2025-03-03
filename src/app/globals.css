@@ -13,6 +13,25 @@
   width: 10vh;
   height: 7vh;
 }
+
+.slick-dots.slick-thumb {
+  display: flex !important;
+  flex-wrap: nowrap !important;
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+  margin: 0;
+  padding: 1rem 0;
+  justify-content: center;
+  gap: 8px;
+  -ms-overflow-style: none;
+}
+
+/* Chrome, Safari 스크롤바 숨기기  */
+.slick-dots.slick-thumb::-webkit-scrollbar {
+  display: none;
+}
+
 @media (min-width: 640px) {
   .slick-dots li {
     width: 12vh;
