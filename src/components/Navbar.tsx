@@ -64,7 +64,7 @@ export default function Navbar() {
       {path !== "/admin" && (
         <div
           onMouseLeave={onMouseLeave}
-          className="fixed top-0 left-0 right-0 z-40 h-10vh"
+          className="fixed top-0 left-0 right-0 z-40 h-[7vh] sm:h-10vh"
         >
           {/* 모바일 햄버거 메뉴 */}
           <div className="sm:hidden flex items-center justify-between px-4 h-full bg-white border-b">
@@ -95,7 +95,7 @@ export default function Navbar() {
           </div>
 
           {/* 데스크탑 메뉴 */}
-          <ul className="hidden sm:flex justify-center sticky top-0 left-0 right-0 z-40 bg-white h-full border-b lg:px-16 xl:px-24 2xl:px-48">
+          <ul className="hidden sm:flex justify-center fixed sm:sticky top-0 left-0 right-0 z-40 bg-white h-full border-b lg:px-16 xl:px-24 2xl:px-48">
             {CATEGORY_LIST.map((category) => (
               <Link
                 onMouseOver={onMouseOver}
@@ -151,7 +151,7 @@ export default function Navbar() {
             leaveFrom="transform translate-x-0"
             leaveTo="transform translate-x-full"
           >
-            <div className="sm:hidden fixed top-[10vh] right-0 w-2/3 h-[90vh] bg-white border-l shadow-lg z-50 overflow-y-auto">
+            <div className="sm:hidden fixed top-[7vh] sm:top-[10vh] right-0 w-2/3 h-[90vh] bg-white border-l shadow-lg z-50 overflow-y-auto">
               {CATEGORY_LIST.filter((category) => category.title !== "홈").map(
                 (category) => (
                   <div key={category.title} className="border-b">
