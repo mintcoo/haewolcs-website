@@ -9,15 +9,17 @@ export default function Introduction() {
     <div className="contents-layout">
       <div className="sub-menu-title">인사말</div>
       <div className="sub-menu-title-bar"></div>
-      <div className="w-full flex justify-between">
-        <div className="text-xl text-contents-color tracking-tight leading-relaxed">
-          <div className="text-4xl haewol-darkblue-title">
+      <div className="w-full flex justify-center">
+        <div className="text-contents-color tracking-tight leading-relaxed">
+          <div className="text-xl sm:text-2xl md:text-4xl haewol-darkblue-title">
             해월씨에스 의원 원장
           </div>
-          <span className="font-bold text-4xl haewol-darkblue-title">
+          <span className="font-bold text-xl sm:text-2xl md:text-4xl haewol-darkblue-title">
             한창순
           </span>
-          <span className="text-4xl haewol-darkblue-title">입니다.</span>
+          <span className="text-xl sm:text-2xl md:text-4xl haewol-darkblue-title">
+            입니다.
+          </span>
           <p className="whitespace-pre-line my-8">
             방문해 주신 모든 분들께 감사의 말씀드립니다.
           </p>
@@ -27,12 +29,12 @@ export default function Introduction() {
           </p>
           <br />
           <p className="whitespace-pre-line">
-            {`최적의 치료법과 맞춤형 진료를 통해, 
-            환우 여러분의 빠른 기능 회복과 일상 복귀를 위하여 전력을 다하겠습니다. 
+            {`최적의 치료법과 맞춤형 진료를 통해,
+            환우 여러분의 빠른 기능 회복과 일상 복귀를 위하여 전력을 다하겠습니다.
+
             감사합니다.`}
           </p>
         </div>
-        <div className="w-1/3 bg-orange-100">사진</div>
       </div>
     </div>
   );

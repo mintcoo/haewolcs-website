@@ -13,7 +13,7 @@ export default async function Profile() {
     <div className="contents-layout">
       <div className="sub-menu-title">원장 약력</div>
       <div className="sub-menu-title-bar"></div>
-      <div className="w-1/2">
+      <div className="w-full md:w-1/2">
         <Image
           src={careerImage.url}
           alt={`career Image ${careerImage.name}`}

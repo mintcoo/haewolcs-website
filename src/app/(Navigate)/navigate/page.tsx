@@ -14,8 +14,6 @@ export const metadata: Metadata = {
 export default function Navigate() {
   return (
     <div className="contents-layout">
-      <div className="sub-menu-title">오시는 길</div>
-      <div className="sub-menu-title-bar"></div>
       <div className="w-full f-c-c-c">
         <NaverMap />
         <div className="w-full max-w-4xl mx-auto bg-white rounded-lg shadow-md p-8 my-10">
