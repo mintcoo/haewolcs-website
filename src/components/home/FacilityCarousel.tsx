@@ -51,10 +51,13 @@ export default function FacilityCarousel() {
           해월씨에스 <span className="haewol-orange-color">둘러보기</span>
         </div>
         <div className="mt-4 text-gray-500 text-contents-responsive">
-          암치료에 관한 맞춤형 통합 치료를 진행합니다
+          쾌적하고 편안한 환경에서 최선의 치료를 약속드립니다
         </div>
       </div>
-      <Slider {...carouselSetting} className=" mx-auto w-full xl:w-[85%] ">
+      <Slider
+        {...carouselSetting}
+        className=" mx-auto w-full xl:w-[85%] overflow-x-hidden "
+      >
         {facilityCaroImages.map((imageInfo, index) => {
           return (
             <div className="relative h-[30vh] sm:h-[40vh] md:h-[50vh] lg:h-[65vh]">
