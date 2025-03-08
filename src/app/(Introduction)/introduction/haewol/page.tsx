@@ -36,15 +36,15 @@ export default function HaewolIntroduction() {
   // 썸네일 슬라이더 설정
   const thumbSettings = {
     dots: false,
-    infinite: selectedImages.length > 5,
+    infinite: selectedImages.length > 1,
     speed: 500,
     slidesToShow: 5, // 한 번에 보여줄 썸네일 개수
     slidesToScroll: 1,
 
     swipeToSlide: true,
-    centerMode: selectedImages.length > 5,
+    centerMode: selectedImages.length > 3,
     centerPadding: "0px",
-    arrows: selectedImages.length > 5,
+    arrows: selectedImages.length > 3,
 
     responsive: [
       {
@@ -124,7 +124,7 @@ export default function HaewolIntroduction() {
                   }
                 }}
               >
-                <div className="relative h-20">
+                <div className="relative h-[8vh] md:h-[15vh]">
                   <Image
                     src={imageInfo.url}
                     alt={`thumbnail-${index}`}
