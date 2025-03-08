@@ -79,7 +79,7 @@
     @apply w-full f-c-c-c pt-10 pb-20 px-10 text-base md:text-lg lg:text-xl lg:min-w-[40rem];
   }
   .sub-menu-title {
-    @apply f-c-c font-semibold text-2xl md:text-3xl lg:text-5xl my-8;
+    @apply f-c-c font-semibold text-2xl md:text-3xl lg:text-5xl  my-2 md:my-4 lg:my-8;
   }
   .sub-menu-title-bar {
     @apply w-1/20 min-w-10 h-1 mb-10 xl:mb-20 haewol-blue-bg;
@@ -87,18 +87,26 @@
   .sub-title {
     @apply font-semibold text-xl md:text-2xl lg:text-3xl text-sky-950 mx-4;
   }
+  .infoguide-text-size {
+    @apply text-lg md:text-xl lg:text-2xl;
+  }
+
+  .story-text-size {
+    @apply text-base md:text-lg lg:text-xl;
+  }
+
   /* 버튼 모음 */
   .btn-white {
-    @apply rounded border border-sky-900 text-sm text-sky-950 bg-white hover:bg-sky-50 font-semibold;
+    @apply rounded border border-sky-900 text-sm text-sky-950 bg-white hover:bg-sky-50 font-semibold px-4 md:px-6 py-1;
   }
   .btn-dark-blue {
-    @apply rounded border border-sky-900  bg-sky-900 text-sm text-white hover:bg-sky-800;
+    @apply rounded border border-sky-900  bg-sky-900 text-sm text-white hover:bg-sky-800 px-4 md:px-6 py-1;
   }
   .btn-blue {
-    @apply rounded border border-sky-700  bg-sky-600 text-sm text-white hover:bg-sky-500;
+    @apply rounded border border-sky-700  bg-sky-600 text-sm text-white hover:bg-sky-500 px-4 md:px-6 py-1;
   }
   .btn-red {
-    @apply rounded border border-red-900  bg-red-800 text-sm text-white hover:bg-red-700;
+    @apply rounded border border-red-900  bg-red-800 text-sm text-white hover:bg-red-700 px-4 md:px-6 py-1;
   }
   .text-title-responsive {
     @apply text-xl sm:text-2xl md:text-3xl lg:text-2.5vw;

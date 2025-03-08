@@ -40,22 +40,22 @@ export default function TextViewer({
   };
 
   return (
-    <div className="w-full flex flex-col items-end">
+    <div className="w-full flex flex-col items-end mt-4 md:mt-6">
       <div className="flex justify-between w-full gap-1">
         <Button
           onClick={() => {
             initState();
           }}
-          className="btn-white px-6 py-1"
+          className="btn-white"
         >
           목록
         </Button>
         {isAdmin && (
           <div className="flex gap-1">
-            <Button onClick={onEditPost} className="btn-dark-blue px-6 py-1">
+            <Button onClick={onEditPost} className="btn-dark-blue">
               수정
             </Button>
-            <Button onClick={onDeletePost} className="btn-red px-6 py-1">
+            <Button onClick={onDeletePost} className="btn-red">
               삭제
             </Button>
           </div>
@@ -63,14 +63,14 @@ export default function TextViewer({
       </div>
       <div className="w-full mt-4 border-t border-b">
         <div className="px-6 py-4 border-b border-gray-200 flex justify-between">
-          <h1 className="text-xl font-medium text-gray-800">
+          <h1 className="story-text-size font-medium text-gray-800">
             {selectedPost?.title}
           </h1>
-          <div className="mt-2 text-sm text-gray-500">
+          <div className="mt-2 text-sm md:text-sm text-gray-500">
             {selectedPost?.createdAt ? formatDate(selectedPost?.createdAt) : ""}
           </div>
         </div>
-        <div className="px-6 py-6 whitespace-pre-wrap text-gray-700 min-h-[200px]">
+        <div className="md:px-6 md:py-6 whitespace-pre-wrap text-gray-700 min-h-[200px]">
           <ReactQuill
             value={selectedPost?.content || ""}
             readOnly={true}
@@ -78,7 +78,7 @@ export default function TextViewer({
             modules={{
               toolbar: false,
             }}
-            className="px-6 py-6 text-gray-700 min-h-[200px]"
+            className="md:px-6 md:py-6 text-gray-700 min-h-[200px]"
           />
         </div>
       </div>

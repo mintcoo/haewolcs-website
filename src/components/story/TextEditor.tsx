@@ -16,6 +16,7 @@ import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { compressImage } from "@/lib/commonClientFnc";
 import { StoryPost } from "@/types/story";
 import { EPathName } from "@/app/(Story)/story/page";
+import { Button } from "@headlessui/react";
 
 interface ITextEditorProps {
   selectedPost?: StoryPost | null;
@@ -145,7 +146,7 @@ export default function TextEditor({
 
   return (
     <div className="w-full h-full lg:w-2/3 f-c-c-c">
-      <div className="w-full flex gap-1 mb-5 ">
+      <div className="w-full flex flex-col md:flex-row gap-1 mb-2 md:mb-5 ">
         <input
           type="text"
           value={title}
@@ -167,19 +168,15 @@ export default function TextEditor({
             공지
           </label>
         </div>
-        <button
-          onClick={onCallbackDone}
-          className="px-6 py-1 rounded-md btn-white"
-        >
-          취소
-        </button>
-        {/* 저장 버튼 */}
-        <button
-          onClick={handleSave}
-          className="px-6 py-1 rounded-md btn-dark-blue"
-        >
-          저장하기
-        </button>
+        <div className="flex justify-end gap-1">
+          <Button onClick={onCallbackDone} className="rounded-md btn-white">
+            취소
+          </Button>
+          {/* 저장 버튼 */}
+          <Button onClick={handleSave} className="rounded-md btn-dark-blue">
+            저장하기
+          </Button>
+        </div>
       </div>
       <CustomReactQuill
         forwardedRef={quillRef}

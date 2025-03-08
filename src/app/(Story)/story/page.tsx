@@ -145,7 +145,7 @@ export default function Story() {
                     onClick={() => {
                       setIsEditorVisible(true);
                     }}
-                    className="btn-white px-6 py-1"
+                    className="btn-white"
                   >
                     글쓰기
                   </Button>
