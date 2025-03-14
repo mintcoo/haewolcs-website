@@ -104,7 +104,7 @@ export default function TextEditor({
         try {
           const fileName = `${Date.now()}-${file.name}`;
           const storageRef = ref(storage, `posts/${fileName}`);
-          await uploadBytes(storageRef, file);
+          await uploadBytes(storageRef, compressedFile);
           const url = await getDownloadURL(storageRef);
 
           editor.deleteText(range.index, 1); // 로딩 이미지 제거

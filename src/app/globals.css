@@ -76,19 +76,19 @@
   }
 
   .contents-layout {
-    @apply w-full f-c-c-c pt-10 pb-20 px-10 text-base md:text-lg lg:text-xl lg:min-w-[40rem];
+    @apply w-full f-c-c-c pt-10 pb-20 px-10 text-base md:text-base lg:text-lg lg:min-w-[40rem];
   }
   .sub-menu-title {
-    @apply f-c-c font-semibold text-2xl md:text-3xl lg:text-5xl  my-2 md:my-4 lg:my-8;
+    @apply f-c-c font-semibold text-xl md:text-2xl lg:text-3xl  my-2 md:my-4 lg:my-8;
   }
   .sub-menu-title-bar {
     @apply w-1/20 min-w-10 h-1 mb-10 xl:mb-20 haewol-blue-bg;
   }
   .sub-title {
-    @apply font-semibold text-xl md:text-2xl lg:text-3xl text-sky-950 mx-4;
+    @apply font-semibold text-lg md:text-xl lg:text-2xl text-sky-950 mx-4;
   }
   .infoguide-text-size {
-    @apply text-lg md:text-xl lg:text-2xl;
+    @apply text-base md:text-lg lg:text-xl;
   }
 
   .story-text-size {
@@ -109,13 +109,13 @@
     @apply rounded border border-red-900  bg-red-800 text-sm text-white hover:bg-red-700 px-4 md:px-6 py-1;
   }
   .text-title-responsive {
-    @apply text-xl sm:text-2xl md:text-3xl lg:text-2.5vw;
+    @apply text-xl sm:text-2xl md:text-3xl lg:text-4xl;
   }
   .text-sub-title-responsive {
-    @apply text-base sm:text-lg md:text-xl lg:text-1.5vw;
+    @apply text-base sm:text-lg md:text-xl lg:text-2xl;
   }
   .text-contents-responsive {
-    @apply text-sm sm:text-base md:text-lg lg:text-1.1vw;
+    @apply text-sm sm:text-base md:text-lg lg:text-xl;
   }
 
   .text-stroke {

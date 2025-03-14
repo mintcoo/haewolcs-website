@@ -18,7 +18,7 @@ export const CATEGORY_LIST: ICategories[] = [
 export const NAVBAR_MENU_LIST: INavbarMenu = {
   홈: [],
   "해월씨에스 의원": [
-    { url: "/introduction", title: "인사말" },
+    { url: "/introduction", title: "의원 소개" },
     { url: "/introduction/profile", title: "원장 약력" },
     { url: "/introduction/haewol", title: "해월 미리보기" },
   ],

@@ -87,9 +87,6 @@ export const uploadImageName = async ({
   carouselName,
   openModal,
 }: IUploadImageNameProps) => {
-  console.log("imageName", imageName);
-  console.log("imageId", imageId);
-  console.log("carouselName", carouselName);
   try {
     // 기존 문서 참조 가져오기
     const docRef = doc(db, carouselName, imageId);

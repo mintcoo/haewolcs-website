@@ -10,7 +10,6 @@ import {
   onFilesChange,
   uploadImageName,
 } from "@/services/edit/carouselEditService";
-import Slider from "react-slick";
 
 interface ICarouselEditorProps {
   imageList: ICarouselImage[];
