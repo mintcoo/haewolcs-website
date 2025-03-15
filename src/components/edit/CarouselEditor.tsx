@@ -1,19 +1,9 @@
 import { DragDropContext, Droppable, DropResult } from "react-beautiful-dnd";
 import DraggableCard from "./DraggableCard";
-import { deleteDoc, doc, getDoc, updateDoc } from "firebase/firestore";
-import {
-  deleteObject,
-  getDownloadURL,
-  ref,
-  uploadBytes,
-} from "firebase/storage";
 import { ICarouselImage } from "@/types/edit";
-import { db, storage } from "@/lib/firebase";
-import { FILE_MAX_SIZE } from "@/lib/constants";
 import { useModal } from "@/hooks/useModal";
 import { useEffect, useState } from "react";
 import Loading from "../Loading";
-import { compressImage } from "@/lib/commonClientFnc";
 import {
   onDeleteImage,
   onDragEnd,
