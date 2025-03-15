@@ -40,30 +40,26 @@ export const NAVBAR_MENU_LIST: INavbarMenu = {
 
 // ------ 치료 프로그램 리스트------
 export const THERAPY_LIST = [
-  // {
-  //   url: "/therapies",
-  //   name: "암의 발생기전",
-  //   image: "/images/therapies/immunity.jpg",
-  // },
-  {
-    url: "/therapies",
-    name: "암 통합치료",
-    image: "/images/therapies/integrated.jpg",
-  },
   {
     url: "/therapies/high-frequency",
     name: "고주파 온열치료",
     image: "/images/therapies/frequency.png",
   },
+
   {
     url: "/therapies/immunity",
     name: "면역증강 치료",
-    image: "/images/therapies/immunity.jpg",
+    image: "/images/therapies/immunity.png",
   },
   {
     url: "/therapies/antioxidant",
     name: "항산화 치료",
-    image: "/images/therapies/antioxidant.jpg",
+    image: "/images/therapies/antioxidant.png",
+  },
+  {
+    url: "/therapies/vitamin",
+    name: "고용량 Vitamin C 요법",
+    image: "/images/therapies/vitamin.png",
   },
 ];
 

@@ -18,7 +18,11 @@ export default function TherapyList() {
       <div className="flex flex-col items-start justify-center w-full md:w-30vw mb-8 md:mb-0">
         <div className="w-16 md:w-1/6 h-1 mb-2 xl:mb-8 haewol-blue-bg"></div>
         <div className="font-semibold text-gray-700 text-title-responsive">
-          해월씨에스의 <span className="haewol-orange-color">치료</span>
+          해월씨에스
+          <span className="text-lg sm:text-xl md:text-2xl lg:text-3xl">
+            의
+          </span>{" "}
+          <span className="haewol-orange-color">치료</span>
         </div>
         <div className="mt-4 text-gray-500  ">
           암치료에 관한 맞춤형 통합 치료를 진행합니다
@@ -26,9 +30,7 @@ export default function TherapyList() {
       </div>
       <div className="grid grid-cols-2 gap-4 md:gap-6 lg:gap-8 flex-1 place-items-center">
         {THERAPY_LIST.map((therapy, index) => {
-          if (therapy.name === "암의 발생기전") {
-            return <React.Fragment key={index}></React.Fragment>;
-          }
+          console.log(therapy);
           return (
             <div
               onClick={() => onClickTherapy(therapy.url)}
@@ -40,7 +42,7 @@ export default function TherapyList() {
               overflow-hidden"
             >
               {/* 이미지가 들어갈 공간 */}
-              <div className="absolute inset-0 w-full h-3/4 m-auto">
+              <div className="absolute inset-0 w-full h-full m-auto">
                 <Image
                   src={therapy.image}
                   alt={therapy.name}
@@ -50,7 +52,7 @@ export default function TherapyList() {
               </div>
               {/* 반투명한 오버레이 */}
               <div
-                className="absolute inset-0 bg-gradient-to-b from-orange-100 via-white/25 to-transparent
+                className="absolute inset-0 bg-gradient-to-b from-amber-50/90 via-white/40 to-transparent
                        group-hover:bg-white/90 transition-all duration-300"
               ></div>
               {/* 텍스트 컨텐츠 */}
