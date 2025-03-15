@@ -11,19 +11,19 @@ export default function Introduction() {
       <div className="sub-menu-title-bar"></div>
       <div className="w-full flex justify-center">
         <div className="text-contents-color tracking-tight leading-relaxed">
-          <div className="text-xl sm:text-2xl md:text-3xl haewol-darkblue-title">
+          <div className="text-lg sm:text-xl md:text-2xl haewol-darkblue-title">
             안녕하세요.
           </div>
-          <div className="text-xl sm:text-2xl md:text-3xl haewol-darkblue-title">
+          <div className="text-lg sm:text-xl md:text-2xl haewol-darkblue-title">
             부산 해운대구 달맞이길
           </div>
-          <span className="text-xl sm:text-2xl md:text-3xl haewol-darkblue-title">
+          <span className="text-lg sm:text-xl md:text-2xl haewol-darkblue-title">
             해월씨에스 의원 원장{" "}
           </span>
-          <span className="font-bold text-xl sm:text-2xl md:text-3xl haewol-darkblue-title">
+          <span className="font-bold text-lg sm:text-xl md:text-2xl haewol-darkblue-title">
             한창순
           </span>
-          <span className="text-xl sm:text-2xl md:text-3xl haewol-darkblue-title">
+          <span className="text-lg sm:text-xl md:text-2xl haewol-darkblue-title">
             입니다.
           </span>
           <p className="whitespace-pre-line my-8">

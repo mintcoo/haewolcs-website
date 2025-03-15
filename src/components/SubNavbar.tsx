@@ -41,7 +41,7 @@ export default function SubNavbar({ subNavMenus, path }: ISubNavbarProps) {
               key={menu.title}
               onClick={() => router.push(menu.url)}
               className={({ selected }) =>
-                `px-4 py-2  ${getTabWidth(subNavMenus.length)} lg:w-40 h-full text-center cursor-pointer rounded-t-lg outline-none transition-all duration-300 
+                `px-1 py-2  ${getTabWidth(subNavMenus.length)} lg:w-48 h-full text-center cursor-pointer rounded-t-lg outline-none transition-all duration-300 
               ${
                 isSelected
                   ? "bg-white text-black"

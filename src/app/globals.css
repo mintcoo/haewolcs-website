@@ -82,7 +82,7 @@
     @apply f-c-c font-semibold text-xl md:text-2xl lg:text-3xl  my-2 md:my-4 lg:my-8;
   }
   .sub-menu-title-bar {
-    @apply w-1/20 min-w-10 h-1 mb-10 xl:mb-20 haewol-blue-bg;
+    @apply w-1/20 min-w-10 h-1 mb-8 xl:mb-16 haewol-blue-bg;
   }
   .sub-title {
     @apply font-semibold text-lg md:text-xl lg:text-2xl text-sky-950 mx-4;

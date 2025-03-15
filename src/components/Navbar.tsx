@@ -121,7 +121,7 @@ export default function Navbar() {
 
           {/* 데스크탑 드롭다운 메뉴 */}
           <Transition show={open && window.innerWidth >= 640}>
-            <ul className="hidden sm:flex fixed left-0 right-0 z-30 border-b justify-center bg-white text-2vw opacity-95 h-20vh trans-expand pb-4 md:text-1.5vw lg:text-1.2vw xl:text-1vw lg:px-16 xl:px-24 2xl:px-48">
+            <ul className="hidden sm:flex fixed left-0 right-0 z-30 border-b justify-center bg-white  opacity-95 h-20vh trans-expand pb-4 text-sm lg:text-base xl:text-[1.025rem] lg:px-16 xl:px-24 2xl:px-48">
               {Object.entries(NAVBAR_MENU_LIST).map(([categori, subMenus]) => (
                 <li
                   key={categori}
