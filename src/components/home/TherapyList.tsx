@@ -17,7 +17,7 @@ export default function TherapyList() {
     >
       <div className="flex flex-col items-start justify-center w-full md:w-30vw mb-8 md:mb-0">
         <div className="w-16 md:w-1/6 h-1 mb-2 xl:mb-8 haewol-blue-bg"></div>
-        <div className="font-semibold text-gray-700 text-title-responsive">
+        <div className="font-semibold haewol-darkblue-title text-title-responsive">
           해월씨에스
           <span className="text-lg sm:text-xl md:text-2xl lg:text-3xl">
             의

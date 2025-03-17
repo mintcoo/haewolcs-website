@@ -42,7 +42,7 @@ export default function InfoGuide() {
               <h3 className="infoguide-text-size font-semibold text-gray-800">
                 토요일
               </h3>
-              <p className="infoguide-text-size text-gray-700">09:00 - 17:30</p>
+              <p className="infoguide-text-size text-gray-700">09:00 - 15:00</p>
             </div>
             <div className="flex justify-between items-center border-b border-gray-200 pb-4">
               <h3 className="infoguide-text-size font-semibold text-gray-800">
@@ -68,9 +68,9 @@ export default function InfoGuide() {
                   051-710-7090
                 </p>
               </div>
-              <p className="text-base md:text-lg text-gray-600">
-                ※ 전화 상담 및 예약은 진료시간 내에 가능합니다.
-              </p>
+              <div className="text-base md:text-lg text-gray-600">
+                ※ 전화 상담 및 예약은 24시간 가능합니다.
+              </div>
             </div>
           </div>
         </div>

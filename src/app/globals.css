@@ -69,10 +69,10 @@
     @apply flex flex-col items-center justify-center;
   }
   .nav-menu-tap {
-    @apply flex items-center justify-center text-base lg:text-lg xl:text-xl font-semibold;
+    @apply min-w-fit flex items-center justify-center text-base lg:text-lg xl:text-xl font-semibold haewol-darkblue-title;
   }
   .trans-expand {
-    @apply transition duration-150 ease-in-out data-[closed]:-translate-y-full data-[leave]:text-white;
+    @apply transition duration-150 ease-in-out data-[closed]:-translate-y-full data-[leave]:text-white haewol-darkblue-title;
   }
 
   .contents-layout {

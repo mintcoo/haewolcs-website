@@ -29,7 +29,7 @@ export const NAVBAR_MENU_LIST: INavbarMenu = {
     { url: "/therapies/high-frequency", title: "고주파 온열치료" },
     { url: "/therapies/immunity", title: "면역증강 치료" },
     { url: "/therapies/antioxidant", title: "항산화 치료" },
-    { url: "/therapies/vitamin", title: "고용량 Vitamin C 요법" },
+    { url: "/therapies/vitamin", title: "고용량 Vit.C 요법" },
   ],
   해월이야기: [
     { url: "/story", title: "환우들과 함께" },

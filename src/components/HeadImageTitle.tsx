@@ -17,8 +17,8 @@ interface IHeadImageConfig {
 // 헤드 타이틀 이미지 및 텍스트 세팅
 const HEAD_IMAGE_CONFIG: IHeadImageConfig = {
   introduction: {
-    title: "해월씨에스 소개",
-    text: "환자 중심의 암 요양 전문 해월씨에스",
+    title: "해월씨에스 의원 소개",
+    text: "환자 중심의 암 요양 전문 해월씨에스 의원",
     image: "headImages/introduction.jpg",
   },
   infoguide: {

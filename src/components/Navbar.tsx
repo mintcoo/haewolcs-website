@@ -101,7 +101,7 @@ export default function Navbar() {
                 onMouseOver={onMouseOver}
                 href={category.url}
                 key={category.title}
-                className={`nav-menu-tap hover:haewol-orange-color w-1/6 ${category.title === "홈" && "mr-28"}`}
+                className={`nav-menu-tap hover:haewol-orange-color  w-1/6 ${category.title === "홈" && "mr-28"}`}
               >
                 {category.title === "홈" ? (
                   <div className="relative w-full h-full bg-white">
@@ -121,15 +121,15 @@ export default function Navbar() {
 
           {/* 데스크탑 드롭다운 메뉴 */}
           <Transition show={open && window.innerWidth >= 640}>
-            <ul className="hidden sm:flex fixed left-0 right-0 z-30 border-b justify-center bg-white  opacity-95 h-20vh trans-expand pb-4 text-sm lg:text-base xl:text-[1.025rem] lg:px-16 xl:px-24 2xl:px-48">
+            <ul className="hidden sm:flex fixed left-0 right-0 z-30 border-b justify-center bg-white  opacity-95  trans-expand pb-4 text-sm lg:text-base xl:text-[1.025rem] lg:px-16 xl:px-24 2xl:px-48">
               {Object.entries(NAVBAR_MENU_LIST).map(([categori, subMenus]) => (
                 <li
                   key={categori}
-                  className={`w-1/6 h-full flex flex-col ${categori === "홈" && "mr-28"} border-t-2 border-transparent ${categori !== "홈" && "hover:border-amber-400"} transition duration-200 `}
+                  className={`min-w-fit w-1/6 h-full flex flex-col ${categori === "홈" && "mr-28"} border-t-2 border-transparent ${categori !== "홈" && "hover:border-amber-400"} transition duration-200 `}
                 >
                   {subMenus.map((menu) => (
                     <Link
-                      className="w-full h-1/5 f-c-c text-center hover:haewol-orange-color first:mt-2"
+                      className="w-full my-[0.125rem] min-h-fit f-c-c text-center hover:haewol-orange-color first:mt-2"
                       href={menu.url}
                       key={menu.title}
                     >

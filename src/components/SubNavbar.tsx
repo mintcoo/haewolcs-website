@@ -31,7 +31,7 @@ export default function SubNavbar({ subNavMenus, path }: ISubNavbarProps) {
   return (
     <TabGroup>
       <TabList
-        className={`h-14 lg:h-5vh bg-orange-100 text-sm md:text-base lg:text-lg f-c-c rounded-lg`}
+        className={` bg-orange-100 text-sm md:text-base lg:text-lg f-c-c rounded-lg`}
       >
         {subNavMenus.map((menu) => {
           const isSelected = path === menu.url;
