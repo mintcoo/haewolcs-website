@@ -10,18 +10,15 @@ export default function Introduction() {
       <div className="sub-menu-title">의원 소개</div>
       <div className="sub-menu-title-bar"></div>
       <div className="w-full flex justify-center">
-        <div className="text-contents-color tracking-tight leading-relaxed">
+        <div className="text-contents-color tracking-tight leading-relaxed text-center">
           <div className="text-lg sm:text-xl md:text-2xl haewol-darkblue-title">
             안녕하세요.
           </div>
           <div className="text-lg sm:text-xl md:text-2xl haewol-darkblue-title">
             부산 해운대구 달맞이길
           </div>
-          <span className="text-lg sm:text-xl md:text-2xl haewol-darkblue-title">
-            해월씨에스 의원 원장{" "}
-          </span>
           <span className="font-bold text-lg sm:text-xl md:text-2xl haewol-darkblue-title">
-            한창순
+            해월씨에스 의원 원장 한창순
           </span>
           <span className="text-lg sm:text-xl md:text-2xl haewol-darkblue-title">
             입니다.
@@ -34,8 +31,13 @@ export default function Introduction() {
             {`“해월 씨에스 의원”은 29 병상의 작은 의원으로 
 1층 주차장 위로 3,4 층은 병실, 간호사실, 주사실, 물리치료실이 있고, 
 5층은 원무과, 진료실, 고주파온열치료실, 1인실, 주방과 식당이 있습니다.
-병실은 4인실 (5실), 3인실 (2실), 2인실 (1실)과 1인실 (1실) 이 있으며, 
-수술 후, 항암 치료, 방사선 치료 전후에 장기 및 단기 입원과 외래 치료가 가능하며, 
+병실은 `}
+            <strong className="haewol-darkblue-title font-bold">
+              4인실 (5실), 3인실 (2실), 2인실 (1실)과 1인실 (1실){" "}
+            </strong>
+            이 있으며,
+            <br />
+            {`수술 후, 항암 치료, 방사선 치료 전후에 장기 및 단기 입원과 외래 치료가 가능하며, 
 항암 치료 부작용 관리와 
 아래 열거한 암 통합치료를 받으실 수 있습니다.`}
           </p>
