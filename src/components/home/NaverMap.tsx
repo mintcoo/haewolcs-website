@@ -34,7 +34,7 @@ export default function NaverMap() {
   return (
     <>
       <div className="w-full f-c-c-c my-8 md:my-16">
-        <div className="font-semibold text-gray-700 text-title-responsive">
+        <div className="font-semibold haewol-darkblue-title text-title-responsive">
           해월씨에스 <span className="haewol-orange-color">오시는 길</span>
         </div>
       </div>

@@ -69,7 +69,7 @@ export default function FacilityCarousel() {
   return (
     <div data-aos="fade-up">
       <div className="w-full f-c-c-c my-8 md:my-16">
-        <div className="font-semibold text-gray-700 text-title-responsive">
+        <div className="font-semibold haewol-darkblue-title text-title-responsive">
           해월씨에스 <span className="haewol-orange-color">둘러보기</span>
         </div>
         <div className="mt-4 text-gray-500 text-contents-responsive">
