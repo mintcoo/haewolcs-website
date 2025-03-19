@@ -51,18 +51,14 @@ export default function TherapyList() {
                 />
               </div>
               {/* 반투명한 오버레이 */}
-              <div
-                className="absolute inset-0 bg-gradient-to-b from-amber-50/90 via-white/40 to-transparent
-                       group-hover:bg-white/90 transition-all duration-300"
-              ></div>
+              <div className="absolute inset-0 group-hover:bg-white/90 transition-all duration-300"></div>
               {/* 텍스트 컨텐츠 */}
               <div
-                className="relative flex flex-col items-center gap-3 p-4 text-sub-title-responsive
-                         translate-y-[-45%] md:translate-y-[-75%] group-hover:translate-y-[10%] 
+                className="relative flex flex-col items-center gap-3 p-1 text-sub-title-responsive
                          transition-all duration-300"
               >
                 <div
-                  className="font-bold haewol-darkblue-title
+                  className="font-bold text-white drop-shadow-md 
                            group-hover:haewol-orange-color text-center leading-tight"
                 >
                   {therapy.name}

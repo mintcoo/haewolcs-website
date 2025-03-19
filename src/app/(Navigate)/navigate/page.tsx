@@ -55,7 +55,7 @@ export default function Navigate() {
                   <div className="flex justify-between max-w-xs">
                     <span className="text-gray-700 w-20">토요일</span>
                     <span className="text-gray-900 font-medium">
-                      09:00 - 17:00
+                      09:00 - 15:00
                     </span>
                   </div>
                   <div className="flex justify-between max-w-xs text-blue-600">

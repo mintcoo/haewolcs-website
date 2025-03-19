@@ -65,7 +65,7 @@ export default function InfoGuide() {
                   상담 및 예약 안내
                 </h2>
                 <p className="text-2xl md:text-4xl font-bold text-blue-600">
-                  051-710-7090
+                  051) 710-7090
                 </p>
               </div>
               <div className="text-base md:text-lg text-gray-600">

@@ -43,23 +43,23 @@ export const THERAPY_LIST = [
   {
     url: "/therapies/high-frequency",
     name: "고주파 온열치료",
-    image: "/images/therapies/frequency.png",
+    image: "/images/therapies/frequency.jpg",
   },
 
   {
     url: "/therapies/immunity",
     name: "면역증강 치료",
-    image: "/images/therapies/immunity.png",
+    image: "/images/therapies/immunity.jpg",
   },
   {
     url: "/therapies/antioxidant",
     name: "항산화 치료",
-    image: "/images/therapies/antioxidant.png",
+    image: "/images/therapies/antioxidant.jpg",
   },
   {
     url: "/therapies/vitamin",
     name: "고용량 Vitamin C 요법",
-    image: "/images/therapies/vitamin.png",
+    image: "/images/therapies/vitamin.jpg",
   },
 ];
 
