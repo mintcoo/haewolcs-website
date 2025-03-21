@@ -127,7 +127,7 @@ export default function Story() {
           <SubTitle
             title={`${pathName === EPathName.STORY ? "환우들과 함께" : "도란도란"}`}
           />
-          <div className="w-full lg:w-2/3 flex flex-col items-end ">
+          <div className="w-full lg:w-3/4 flex flex-col items-end ">
             {isShowPost ? (
               <>
                 <TextViewer
@@ -180,7 +180,7 @@ export default function Story() {
                         key={index}
                         className="bg-white border border-gray-200 rounded-md shadow-sm hover:shadow-md hover:text-orange-400 text-gray-800  transition-shadow duration-150 cursor-pointer overflow-hidden"
                       >
-                        <div className="relative h-[20vh] w-full overflow-hidden">
+                        <div className="relative h-[25vh] lg:h-[20vh] w-full overflow-hidden">
                           <Image
                             src={extractFirstImageUrl(post.content)}
                             alt={post.title}
