@@ -169,7 +169,7 @@ export default function TextEditor({
       .replace(/[-:]/g, "");
     setSavedPostId(postId);
     // handleImage 함수가 컴포넌트 형성전에 만들어져서 따로 관리
-    savedPostIdRef.current = postId;
+    savedPostIdRef.current = selectedPost?.postId || postId;
   }, []);
 
   return (
@@ -200,11 +200,13 @@ export default function TextEditor({
           <Button
             onClick={async () => {
               // 이미지 폴더 내 모든 파일 삭제
-              const folderRef = ref(storage, `posts/${savedPostId}`);
-              const fileList = await listAll(folderRef);
-              await Promise.all(
-                fileList.items.map((fileRef) => deleteObject(fileRef)),
-              );
+              if (!isEditMode) {
+                const folderRef = ref(storage, `posts/${savedPostId}`);
+                const fileList = await listAll(folderRef);
+                await Promise.all(
+                  fileList.items.map((fileRef) => deleteObject(fileRef)),
+                );
+              }
 
               onCallbackDone();
             }}
