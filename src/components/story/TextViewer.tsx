@@ -6,7 +6,7 @@ import { Button } from "@headlessui/react";
 import { deleteDoc, doc } from "firebase/firestore";
 import { db, storage } from "@/lib/firebase";
 import { useModal } from "@/hooks/useModal";
-import { deleteObject, ref } from "firebase/storage";
+import { deleteObject, listAll, ref } from "firebase/storage";
 
 interface ITextViewerProps {
   selectedPost: StoryPost | null;
@@ -32,7 +32,14 @@ export default function TextViewer({
     try {
       if (selectedPost) {
         await deleteDoc(doc(db, pathName, selectedPost.id));
-        // await deleteObject(ref(storage, `posts/${selectedPost.id}`));
+        if (selectedPost.postId) {
+          // 이미지 폴더 내 모든 파일 삭제
+          const folderRef = ref(storage, `posts/${selectedPost.postId}`);
+          const fileList = await listAll(folderRef);
+          await Promise.all(
+            fileList.items.map((fileRef) => deleteObject(fileRef)),
+          );
+        }
         initState();
         openModal("알림", "게시글이 삭제되었습니다.");
       }

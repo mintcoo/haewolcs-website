@@ -12,7 +12,13 @@ import {
 import { db, storage } from "@/lib/firebase";
 import { useModal } from "@/hooks/useModal";
 import ReactQuill, { ReactQuillProps } from "react-quill";
-import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
+import {
+  deleteObject,
+  getDownloadURL,
+  listAll,
+  ref,
+  uploadBytes,
+} from "firebase/storage";
 import { compressImage } from "@/lib/commonClientFnc";
 import { StoryPost } from "@/types/story";
 import { EPathName } from "@/app/(Story)/story/page";
@@ -50,7 +56,11 @@ export default function TextEditor({
   const [content, setContent] = useState<string>("");
   const [isNotice, setIsNotice] = useState<boolean>(false);
   const [isEditMode, setIsEditMode] = useState<boolean>(false);
+  // 저장된 게시글 id (이미지 폴더 루트)
+  const [savedPostId, setSavedPostId] = useState<string>("");
   const quillRef = useRef<ReactQuill>(null);
+
+  const savedPostIdRef = useRef("");
 
   const handleSave = async () => {
     try {
@@ -71,11 +81,11 @@ export default function TextEditor({
           content,
           isNotice,
           createdAt: serverTimestamp(),
-          // author: '작성자 정보',
-          // userId: '사용자ID',
+          postId: savedPostId,
         });
       }
       openModal("알림", "저장되었습니다!");
+      setSavedPostId("");
       onCallbackDone();
     } catch (error) {
       openModal("알림", "저장에 실패했습니다.");
@@ -103,7 +113,10 @@ export default function TextEditor({
       if (compressedFile) {
         try {
           const fileName = `${Date.now()}-${file.name}`;
-          const storageRef = ref(storage, `posts/${fileName}`);
+          const storageRef = ref(
+            storage,
+            `posts/${savedPostIdRef.current}/${fileName}`,
+          );
           await uploadBytes(storageRef, compressedFile);
           const url = await getDownloadURL(storageRef);
 
@@ -144,6 +157,21 @@ export default function TextEditor({
     }
   }, [selectedPost]);
 
+  useEffect(() => {
+    const now = new Date();
+    // 한국 시간으로 조정 (UTC+9)
+    now.setHours(now.getHours() + 9);
+
+    const postId = now
+      .toISOString()
+      .slice(0, 19)
+      .replace("T", "_")
+      .replace(/[-:]/g, "");
+    setSavedPostId(postId);
+    // handleImage 함수가 컴포넌트 형성전에 만들어져서 따로 관리
+    savedPostIdRef.current = postId;
+  }, []);
+
   return (
     <div className="w-full h-full lg:w-2/3 f-c-c-c">
       <div className="w-full flex flex-col md:flex-row gap-1 mb-2 md:mb-5 ">
@@ -169,7 +197,19 @@ export default function TextEditor({
           </label>
         </div>
         <div className="flex justify-end gap-1">
-          <Button onClick={onCallbackDone} className="rounded-md btn-white">
+          <Button
+            onClick={async () => {
+              // 이미지 폴더 내 모든 파일 삭제
+              const folderRef = ref(storage, `posts/${savedPostId}`);
+              const fileList = await listAll(folderRef);
+              await Promise.all(
+                fileList.items.map((fileRef) => deleteObject(fileRef)),
+              );
+
+              onCallbackDone();
+            }}
+            className="rounded-md btn-white"
+          >
             취소
           </Button>
           {/* 저장 버튼 */}
