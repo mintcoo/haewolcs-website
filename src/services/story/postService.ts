@@ -10,8 +10,8 @@ export const getStoryPosts = async (dbName: string) => {
 
   const querySnapshot = await getDocs(postQuery);
   querySnapshot.forEach((doc) => {
-    const { title, content, createdAt, isNotice } = doc.data();
-    posts.push({ title, content, createdAt, id: doc.id, isNotice });
+    const { title, content, createdAt, isNotice, postId } = doc.data();
+    posts.push({ title, content, createdAt, id: doc.id, isNotice, postId });
   });
 
   return posts;

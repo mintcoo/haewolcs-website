@@ -6,4 +6,5 @@ export interface StoryPost {
   content: string;
   isNotice: boolean;
   createdAt: Timestamp;
+  postId: string;
 }
