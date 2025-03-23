@@ -2,7 +2,7 @@ import SubTitle from "@/components/common/SubTitle";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "의원소개",
+  title: "진료안내",
 };
 
 export default function InfoGuide() {

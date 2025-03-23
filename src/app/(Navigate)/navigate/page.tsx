@@ -3,7 +3,6 @@ import {
   CallOutlined,
   DirectionsBusOutlined,
   DirectionsCarOutlined,
-  EventNote,
   InfoOutlined,
   PinDropOutlined,
   TrainOutlined,
@@ -40,32 +39,6 @@ export default function Navigate() {
                 <p className="text-gray-900 text-lg font-medium mt-1">
                   051-710-7090
                 </p>
-              </div>
-            </div>
-
-            {/* 진료시간 */}
-            <div className="flex items-start hover:bg-gray-50 p-4 rounded-lg transition-colors">
-              <EventNote className="text-blue-600 w-8 h-8" />
-              <div className="ml-6">
-                <p className="text-gray-500 font-medium">진료시간</p>
-                <div className="mt-2 space-y-3 text-lg">
-                  <div className="flex justify-between max-w-xs gap-2">
-                    <span className="text-gray-700 w-20">평일</span>
-                    <span className="text-gray-900 font-medium">
-                      09:00 - 17:00
-                    </span>
-                  </div>
-                  <div className="flex justify-between max-w-xs">
-                    <span className="text-gray-700 w-20">토요일</span>
-                    <span className="text-gray-900 font-medium">
-                      09:00 - 15:00
-                    </span>
-                  </div>
-                  <div className="flex justify-between max-w-xs text-blue-600">
-                    <span className="w-20">점심시간</span>
-                    <span className="font-medium">12:30 - 13:30</span>
-                  </div>
-                </div>
               </div>
             </div>
 

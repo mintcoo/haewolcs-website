@@ -1,5 +1,10 @@
 import SubTitle from "@/components/common/SubTitle";
 import Image from "next/image";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "고용량 Vt C 요법",
+};
 
 export default function VitaminTherapy() {
   return (

@@ -19,27 +19,27 @@ const HEAD_IMAGE_CONFIG: IHeadImageConfig = {
   introduction: {
     title: "해월씨에스 의원 소개",
     text: "환자 중심의 암 요양 전문 해월씨에스 의원",
-    image: "headImages/introduction.jpg",
+    image: "headImages/headTitle.png",
   },
   infoguide: {
     title: "진료안내",
     text: "해월씨에스는 환우 여러분들의 시간을 소중히 여깁니다",
-    image: "headImages/introduction.jpg",
+    image: "headImages/headTitle.png",
   },
   therapies: {
     title: "암 통합치료",
-    text: "전문적이고 효율적인 암 통합치료",
-    image: "headImages/introduction.jpg",
+    text: "전문적이고 효율적인 암통합치료",
+    image: "headImages/headTitle.png",
   },
   story: {
     title: "해월이야기",
     text: "도란도란 해월씨에스의 이야기",
-    image: "headImages/introduction.jpg",
+    image: "headImages/headTitle.png",
   },
   navigate: {
     title: "오시는길",
     text: "환자와 보호자가 안심할 수 있도록 정성을 다합니다",
-    image: "headImages/introduction.jpg",
+    image: "headImages/headTitle.png",
   },
 };
 
@@ -89,7 +89,7 @@ export default function HeadImageTitle({ path }: IHeadImageTitleProps) {
         src={imageUrl}
         alt="haewol_title_image"
         fill
-        style={{ objectFit: "cover" }}
+        style={{ objectFit: "cover", objectPosition: "center 25%" }}
       />
     </div>
   );

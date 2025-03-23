@@ -53,8 +53,8 @@ export default function TherapyList() {
               <div className="absolute inset-0 group-hover:bg-white/90 transition-all duration-300"></div>
               {/* 텍스트 컨텐츠 */}
               <div
-                className="relative flex flex-col items-center gap-3 p-1 text-sub-title-responsive
-                         transition-all duration-300"
+                className={`relative flex flex-col items-center gap-3 p-1 ${therapy.name === "고용량 Vt C 요법" ? "text-sub-title-responsive-therapy" : " text-sub-title-responsive"}
+                         transition-all duration-300`}
               >
                 <div
                   className="font-bold text-white drop-shadow-md 
