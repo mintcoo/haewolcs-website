@@ -114,6 +114,9 @@
   .text-sub-title-responsive {
     @apply text-lg sm:text-xl lg:text-2xl xl:text-3xl;
   }
+  .text-sub-title-responsive-therapy {
+    @apply text-base sm:text-lg lg:text-xl xl:text-[1.75rem];
+  }
   .text-contents-responsive {
     @apply text-sm sm:text-base md:text-lg lg:text-xl;
   }
