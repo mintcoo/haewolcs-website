@@ -9,7 +9,7 @@ export const CATEGORY_LIST: ICategories[] = [
   { url: "/", title: "홈" },
   { url: "/introduction", title: "해월씨에스 의원" },
   { url: "/infoguide", title: "진료안내" },
-  { url: "/therapies", title: "암통합치료" },
+  { url: "/therapies", title: "암 통합치료" },
   { url: "/story", title: "해월이야기" },
   { url: "/navigate", title: "오시는길" },
 ];
@@ -23,7 +23,7 @@ export const NAVBAR_MENU_LIST: INavbarMenu = {
     { url: "/introduction/haewol", title: "해월 미리보기" },
   ],
   진료안내: [{ url: "/infoguide", title: "진료안내" }],
-  암통합치료: [
+  "암 통합치료": [
     // { url: "/therapies", title: "암의 발생기전" },
     { url: "/therapies", title: "암 통합치료" },
     { url: "/therapies/high-frequency", title: "고주파 온열치료" },

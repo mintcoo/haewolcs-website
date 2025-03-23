@@ -22,15 +22,14 @@ export default function TherapyList() {
           <span className="text-lg sm:text-xl md:text-2xl lg:text-3xl">
             의
           </span>{" "}
-          <span className="haewol-orange-color">치료</span>
+          <span className="haewol-orange-color">통합치료</span>
         </div>
         <div className="mt-4 text-gray-500  ">
-          암치료에 관한 맞춤형 통합 치료를 진행합니다
+          암 환우의 개인별 맞춤형 통합치료를 진행합니다
         </div>
       </div>
       <div className="grid grid-cols-2 gap-4 md:gap-6 lg:gap-8 flex-1 place-items-center">
         {THERAPY_LIST.map((therapy, index) => {
-          console.log(therapy);
           return (
             <div
               onClick={() => onClickTherapy(therapy.url)}

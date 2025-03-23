@@ -20,7 +20,7 @@ export default function Navigate() {
       <div className="w-full f-c-c-c">
         <NaverMap />
         <div className="w-full max-w-4xl mx-auto bg-white rounded-lg shadow-md p-4 md:p-8 my-10">
-          <div className="space-y-8">
+          <div className="space-y-4">
             {/* 주소 정보 */}
             <div className="flex items-center hover:bg-gray-50 p-4 rounded-lg transition-colors">
               <PinDropOutlined className="text-blue-600 w-8 h-8" />
