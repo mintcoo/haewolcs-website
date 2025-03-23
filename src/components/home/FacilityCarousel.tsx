@@ -81,7 +81,8 @@ export default function FacilityCarousel() {
         <Slider ref={mainSliderRef} {...mainSettings}>
           {facilityCaroImages.map((imageInfo, index) => {
             return (
-              <div className="relative h-[30vh] sm:h-[40vh] md:h-[50vh] lg:h-[65vh]">
+              // <div className="relative h-[30vh] sm:h-[40vh] md:h-[50vh] lg:h-[65vh]">
+              <div className="relative aspect-[16/10]">
                 <Image
                   src={imageInfo.url}
                   alt={`facility image ${index}`}

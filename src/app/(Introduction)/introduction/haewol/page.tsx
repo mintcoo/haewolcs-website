@@ -98,7 +98,7 @@ export default function HaewolIntroduction() {
       <div className="mx-auto w-full xl:w-[85%]">
         <Slider ref={mainSliderRef} {...mainSettings}>
           {selectedImages.map((imageInfo, index) => (
-            <div key={index} className="relative h-[40vh] md:h-[65vh]">
+            <div key={index} className="relative aspect-[16/10]">
               <Image
                 src={imageInfo.url}
                 alt={`haewol image ${index}`}
