@@ -59,7 +59,10 @@ export default function TherapyList() {
               >
                 <div
                   className="font-bold text-white drop-shadow-md 
-                           group-hover:haewol-orange-color text-center leading-tight"
+                           group-hover:haewol-orange-color text-center leading-tight
+                           bg-black/35 px-2 py-1 rounded-full
+                           group-hover:bg-transparent
+                           "
                 >
                   {therapy.name}
                 </div>
