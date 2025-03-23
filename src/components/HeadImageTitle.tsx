@@ -27,8 +27,8 @@ const HEAD_IMAGE_CONFIG: IHeadImageConfig = {
     image: "headImages/introduction.jpg",
   },
   therapies: {
-    title: "암통합치료",
-    text: "전문적이고 효율적인 암통합치료",
+    title: "암 통합치료",
+    text: "전문적이고 효율적인 암 통합치료",
     image: "headImages/introduction.jpg",
   },
   story: {
