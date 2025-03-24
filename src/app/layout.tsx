@@ -20,6 +20,9 @@ export const metadata: Metadata = {
     template: "%s | 해월씨에스 의원",
     default: "해월씨에스 의원",
   },
+  icons: {
+    icon: "/favicon.ico",
+  },
   description: "암 통합치료 해월씨에스 의원 ",
   openGraph: {
     title: "해월씨에스 의원",
