@@ -20,7 +20,23 @@ export const metadata: Metadata = {
     template: "%s | 해월씨에스 의원",
     default: "해월씨에스 의원",
   },
-  description: "암치료 통합 전문 해월씨에스 의원",
+  description: "암 통합치료 해월씨에스 의원 ",
+  openGraph: {
+    title: "해월씨에스 의원",
+    description: "암 통합치료 해월씨에스 의원 ",
+    url: "https://해월씨에스.com",
+    siteName: "해월씨에스 의원",
+    images: [
+      {
+        url: "https://해월씨에스.com/images/logo3.png",
+        width: 800,
+        height: 600,
+        alt: "해월씨에스 의원 로고",
+      },
+    ],
+    locale: "ko_KR",
+    type: "website",
+  },
 };
 export default function RootLayout({
   children,

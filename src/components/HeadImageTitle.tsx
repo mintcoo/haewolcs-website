@@ -18,7 +18,7 @@ interface IHeadImageConfig {
 const HEAD_IMAGE_CONFIG: IHeadImageConfig = {
   introduction: {
     title: "해월씨에스 의원 소개",
-    text: "환자 중심의 암 요양 전문 해월씨에스 의원",
+    text: "환자 중심의 암 요양 통합치료 해월씨에스 의원",
     image: "headImages/headTitle.png",
   },
   infoguide: {
@@ -28,7 +28,7 @@ const HEAD_IMAGE_CONFIG: IHeadImageConfig = {
   },
   therapies: {
     title: "암 통합치료",
-    text: "전문적이고 효율적인 암통합치료",
+    text: "환자 중심의 효율적인 암통합치료",
     image: "headImages/headTitle.png",
   },
   story: {
