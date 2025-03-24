@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: "/",
       disallow: ["/edit/", "/admin"],
     },
-    sitemap: "https://해월씨에스.com/sitemap.xml",
+    sitemap: "https://xn--9t4b19booo6a320c.com/sitemap.xml",
   };
 }
