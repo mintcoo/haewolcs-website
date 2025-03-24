@@ -31,9 +31,9 @@ export const metadata: Metadata = {
     siteName: "해월씨에스 의원",
     images: [
       {
-        url: "https://해월씨에스.com/images/logo.png",
-        width: 2050,
-        height: 540,
+        url: "https://해월씨에스.com/images/opengraph.png",
+        width: 1100,
+        height: 740,
         alt: "해월씨에스 의원 로고",
       },
     ],
