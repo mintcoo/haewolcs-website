@@ -29,8 +29,8 @@ export const metadata: Metadata = {
     images: [
       {
         url: "https://해월씨에스.com/images/logo.png",
-        width: 800,
-        height: 600,
+        width: 2050,
+        height: 540,
         alt: "해월씨에스 의원 로고",
       },
     ],
