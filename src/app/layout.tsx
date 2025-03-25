@@ -1,9 +1,3 @@
-import Footer from "@/components/Footer";
-import Header from "@/components/Header";
-
-import Modal from "@/components/common/Modal";
-import MainCarousel from "@/components/home/MainCarousel";
-import Navbar from "@/components/Navbar";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
@@ -48,17 +42,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko" className={`${pretendard.variable}`}>
-      <body className={pretendard.className}>
-        <div className="w-full min-h-screen">
-          <Modal />
-          <Navbar />
-          <MainCarousel />
-          <Header />
-
-          <div className="lg:px-24 xl:px-44 2xl:px-72">{children}</div>
-          <Footer />
-        </div>
-      </body>
+      <body className={pretendard.className}>{children}</body>
     </html>
   );
 }
