@@ -30,7 +30,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: `${baseUrl}/introduction`,
       lastModified: dates.introduction,
       changeFrequency: "yearly",
-      priority: 0.8,
+      priority: 0.9,
     },
     {
       url: `${baseUrl}/infoguide`,
@@ -48,7 +48,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: `${baseUrl}/therapies`,
       lastModified: dates.now,
       changeFrequency: "yearly",
-      priority: 0.8,
+      priority: 0.7,
     },
   ];
 }
