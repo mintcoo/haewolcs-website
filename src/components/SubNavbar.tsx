@@ -31,7 +31,7 @@ export default function SubNavbar({ subNavMenus, path }: ISubNavbarProps) {
   return (
     <TabGroup>
       <TabList
-        className={` bg-orange-100 text-sm md:text-base lg:text-lg f-c-c rounded-lg`}
+        className={` bg-orange-100 text-sm md:text-base lg:text-lg f-c-c rounded-lg `}
       >
         {subNavMenus.map((menu) => {
           const isSelected = path === menu.url;
@@ -49,7 +49,15 @@ export default function SubNavbar({ subNavMenus, path }: ISubNavbarProps) {
               }`
               }
             >
-              {menu.title}
+              {menu.title.split(/(치료|요법)/).map((part, index) =>
+                part === "치료" || part === "요법" ? (
+                  <span key={index} className="md:inline block w-full">
+                    {part}
+                  </span>
+                ) : (
+                  part
+                ),
+              )}
             </Tab>
           );
         })}

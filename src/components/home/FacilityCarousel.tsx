@@ -89,7 +89,7 @@ export default function FacilityCarousel() {
                   fill
                   style={{ objectFit: "contain" }}
                 />
-                <div className="absolute bottom-0 left-0 border border-white w-1/3 md:w-1/5 h-[8%] md:h-[10%] bg-black/35 text-white bg-opacity-60 z-10 haewol-darkblue-title f-c-c-c text-contents-responsive font-semibold">
+                <div className="absolute bottom-0 left-0 border border-white w-1/3 md:w-1/5 h-[8%] md:h-[10%] bg-white z-10 haewol-darkblue-title f-c-c-c text-base md:text-xl font-semibold">
                   {imageInfo.name}
                 </div>
               </div>
