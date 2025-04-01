@@ -21,6 +21,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 1,
     },
     {
+      url: `${baseUrl}/story`,
+      lastModified: dates.now,
+      changeFrequency: "monthly",
+      priority: 1,
+    },
+    {
       url: `${baseUrl}/introduction`,
       lastModified: dates.introduction,
       changeFrequency: "yearly",
@@ -36,18 +42,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: `${baseUrl}/navigate`,
       lastModified: dates.navigate,
       changeFrequency: "yearly",
-      priority: 1,
+      priority: 0.8,
     },
     {
       url: `${baseUrl}/therapies`,
       lastModified: dates.now,
       changeFrequency: "yearly",
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/story`,
-      lastModified: dates.now,
-      changeFrequency: "monthly",
       priority: 0.8,
     },
   ];
