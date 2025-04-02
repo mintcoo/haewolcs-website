@@ -27,9 +27,21 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 1,
     },
     {
+      url: `${baseUrl}/story/haewol`,
+      lastModified: dates.now,
+      changeFrequency: "monthly",
+      priority: 0.95,
+    },
+    {
       url: `${baseUrl}/introduction`,
       lastModified: dates.introduction,
       changeFrequency: "yearly",
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/introduction/haewol`,
+      lastModified: dates.now,
+      changeFrequency: "monthly",
       priority: 0.9,
     },
     {
@@ -42,7 +54,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: `${baseUrl}/navigate`,
       lastModified: dates.navigate,
       changeFrequency: "yearly",
-      priority: 0.8,
+      priority: 0.75,
     },
     {
       url: `${baseUrl}/therapies`,
