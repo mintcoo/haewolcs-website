@@ -49,7 +49,11 @@ export default function Story() {
   };
 
   const onClickPost = (post: StoryPost) => {
-    router.push(`/story/${post.title}/${post.id}`);
+    if (pathName === EPathName.STORY) {
+      router.push(`/story/${post.title}/${post.id}`);
+    } else {
+      router.push(`/story/haewol/${post.title}/${post.id}`);
+    }
   };
 
   // 상태 초기화

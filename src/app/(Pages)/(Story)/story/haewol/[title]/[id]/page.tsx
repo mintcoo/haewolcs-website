@@ -5,15 +5,15 @@ import TextViewer from "@/components/story/TextViewer";
 import { getPostDetail } from "@/services/story/postService";
 import { StoryPost } from "@/types/story";
 import { useEffect, useState } from "react";
-import { EPathName } from "../../page";
+import { EPathName } from "../../../page";
 
-interface IStoryPostDetailProps {
+interface IHaewolPostDetailProps {
   params: { id: string };
 }
 
-export default function StoryPostDetail(props: IStoryPostDetailProps) {
+export default function HaewolPostDetail(props: IHaewolPostDetailProps) {
   const { params } = props;
-  const PATH_NAME = EPathName.STORY;
+  const PATH_NAME = EPathName.HAEWOL;
   const [post, setPost] = useState<StoryPost | null>(null);
   const [isEditorVisible, setIsEditorVisible] = useState<boolean>(false);
 

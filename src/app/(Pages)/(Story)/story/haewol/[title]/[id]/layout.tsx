@@ -1,11 +1,11 @@
 import NotFound from "@/app/not-found";
 import { getPostDetail } from "@/services/story/postService";
 import { StoryPost } from "@/types/story";
-import { EPathName } from "../../page";
+import { EPathName } from "../../../page";
 
 // 동적 메타데이터
 export async function generateMetadata({ params }: { params: { id: string } }) {
-  const PATH_NAME = EPathName.STORY;
+  const PATH_NAME = EPathName.HAEWOL;
   const post = (await getPostDetail(PATH_NAME, params.id)) as StoryPost;
 
   if (!post) return NotFound();
