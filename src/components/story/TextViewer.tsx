@@ -7,12 +7,12 @@ import { deleteDoc, doc } from "firebase/firestore";
 import { db, storage } from "@/lib/firebase";
 import { useModal } from "@/hooks/useModal";
 import { deleteObject, listAll, ref } from "firebase/storage";
-
+import { useRouter } from "next/navigation";
+import { EPathName } from "@/types/story";
 interface ITextViewerProps {
   selectedPost: StoryPost | null;
   isAdmin: boolean;
   pathName: string;
-  initState: () => void;
   onEditPost: () => void;
 }
 
@@ -22,41 +22,46 @@ export default function TextViewer({
   selectedPost,
   isAdmin,
   pathName,
-  initState,
   onEditPost,
 }: ITextViewerProps) {
+  const router = useRouter();
   const { openModal } = useModal();
 
   // 게시글 삭제
   const onDeletePost = async () => {
-    try {
-      if (selectedPost) {
-        await deleteDoc(doc(db, pathName, selectedPost.id));
-        if (selectedPost.postId) {
-          // 이미지 폴더 내 모든 파일 삭제
-          const folderRef = ref(storage, `posts/${selectedPost.postId}`);
-          const fileList = await listAll(folderRef);
-          await Promise.all(
-            fileList.items.map((fileRef) => deleteObject(fileRef)),
-          );
+    openModal("알림", "게시글을 삭제하시겠습니까?", async () => {
+      try {
+        if (selectedPost) {
+          await deleteDoc(doc(db, pathName, selectedPost.id));
+          if (selectedPost.postId) {
+            // 이미지 폴더 내 모든 파일 삭제
+            const folderRef = ref(storage, `posts/${selectedPost.postId}`);
+            const fileList = await listAll(folderRef);
+            await Promise.all(
+              fileList.items.map((fileRef) => deleteObject(fileRef)),
+            );
+          }
+          openModal("알림", "게시글이 삭제되었습니다.");
+          handleBackToList();
         }
-        initState();
-        openModal("알림", "게시글이 삭제되었습니다.");
+      } catch (e) {
+        console.log(e);
       }
-    } catch (e) {
-      console.log(e);
+    });
+  };
+
+  const handleBackToList = () => {
+    if (pathName === EPathName.STORY) {
+      router.push(`/${pathName}`);
+    } else {
+      router.push(`/story/${pathName}`);
     }
   };
 
   return (
     <div className="w-full flex flex-col items-end mt-4 md:mt-6">
       <div className="flex justify-between w-full gap-1">
-        <Button
-          onClick={() => {
-            initState();
-          }}
-          className="btn-white"
-        >
+        <Button onClick={handleBackToList} className="btn-white">
           목록
         </Button>
         {isAdmin && (

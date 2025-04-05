@@ -34,7 +34,14 @@ export default function SubNavbar({ subNavMenus, path }: ISubNavbarProps) {
         className={` bg-orange-100 text-sm md:text-base lg:text-lg f-c-c rounded-lg `}
       >
         {subNavMenus.map((menu) => {
-          const isSelected = path === menu.url;
+          // story의 게시글 url도 isSelected true로 처리
+          const isSelected =
+            // story 게시글
+            (path.startsWith(menu.url) && !path.includes("/story/haewol")) ||
+            // haewol 게시글
+            (path.startsWith("/story/haewol") &&
+              menu.url === "/story/haewol") ||
+            path === menu.url;
 
           return (
             <Tab
