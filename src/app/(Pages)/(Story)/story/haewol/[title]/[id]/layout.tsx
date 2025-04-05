@@ -1,7 +1,6 @@
 import NotFound from "@/app/not-found";
 import { getPostDetail } from "@/services/story/postService";
-import { StoryPost } from "@/types/story";
-import { EPathName } from "../../../page";
+import { EPathName, StoryPost } from "@/types/story";
 
 // 동적 메타데이터
 export async function generateMetadata({ params }: { params: { id: string } }) {

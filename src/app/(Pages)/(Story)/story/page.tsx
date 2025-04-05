@@ -8,15 +8,10 @@ import { Button } from "@headlessui/react";
 import "react-quill/dist/quill.bubble.css";
 // import { Metadata } from "next";
 import { useEffect, useState } from "react";
-import { StoryPost } from "@/types/story";
+import { EPathName, StoryPost } from "@/types/story";
 import { usePathname, useRouter } from "next/navigation";
 import { getStoryPosts } from "@/services/story/postService";
 import Image from "next/image";
-
-export enum EPathName {
-  STORY = "story",
-  HAEWOL = "haewol",
-}
 
 const POST_PAGENATION_COUNT = 9; // 페이지당 게시글 수
 

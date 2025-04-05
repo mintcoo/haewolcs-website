@@ -20,9 +20,8 @@ import {
   uploadBytes,
 } from "firebase/storage";
 import { compressImage } from "@/lib/commonClientFnc";
-import { StoryPost } from "@/types/story";
+import { EPathName, StoryPost } from "@/types/story";
 import { Button } from "@headlessui/react";
-import { EPathName } from "@/app/(Pages)/(Story)/story/page";
 
 interface ITextEditorProps {
   selectedPost?: StoryPost | null;

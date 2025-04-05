@@ -8,7 +8,7 @@ import { db, storage } from "@/lib/firebase";
 import { useModal } from "@/hooks/useModal";
 import { deleteObject, listAll, ref } from "firebase/storage";
 import { useRouter } from "next/navigation";
-import { EPathName } from "@/app/(Pages)/(Story)/story/page";
+import { EPathName } from "@/types/story";
 interface ITextViewerProps {
   selectedPost: StoryPost | null;
   isAdmin: boolean;

@@ -8,3 +8,8 @@ export interface StoryPost {
   createdAt: Timestamp;
   postId: string;
 }
+
+export enum EPathName {
+  STORY = "story",
+  HAEWOL = "haewol",
+}

@@ -3,9 +3,8 @@
 import TextEditor from "@/components/story/TextEditor";
 import TextViewer from "@/components/story/TextViewer";
 import { getPostDetail } from "@/services/story/postService";
-import { StoryPost } from "@/types/story";
+import { EPathName, StoryPost } from "@/types/story";
 import { useEffect, useState } from "react";
-import { EPathName } from "../../../page";
 
 interface IHaewolPostDetailProps {
   params: { id: string };
