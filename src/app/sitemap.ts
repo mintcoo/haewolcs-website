@@ -1,6 +1,8 @@
+import { getStoryPosts } from "@/services/story/postService";
+import { EPathName } from "@/types/story";
 import { MetadataRoute } from "next";
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = "https://xn--9t4b19booo6a320c.com";
 
   const dates = {
@@ -12,6 +14,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
     therapies: new Date("2025-03-23T14:58:00+09:00"),
     story: new Date("2025-03-23T18:10:00+09:00"),
   };
+
+  const storyPosts = await getStoryPosts(EPathName.STORY);
+
+  // 게시글 URL 매핑
+  const storyUrls = storyPosts.map((post) => ({
+    url: `${baseUrl}/story/${encodeURIComponent(post.title)}/${post.id}`,
+    lastModified: new Date(post.createdAt.toDate()),
+    changeFrequency: "monthly" as const,
+    priority: 0.8,
+  }));
 
   return [
     {
@@ -62,5 +74,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "yearly",
       priority: 0.7,
     },
+    ...storyUrls,
   ];
 }
