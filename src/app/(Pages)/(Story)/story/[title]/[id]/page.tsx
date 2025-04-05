@@ -6,18 +6,6 @@ import { getPostDetail } from "@/services/story/postService";
 import { StoryPost } from "@/types/story";
 import { useEffect, useState } from "react";
 
-// 동적 메타데이터
-// export async function generateMetadata({ params }: { params: { id: string } }) {
-//   const post = await getStoryPost(params.id);
-
-//   if (!post) return notFound();
-
-//   return {
-//     title: post.title,
-//     description: post.content.slice(0, 30), // 첫 160자를 설명으로
-//   };
-// }
-
 interface PostDetailProps {
   params: { id: string };
 }
