@@ -37,10 +37,19 @@ export default function SubNavbar({ subNavMenus, path }: ISubNavbarProps) {
           // story의 게시글 url도 isSelected true로 처리
           const isSelected =
             // story 게시글
-            (path.startsWith(menu.url) && !path.includes("/story/haewol")) ||
+            (path.startsWith("/story/") &&
+              !path.includes("/story/haewol") &&
+              menu.url === "/story") ||
             // haewol 게시글
-            (path.startsWith("/story/haewol") &&
+            (path.startsWith("/story/haewol/") &&
               menu.url === "/story/haewol") ||
+            // therapies 메뉴 (정확히 /therapies일 때만)
+            (menu.url === "/therapies" && path === "/therapies") ||
+            // therapies 하위 페이지 (therapies/항목명 형식)
+            (path.startsWith("/therapies/") &&
+              path.split("/").length === 3 &&
+              menu.url === path) ||
+            // 그 외 정확한 경로 매칭
             path === menu.url;
 
           return (
