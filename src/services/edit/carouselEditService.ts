@@ -47,7 +47,12 @@ export const onFilesChange = async ({
         openModal("알림", "20MB 이하의 사진 업로드만 가능합니다.");
         return;
       }
-      const compressedFile = await compressImage(files[i]);
+      let compressedFile;
+      if (carouselName === "mainCarousel") {
+        compressedFile = await compressImage(files[i], 2, 1920, 1);
+      } else {
+        compressedFile = await compressImage(files[i], 0.2, 1280, 0.8);
+      }
       filesUploadStorage(compressedFile, i, imageListLength, carouselName);
     }
   }

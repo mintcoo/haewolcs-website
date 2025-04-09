@@ -2,11 +2,17 @@ import imageCompression from "browser-image-compression";
 import { Timestamp } from "firebase/firestore";
 
 // 이미지 압축
-export const compressImage = async (file: File) => {
+export const compressImage = async (
+  file: File,
+  maxSizeMB?: number,
+  maxWidthOrHeight?: number,
+  initialQuality?: number,
+) => {
   const options = {
-    maxSizeMB: 1,
-    maxWidthOrHeight: 1920,
+    maxSizeMB: maxSizeMB ? maxSizeMB : 1,
+    maxWidthOrHeight: maxWidthOrHeight ? maxWidthOrHeight : 1920,
     useWebWorker: true,
+    initialQuality: initialQuality ? initialQuality : 0.8,
   };
 
   return await imageCompression(file, options);
