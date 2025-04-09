@@ -40,7 +40,7 @@ const config: Config = {
           "100%": { transform: "rotate(360deg)" },
         },
         zoomout: {
-          "0%": { transform: "scale(1.2)" },
+          "0%": { transform: "scale(1.1)" },
           "100%": { transform: "scale(1.0)" },
         },
       },

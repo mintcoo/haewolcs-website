@@ -101,7 +101,7 @@ export default function TextEditor({
       const file = input.files?.[0];
       if (!file) return;
       // 이미지 리사이징 압축
-      const compressedFile = await compressImage(file);
+      const compressedFile = await compressImage(file, 0.2, 1280, 0.8);
       const editor = quillRef.current!.getEditor();
       // 현재 커서 위치 가져오기
       const range = editor.getSelection(true);
