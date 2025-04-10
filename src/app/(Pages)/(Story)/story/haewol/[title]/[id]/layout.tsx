@@ -19,7 +19,6 @@ export async function generateMetadata({ params }: { params: { id: string } }) {
 
   return {
     title: post.title,
-    description: plainText.slice(0, 80),
   };
 }
 
