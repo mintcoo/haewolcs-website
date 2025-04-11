@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function Footer() {
   return (
-    <div className="py-2 md:py-6 text-xs sm:text-sm text-gray-700 border-t lg:text-base f-c-c-c">
+    <div className="py-4 md:py-6 text-xs sm:text-sm text-gray-700 border-t lg:text-base f-c-c-c">
       <div className="w-full flex justify-center gap-4 md:gap-8 mb-4 md:mb-6">
         <Link
           href="/introduction"
@@ -31,7 +31,10 @@ export default function Footer() {
         주소: 부산 해운대구 달맞이길 227(중동 1480-2) I 사업자 등록 번호:
         478-95-00999
       </span>
-      <span>Copyright &copy; 2024 Haewol CS Clinic. All rights reserved.</span>
+      <span>
+        Copyright &copy; {new Date().getFullYear()} Haewol CS Clinic. All rights
+        reserved.
+      </span>
     </div>
   );
 }

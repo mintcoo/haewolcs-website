@@ -109,10 +109,10 @@
     @apply rounded border border-red-900  bg-red-800 text-sm text-white hover:bg-red-700 px-4 md:px-6 py-1;
   }
   .text-title-responsive {
-    @apply text-xl sm:text-2xl md:text-3xl lg:text-4xl;
+    @apply text-lg sm:text-2xl md:text-3xl lg:text-4xl;
   }
   .text-sub-title-responsive {
-    @apply text-lg sm:text-xl lg:text-2xl xl:text-3xl;
+    @apply text-base sm:text-xl lg:text-2xl xl:text-3xl;
   }
   .text-sub-title-responsive-therapy {
     @apply text-base sm:text-lg lg:text-xl xl:text-[1.75rem];
