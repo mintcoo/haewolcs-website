@@ -72,10 +72,10 @@ export default function HaewolIntroduction() {
     <div className="contents-layout">
       <div className="sub-menu-title">해월 미리보기</div>
       <div className="sub-menu-title-bar"></div>
-      <div className="flex justify-center gap-4 mb-8">
+      <div className="flex justify-center gap-4 mb-8 text-sm md:text-lg">
         <button
           onClick={() => setSelectedCarouselName("haewolCarousel")}
-          className={`px-8 py-3 rounded-full text-lg font-medium transition-all duration-300 ${
+          className={`px-6 py-2 md:px-8 md:py-3 rounded-full font-medium transition-all duration-300 ${
             selectedCarouselName === "haewolCarousel"
               ? "bg-orange-400 text-white shadow-lg"
               : "bg-gray-200 text-gray-600 hover:bg-gray-300"
@@ -85,7 +85,7 @@ export default function HaewolIntroduction() {
         </button>
         <button
           onClick={() => setSelectedCarouselName("externalCarousel")}
-          className={`px-8 py-3 rounded-full text-lg font-medium transition-all duration-300 ${
+          className={`px-6 py-2 md:px-8 md:py-3 rounded-full font-medium transition-all duration-300 ${
             selectedCarouselName === "externalCarousel"
               ? "bg-orange-400 text-white shadow-lg"
               : "bg-gray-200 text-gray-600 hover:bg-gray-300"
@@ -105,7 +105,7 @@ export default function HaewolIntroduction() {
                 fill
                 style={{ objectFit: "contain" }}
               />
-              <div className="absolute bottom-0 left-0 border border-white w-1/3 md:w-1/5 h-[8%] md:h-[10%] bg-white z-10 haewol-darkblue-title f-c-c-c text-base md:text-xl font-semibold">
+              <div className="absolute bottom-0 left-0 border border-white w-1/5 h-[8%] md:h-[10%] bg-white z-10 haewol-darkblue-title f-c-c-c text-xs md:text-xl font-semibold">
                 {imageInfo.name}
               </div>
             </div>
