@@ -151,7 +151,7 @@ export default function Navbar() {
             leaveFrom="transform translate-x-0"
             leaveTo="transform translate-x-full"
           >
-            <div className="sm:hidden fixed top-[7vh] sm:top-[10vh] right-0 w-2/3 h-[90vh] bg-white border-l shadow-lg z-50 overflow-y-auto">
+            <div className="sm:hidden fixed top-[7vh] sm:top-[10vh] right-0 w-1/2 h-[90vh] bg-white border-l shadow-lg z-50 overflow-y-auto haewol-darkblue-title">
               {CATEGORY_LIST.filter((category) => category.title !== "홈").map(
                 (category) => (
                   <div key={category.title} className="border-b">
@@ -166,7 +166,7 @@ export default function Navbar() {
                         <Link
                           href={menu.url}
                           key={menu.title}
-                          className="block py-1.5 hover:haewol-orange-color"
+                          className="block py-1.5 hover:haewol-orange-color text-sm"
                           onClick={() => setOpen(false)}
                         >
                           {menu.title}
