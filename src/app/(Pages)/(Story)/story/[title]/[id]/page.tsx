@@ -2,6 +2,7 @@
 
 import TextEditor from "@/components/story/TextEditor";
 import TextViewer from "@/components/story/TextViewer";
+import { authService } from "@/lib/firebase";
 import { getPostDetail } from "@/services/story/postService";
 import { EPathName, StoryPost } from "@/types/story";
 import { useEffect, useState } from "react";
@@ -15,6 +16,7 @@ export default function StoryPostDetail(props: IStoryPostDetailProps) {
   const PATH_NAME = EPathName.STORY;
   const [post, setPost] = useState<StoryPost | null>(null);
   const [isEditorVisible, setIsEditorVisible] = useState<boolean>(false);
+  const [isAdmin, setIsAdmin] = useState<boolean>(false);
 
   const getPost = async () => {
     const post = await getPostDetail(PATH_NAME, params.id);
@@ -35,6 +37,17 @@ export default function StoryPostDetail(props: IStoryPostDetailProps) {
     getPost();
   }, []);
 
+  useEffect(() => {
+    // 유저가 로그인 여부 체크
+    authService.onAuthStateChanged((user) => {
+      if (user) {
+        setIsAdmin(true);
+      } else {
+        setIsAdmin(false);
+      }
+    });
+  }, []);
+
   return (
     <div className="contents-layout">
       {isEditorVisible ? (
@@ -53,7 +66,7 @@ export default function StoryPostDetail(props: IStoryPostDetailProps) {
             <TextViewer
               selectedPost={post}
               pathName={PATH_NAME}
-              isAdmin={true}
+              isAdmin={isAdmin}
               onEditPost={openEditor}
             />
           </div>
