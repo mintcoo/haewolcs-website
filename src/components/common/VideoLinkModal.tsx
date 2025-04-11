@@ -23,7 +23,7 @@ export default function VideoLinkModal(props: IVideoLinkModalProps) {
         <div className="fixed inset-0 flex w-screen items-center justify-center py-4 bg-black bg-opacity-50 ">
           <DialogPanel className="max-w-lg rounded space-y-4 border bg-white py-6 px-14">
             <Description className="flex justify-center pb-2">
-              업로드할 비디오 링크를 삽입해주세요.
+              업로드할 비디오 Embed 링크를 삽입해주세요.
             </Description>
             <input
               type="text"
