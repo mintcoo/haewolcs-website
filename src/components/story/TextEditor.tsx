@@ -22,6 +22,7 @@ import {
 import { compressImage } from "@/lib/commonClientFnc";
 import { EPathName, StoryPost } from "@/types/story";
 import { Button } from "@headlessui/react";
+import VideoLinkModal from "../common/VideoLinkModal";
 
 interface ITextEditorProps {
   selectedPost?: StoryPost | null;
@@ -57,6 +58,7 @@ export default function TextEditor({
   const [isEditMode, setIsEditMode] = useState<boolean>(false);
   // 저장된 게시글 id (이미지 폴더 루트)
   const [savedPostId, setSavedPostId] = useState<string>("");
+  const [showLinkVideoModal, setShowLinkVideoModal] = useState<boolean>(false);
   const quillRef = useRef<ReactQuill>(null);
 
   const savedPostIdRef = useRef("");
@@ -128,6 +130,21 @@ export default function TextEditor({
     };
   };
 
+  // 비디오 링크 업로드용 모달
+  const openLinkVideoModal = () => {
+    setShowLinkVideoModal(true);
+  };
+
+  const handleVideo = (embedVideoHTML: string) => {
+    const editor = quillRef.current!.getEditor();
+    // 현재 커서 위치 가져오기
+    const range = editor.getSelection(true);
+    // 클립보드에 비디오 Embed HTML 삽입
+    editor.clipboard.dangerouslyPasteHTML(range.index, embedVideoHTML);
+    // 커서 위치 조정
+    editor.setSelection({ index: range.index + 1, length: 0 });
+  };
+
   const modules = useMemo(() => {
     return {
       toolbar: {
@@ -138,9 +155,11 @@ export default function TextEditor({
           [{ color: [] }, { background: [] }], // 글자색, 배경색
           [{ align: [] }], // 정렬
           ["image"],
+          ["video"],
         ],
         handlers: {
           image: handleImage,
+          video: openLinkVideoModal,
         },
       },
     };
@@ -172,62 +191,74 @@ export default function TextEditor({
   }, []);
 
   return (
-    <div className="w-full h-full lg:w-2/3 f-c-c-c">
-      <div className="w-full flex flex-col md:flex-row gap-1 mb-2 md:mb-5 ">
-        <input
-          type="text"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-          placeholder="제목을 입력하세요"
-          className="flex-1 px-4 py-1 text-lg border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
+    <>
+      {showLinkVideoModal && (
+        <VideoLinkModal
+          showVideoLinkModal={showLinkVideoModal}
+          setShowVideoLinkModal={setShowLinkVideoModal}
+          onClickOk={(embedVideoHTML) => {
+            handleVideo(embedVideoHTML);
+            setShowLinkVideoModal(false);
+          }}
         />
-        <div
-          className={`flex items-center gap-2 mx-2 ${pathName === EPathName.STORY ? "hidden" : ""}`}
-        >
+      )}
+      <div className="w-full h-full lg:w-2/3 f-c-c-c">
+        <div className="w-full flex flex-col md:flex-row gap-1 mb-2 md:mb-5 ">
           <input
-            type="checkbox"
-            id="notice"
-            checked={isNotice}
-            onChange={(e) => setIsNotice(e.target.checked)}
-            className="w-4 h-4"
+            type="text"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            placeholder="제목을 입력하세요"
+            className="flex-1 px-4 py-1 text-lg border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
           />
-          <label htmlFor="notice" className={`text-sm`}>
-            공지
-          </label>
-        </div>
-        <div className="flex justify-end gap-1">
-          <Button
-            onClick={async () => {
-              // 이미지 폴더 내 모든 파일 삭제
-              if (!isEditMode) {
-                const folderRef = ref(storage, `posts/${savedPostId}`);
-                const fileList = await listAll(folderRef);
-                await Promise.all(
-                  fileList.items.map((fileRef) => deleteObject(fileRef)),
-                );
-              }
-
-              onCallbackDone();
-            }}
-            className="rounded-md btn-white"
+          <div
+            className={`flex items-center gap-2 mx-2 ${pathName === EPathName.STORY ? "hidden" : ""}`}
           >
-            취소
-          </Button>
-          {/* 저장 버튼 */}
-          <Button onClick={handleSave} className="rounded-md btn-dark-blue">
-            저장하기
-          </Button>
+            <input
+              type="checkbox"
+              id="notice"
+              checked={isNotice}
+              onChange={(e) => setIsNotice(e.target.checked)}
+              className="w-4 h-4"
+            />
+            <label htmlFor="notice" className={`text-sm`}>
+              공지
+            </label>
+          </div>
+          <div className="flex justify-end gap-1">
+            <Button
+              onClick={async () => {
+                // 이미지 폴더 내 모든 파일 삭제
+                if (!isEditMode) {
+                  const folderRef = ref(storage, `posts/${savedPostId}`);
+                  const fileList = await listAll(folderRef);
+                  await Promise.all(
+                    fileList.items.map((fileRef) => deleteObject(fileRef)),
+                  );
+                }
+
+                onCallbackDone();
+              }}
+              className="rounded-md btn-white"
+            >
+              취소
+            </Button>
+            {/* 저장 버튼 */}
+            <Button onClick={handleSave} className="rounded-md btn-dark-blue">
+              저장하기
+            </Button>
+          </div>
         </div>
+        <CustomReactQuill
+          forwardedRef={quillRef}
+          value={content}
+          onChange={setContent}
+          theme="snow"
+          className="w-full h-[50vh] mb-5"
+          placeholder="내용을 입력해주세요."
+          modules={modules}
+        />
       </div>
-      <CustomReactQuill
-        forwardedRef={quillRef}
-        value={content}
-        onChange={setContent}
-        theme="snow"
-        className="w-full h-[50vh] mb-5"
-        placeholder="내용을 입력해주세요."
-        modules={modules}
-      />
-    </div>
+    </>
   );
 }
