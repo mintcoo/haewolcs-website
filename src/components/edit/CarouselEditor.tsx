@@ -38,6 +38,9 @@ export default function CarouselEditor({
       case "externalCarousel":
         setTitle("4. 해월 미리보기 '외부시설' 슬라이드");
         break;
+      case "nearbyCarousel":
+        setTitle("5. 해월 미리보기 '주변지역' 슬라이드");
+        break;
       default:
         break;
     }

@@ -38,7 +38,7 @@ export default function HaewolIntroduction() {
     dots: false,
     infinite: selectedImages.length > 1,
     speed: 500,
-    slidesToShow: 5, // 한 번에 보여줄 썸네일 개수
+    slidesToShow: selectedImages.length > 5 ? 5 : selectedImages.length, // 한 번에 보여줄 썸네일 개수
     slidesToScroll: 1,
 
     swipeToSlide: true,
@@ -50,7 +50,7 @@ export default function HaewolIntroduction() {
       {
         breakpoint: 768,
         settings: {
-          slidesToShow: 3,
+          slidesToShow: selectedImages.length > 2 ? 3 : selectedImages.length,
           centerMode: selectedImages.length > 3,
         },
       },
@@ -92,6 +92,16 @@ export default function HaewolIntroduction() {
           }`}
         >
           외부 전경
+        </button>
+        <button
+          onClick={() => setSelectedCarouselName("nearbyCarousel")}
+          className={`px-6 py-2 md:px-8 md:py-3 rounded-full font-medium transition-all duration-300 ${
+            selectedCarouselName === "nearbyCarousel"
+              ? "bg-orange-400 text-white shadow-lg"
+              : "bg-gray-200 text-gray-600 hover:bg-gray-300"
+          }`}
+        >
+          주변 지역
         </button>
       </div>
       {/* 메인 슬라이드 */}
