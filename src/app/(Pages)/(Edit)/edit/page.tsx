@@ -13,11 +13,13 @@ export default function Edit() {
     facilityCarousel: ICarouselImage[];
     haewolCarousel: ICarouselImage[];
     externalCarousel: ICarouselImage[];
+    nearbyCarousel: ICarouselImage[];
   }>({
     mainCarousel: [],
     facilityCarousel: [],
     haewolCarousel: [],
     externalCarousel: [],
+    nearbyCarousel: [],
   });
 
   const fetchImages = async (carouselName: string) => {
@@ -49,12 +51,14 @@ export default function Edit() {
     let unsubscribeFacility: Unsubscribe | null = null;
     let unsubscribeHaewol: Unsubscribe | null = null;
     let unsubscribeExternal: Unsubscribe | null = null;
+    let unsubscribeNearby: Unsubscribe | null = null;
 
     const fetchAndSetImages = async () => {
       unsubscribeMain = await fetchImages("mainCarousel");
       unsubscribeFacility = await fetchImages("facilityCarousel");
       unsubscribeHaewol = await fetchImages("haewolCarousel");
       unsubscribeExternal = await fetchImages("externalCarousel");
+      unsubscribeNearby = await fetchImages("nearbyCarousel");
     };
 
     fetchAndSetImages();
@@ -64,6 +68,7 @@ export default function Edit() {
       unsubscribeFacility && unsubscribeFacility();
       unsubscribeHaewol && unsubscribeHaewol();
       unsubscribeExternal && unsubscribeExternal();
+      unsubscribeNearby && unsubscribeNearby();
     };
   }, []);
 
@@ -84,6 +89,10 @@ export default function Edit() {
       <CarouselEditor
         imageList={carouselImages.externalCarousel}
         carouselName="externalCarousel"
+      />
+      <CarouselEditor
+        imageList={carouselImages.nearbyCarousel}
+        carouselName="nearbyCarousel"
       />
       {/* <Loading /> */}
     </div>
