@@ -1,6 +1,7 @@
 import SubTitle from "@/components/common/SubTitle";
 import { Metadata } from "next";
 import Image from "next/image";
+import mechanism4 from "/public/images/mechanism/mechanism_4.png";
 
 export const metadata: Metadata = {
   title: "암 통합치료",
@@ -89,7 +90,7 @@ NK 세포 등을 증식 또는 활성화시키는 면역증강치료가 필요�
 `}</p>
           <div className="relative w-full lg:w-1/2 h-72">
             <Image
-              src="/images/mechanism/mechanism_4.png"
+              src={mechanism4}
               alt="mechanism_4"
               fill
               style={{ objectFit: "contain" }}
