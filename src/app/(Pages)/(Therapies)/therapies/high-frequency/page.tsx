@@ -72,11 +72,10 @@ export default function HighFrequencyTherapy() {
 온코써미아 기계에는 modulation 이라는 기능이 있는데, 이는 암세포의 생화학적, 전자기적 특성을 이용하여 주파가 암세포의 고유 시그널을 찾아가는 기능이 있어서 치료 효과가 우수하고, 이에 따라 투여하는 에너지(watt)를 줄일 수 있어서 화상 등의 부작용이 적다.`}
           </p>
           <div className="relative w-full lg:w-1/2 h-72">
-            <Image
+            <img
               src="/images/frequency/frequency_4.png"
               alt="frequency_4"
-              fill
-              style={{ objectFit: "contain" }}
+              className="w-full h-full object-contain"
             />
           </div>
           <p className="whitespace-pre-line">

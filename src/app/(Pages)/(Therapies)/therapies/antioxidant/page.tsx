@@ -70,11 +70,10 @@ export default function AntioxidantTherapy() {
             {`실험쥐를 대상으로 한 실험에서, 간경화증의 진행을 억제시키는 강력한 항염증효과와, 암세포의 P53 발현 증가시켜 종양 크기를 감소시키는 효과가 입증되었으며, 항암치료와 방사선 치료의 내성을 감소시키고, 항암제 부작용의 완화, 세포재생 작용으로 상처의 빠른 치유, 통증의 완화, 림프부종의 감소, 면역 증강, 중금속 해독, 노화 방지, 혈전생성 억제 등 많은 작용들이 입증되고 있다.`}
           </p>
           <div className="relative w-full lg:w-1/2 h-96">
-            <Image
+            <img
               src="/images/antioxidant/antioxidant_5.png"
               alt="antioxidant_5"
-              fill
-              style={{ objectFit: "contain" }}
+              className="w-full h-full object-contain"
             />
           </div>
           <p className="whitespace-pre-line">
@@ -101,11 +100,10 @@ export default function AntioxidantTherapy() {
             <br />
           </p>
           <div className="relative w-full lg:w-1/2 h-72">
-            <Image
+            <img
               src="/images/antioxidant/antioxidant_6.png"
               alt="antioxidant_6"
-              fill
-              style={{ objectFit: "contain" }}
+              className="w-full h-full object-contain"
             />
           </div>
         </div>

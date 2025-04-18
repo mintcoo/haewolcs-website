@@ -89,11 +89,10 @@ NK 세포 등을 증식 또는 활성화시키는 면역증강치료가 필요�
 (전이는 보다 더 자주 림프관을 따라 일어난다.)
 `}</p>
           <div className="relative w-full lg:w-1/2 h-72">
-            <Image
-              src={mechanism4}
+            <img
+              src="/images/mechanism/mechanism_4.png"
               alt="mechanism_4"
-              fill
-              style={{ objectFit: "contain" }}
+              className="w-full h-full object-contain"
             />
           </div>
           <p className="whitespace-pre-line">{`에서 재발이 발견되는 이유이고, 보이지 않는 잔존암을 제거하기 위해 수술 후 6개월씩이나 항암치료를 받아야 하는 이유이다.
@@ -117,11 +116,10 @@ NK 세포 등을 증식 또는 활성화시키는 면역증강치료가 필요�
 수술은 보이는 암 종괴를 중심으로 정상 조직을 넓게 포함해서 범위를 잡기 때문에, 때로는 미리 항암치료 (선항암) 및 방사선 치료로 암세포를 많이 없애고 암종괴의 크기를 줄인 후에 수술을 하기도 한다.`}
           </p>
           <div className="relative w-full lg:w-1/2 h-72">
-            <Image
+            <img
               src="/images/integrated/integrated_1.png"
               alt="integrated_1"
-              fill
-              style={{ objectFit: "contain" }}
+              className="w-full h-full object-contain"
             />
           </div>
 
@@ -166,11 +164,10 @@ NK 세포 등을 증식 또는 활성화시키는 면역증강치료가 필요�
 `}
           </p>
           <div className="relative w-full lg:w-1/2 h-72">
-            <Image
+            <img
               src="/images/integrated/integrated_2.png"
               alt="integrated_2"
-              fill
-              style={{ objectFit: "contain" }}
+              className="w-full h-full object-contain"
             />
           </div>
           <p className="whitespace-pre-line">
@@ -179,11 +176,10 @@ NK 세포 등을 증식 또는 활성화시키는 면역증강치료가 필요�
 의학의 발전으로 이런 항암제가 어서 나오기를 바랄 수밖에 없겠다.`}
           </p>
           <div className="relative w-full lg:w-1/2 h-72">
-            <Image
+            <img
               src="/images/integrated/integrated_3.png"
               alt="integrated_3"
-              fill
-              style={{ objectFit: "contain" }}
+              className="w-full h-full object-contain"
             />
           </div>
           <p className="whitespace-pre-line">
