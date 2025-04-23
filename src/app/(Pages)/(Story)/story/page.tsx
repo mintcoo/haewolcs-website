@@ -86,7 +86,6 @@ export default function Story() {
   // 게시글 순서 변경 핸들러
   const handleMovePost = async (direction: "up" | "down") => {
     if (!selectedPost) return;
-    console.log("selectedPost", selectedPost);
 
     const currentPost = selectedPost; // 현재 게시글
     const currentOrder = currentPost.order;
@@ -242,7 +241,7 @@ export default function Story() {
                       <div
                         onClick={() => onClickPost(post, isOrderMode)}
                         key={index}
-                        className={`${isOrderMode && selectedPost?.id === post.id ? "bg-blue-100 hover:bg-blue-100 border border-blue-600" : ""} bg-white border border-gray-200 rounded-md shadow-sm hover:shadow-md hover:text-orange-400 text-gray-800  transition-shadow duration-150 cursor-pointer overflow-hidden`}
+                        className={`${isOrderMode && selectedPost?.id === post.id ? "bg-blue-100 hover:bg-blue-100 border border-blue-600" : "bg-white border border-gray-200"}   rounded-md shadow-sm hover:shadow-md hover:text-orange-400 text-gray-800  transition-shadow duration-150 cursor-pointer overflow-hidden`}
                       >
                         <div className="relative aspect-[4/3] w-full overflow-hidden">
                           <Image
