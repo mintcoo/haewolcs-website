@@ -8,6 +8,7 @@ import {
   serverTimestamp,
   updateDoc,
   doc,
+  getDocs,
 } from "firebase/firestore";
 import { db, storage } from "@/lib/firebase";
 import { useModal } from "@/hooks/useModal";
@@ -34,6 +35,7 @@ interface ITextEditorProps {
 interface CustomReactQuillProps extends ReactQuillProps {
   forwardedRef: React.RefObject<ReactQuill>;
 }
+
 // 이미지 ref 연결을 위해 커스텀 컴포넌트 생성
 const CustomReactQuill = dynamic(
   async () => {
@@ -77,12 +79,23 @@ export default function TextEditor({
           isNotice,
         });
       } else {
+        // 컬렉션 내 가장 큰 order 값 조회
+        const querySnapshot = await getDocs(collection(db, pathName));
+        let maxOrder = 0;
+        querySnapshot.forEach((doc) => {
+          const data = doc.data();
+          if (data.order > maxOrder) {
+            maxOrder = data.order;
+          }
+        });
+
         await addDoc(collection(db, pathName), {
           title,
           content,
           isNotice,
           createdAt: serverTimestamp(),
           postId: savedPostId,
+          order: maxOrder + 1,
         });
       }
       openModal("알림", "저장되었습니다!");
@@ -145,6 +158,26 @@ export default function TextEditor({
     editor.setSelection({ index: range.index + 1, length: 0 });
   };
 
+  const handleAudio = () => {
+    // @@@@@@@@ 여기서부터 해봐야함 파이어베이스에 올리고 가져오기
+    const input = document.createElement("input");
+    input.setAttribute("type", "file");
+    input.setAttribute("accept", "audio/*");
+    input.click();
+
+    input.onchange = async () => {
+      const file = input.files?.[0];
+      if (!file) return;
+
+      const editor = quillRef.current!.getEditor();
+      const range = editor.getSelection(true);
+
+      // 여기에 오디오 파일 업로드 및 삽입 로직을 구현하세요
+      // 예시:
+      editor.insertEmbed(range.index, "audio", "오디오 URL");
+    };
+  };
+
   const modules = useMemo(() => {
     return {
       toolbar: {
@@ -156,10 +189,12 @@ export default function TextEditor({
           [{ align: [] }], // 정렬
           ["image"],
           ["video"],
+          ["link"],
         ],
         handlers: {
           image: handleImage,
           video: openLinkVideoModal,
+          link: handleAudio,
         },
       },
     };
