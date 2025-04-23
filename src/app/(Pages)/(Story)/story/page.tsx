@@ -86,6 +86,7 @@ export default function Story() {
   // 게시글 순서 변경 핸들러
   const handleMovePost = async (direction: "up" | "down") => {
     if (!selectedPost) return;
+    console.log("selectedPost", selectedPost);
 
     const currentPost = selectedPost; // 현재 게시글
     const currentOrder = currentPost.order;
@@ -118,7 +119,7 @@ export default function Story() {
 
       if (!querySnapshot.empty) {
         const targetDoc = querySnapshot.docs[0];
-        console.log("targetDoc", targetDoc);
+
         await updateDoc(doc(db, pathName, targetDoc.id), {
           order: currentOrder,
         });
