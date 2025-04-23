@@ -7,6 +7,7 @@ export interface StoryPost {
   isNotice: boolean;
   createdAt: Timestamp;
   postId: string;
+  order: number;
 }
 
 export enum EPathName {
