@@ -170,11 +170,36 @@ export default function TextEditor({
       if (!file) return;
 
       const editor = quillRef.current!.getEditor();
+      // 현재 커서 위치 가져오기
       const range = editor.getSelection(true);
 
-      // 여기에 오디오 파일 업로드 및 삽입 로직을 구현하세요
-      // 예시:
-      editor.insertEmbed(range.index, "audio", "오디오 URL");
+      // 로딩 이미지 표시
+      editor.insertEmbed(range.index, "image", `/images/loading.gif`);
+
+      try {
+        console.log("파일 정보:", {
+          name: file.name,
+          size: file.size,
+          type: file.type,
+          postId: savedPostIdRef.current,
+        });
+        const fileName = `${Date.now()}-${file.name}`;
+        const storageRef = ref(
+          storage,
+          `posts/${savedPostIdRef.current}/${fileName}`,
+        );
+        await uploadBytes(storageRef, file);
+        const url = await getDownloadURL(storageRef);
+
+        console.log("업로드 성공, URL:", url);
+
+        editor.deleteText(range.index, 1); // 로딩 이미지 제거
+        editor.insertEmbed(range.index, "audio", url);
+      } catch (error) {
+        console.error("오디오 업로드 오류:", error);
+        editor.deleteText(range.index, 1); // 로딩 이미지 제거
+        openModal("알림", "오디오 업로드에 실패했습니다.");
+      }
     };
   };
 
