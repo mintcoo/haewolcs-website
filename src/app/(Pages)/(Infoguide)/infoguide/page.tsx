@@ -52,7 +52,7 @@ export default function InfoGuide() {
             </div>
             <div className="mt-6 text-center bg-blue-50 p-4 rounded-lg">
               <p className="text-blue-600 font-medium text-lg">
-                ※ 일요일 및 공휴일은 휴진입니다
+                ※ 일요일 및 명절은 휴진입니다
               </p>
             </div>
           </div>
