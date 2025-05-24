@@ -252,12 +252,12 @@ export default function Story() {
                           />
                         </div>
                         <div className="p-4">
-                          <h2 className="text-lg font-medium mb-2 line-clamp-2 ">
+                          <h2 className="text-lg font-medium line-clamp-2 ">
                             {post.title}
                           </h2>
-                          <div className="flex justify-between items-center text-sm text-gray-500">
+                          {/* <div className="flex justify-between items-center text-sm text-gray-500">
                             <span>{formatDate(post.createdAt)}</span>
-                          </div>
+                          </div> */}
                         </div>
                       </div>
                     ))}
