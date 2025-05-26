@@ -22,7 +22,7 @@ import {
   where,
 } from "firebase/firestore";
 
-const POST_PAGENATION_COUNT = 9; // 페이지당 게시글 수
+const POST_PAGENATION_COUNT = 9; // 페이지당 게시글  수
 
 export default function Story() {
   const path = usePathname();
